@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Capstone::Application.config.secret_token = '78f462ce96e70a731787be5c0411124a535caa9dfe14bdf1f372d1a3aab8e186547ec472c3e16c4c853100ab86f95af68ca63a3382207cbaa8953c257144f03c'
+Eyeballmachine::Application.config.secret_token = '4405675dee5d784ff2660abbfc5e55938486b908beae0f2c8e55ef71a1a48c159220345881328f04a9d68e6e25836b139c0bc2ec712cea73c203dfd5db9d121d'

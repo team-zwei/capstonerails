@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Capstone::Application.load_tasks
+Eyeballmachine::Application.load_tasks
