@@ -1,25 +1,90 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
+  <meta charset="utf-8">
+
   <title>Capstone</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="css/bootstrap2.css">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+
+  <%= javascript_include_tag "application" %>
+  <script src="js/modernizr-2.0.6.min.js"></script>
+
 </head>
 <body>
-  <div id="user_nav">
-    <% if current_user %>
-      Logged in as <%= current_user.email %>.
-      <%= link_to "Log out", log_out_path %>
-    <% else %>
-      <%= link_to "Sign up", sign_up_path %> or
-      <%= link_to "log in", log_in_path %>
-    <% end %>
-  </div>
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-<%= yield %>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <%= link_to "Capstone", root_url, class: "brand" %>
+        <ul class="nav">
+          <li class="">
+            <a href="./index.html">Overview</a>
+          </li>
+          <li class="">
+            <a href="./scaffolding.html">Scaffolding</a>
+          </li>
+          <li class="">
+            <a href="./base-css.html">Base CSS</a>
+          </li>
+          <li class="active">
+            <a href="./components.html">Components</a>
+          </li>
+          <li class="">
+            <a href="./javascript.html">Javascript plugins</a>
+          </li>
+          <li class="">
+            <a href="./less.html">Using LESS</a>
+          </li>
+          <li class="">
+            <a href="./download.html">Customize</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div><!-- /navbar -->
+
+  <div id="header-container">
+    <header>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <div id="user_nav">
+        <% if current_user %>
+          Logged in as <%= current_user.email %>.
+          <%= link_to "Log out", log_out_path %>
+        <% else %>
+          <%= link_to "Sign up", sign_up_path %> or
+          <%= link_to "log in", log_in_path %>
+        <% end %>
+      </div>
+    </header>
+  </div><!-- /header-container -->
+
+  <div id="main-container" class="container">
+
+      <%= yield %>
+      
+  </div> <!-- /main-container -->
+
+  <div id="footer-container">
+    <footer>
+      <h3>Designed by Team Zwei</h3>
+    </footer>
+  </div><!-- /footer-container -->
+
+<!--[if lt IE 7 ]>
+  <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+  <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+<![endif]-->
 
 </body>
 </html>
