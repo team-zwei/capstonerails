@@ -8,5 +8,5 @@
 #  updated_at :datetime        not null
 #
 
-class Auction < ActiveRecord::Base
+class Auctions < ActiveRecord::Base
 end
