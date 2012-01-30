@@ -21,8 +21,8 @@
 
 </head>
 <body>
-
-  <%= render "/layouts/partials/navbar" %>
+  <% @admin = true %>
+  <%= render "/layouts/partials/navbar", locals: {admin: @admin} %>
 
   <%= render "/layouts/partials/header" %>
 
