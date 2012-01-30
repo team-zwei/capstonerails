@@ -21,44 +21,10 @@
 
 </head>
 <body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <%= link_to "Capstone", root_url, class: "brand" %>
-        <ul class="nav">
-          <li>
-            <%= link_to "Home", root_url %>
-          </li>
-          <li class="">
-            <a href="#">Auctions</a>
-          </li>
-          <li class="">
-            <a href="#">My Account</a>
-          </li>
-          <li class="">
-            <a href="#">Help</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div><!-- /navbar -->
 
-  <div id="header-container">
-    <header>
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-      <div id="user_nav">
-        <% if current_user %>
-          Logged in as <%= current_user.email %>.
-          <%= link_to "Log out", log_out_path %>
-        <% else %>
-          <%= link_to "Sign up", sign_up_path %> or
-          <%= link_to "log in", log_in_path %>
-        <% end %>
-      </div>
-    </header>
-  </div><!-- /header-container -->
+  <%= render "/layouts/partials/navbar" %>
+
+  <%= render "/layouts/partials/header" %>
 
   <div id="main-container" class="container">
 
@@ -66,11 +32,7 @@
       
   </div> <!-- /main-container -->
 
-  <div id="footer-container">
-    <footer>
-      <h3>Designed by Team Zwei</h3>
-    </footer>
-  </div><!-- /footer-container -->
+  <%= render "layouts/partials/footer" %>
 
 <!--[if lt IE 7 ]>
   <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
