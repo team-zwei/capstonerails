@@ -2,7 +2,14 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
 gem 'jquery-rails'
+
+# Gem used to provide secure authentication (used by has_secure_password)
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+# Gem used for admin section
+gem 'activeadmin'
+
+# Gems used for pushing data to clients
 gem 'thin'
 gem 'faye'
 
