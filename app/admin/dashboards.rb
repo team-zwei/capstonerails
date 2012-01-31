@@ -14,7 +14,7 @@ ActiveAdmin::Dashboards.build do
   #       end
   #     end
   #   end
-  
+
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can
   # easily render a partial rather than build content in ruby.
@@ -41,4 +41,21 @@ ActiveAdmin::Dashboards.build do
   # section "Membership Summary", :if => :memberships_enabled?
   # section "Membership Summary", :if => Proc.new { current_admin_user.account.memberships.any? }
 
+  section "Recent Users" do
+    table_for User.order("created_at desc").limit(5) do
+      column :id
+      column :username
+      column :created_at
+    end
+    strong { link_to "View All Users", admin_users_path }
+  end
+
+  section "Recent Auctions" do
+    table_for Auctions.order("created_at desc").limit(5) do
+      column :id
+      column :name
+      column :created_at
+    end
+    strong { link_to "View All Auctions", admin_auctions_path }
+  end
 end
