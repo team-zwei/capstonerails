@@ -1,5 +1,7 @@
 Capstone::Application.routes.draw do
-  get "home/index"
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"

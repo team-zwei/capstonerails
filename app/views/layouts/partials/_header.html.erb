@@ -2,9 +2,8 @@
   <div class="row">
     <div class="span12">
       <header>
-        <% flash.each do |name, msg| %>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        <% end %>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
         <div id="user_nav">
           <% if current_user %>
             Logged in as <%= current_user.username %>.
