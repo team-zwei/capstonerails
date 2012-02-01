@@ -44,7 +44,9 @@ ActiveAdmin::Dashboards.build do
   section "Recent Users" do
     table_for User.order("created_at desc").limit(5) do
       column :id
-      column :username
+      column :username do |user|
+        link_to user.username, admin_user_path(user)
+      end
       column :created_at
     end
     strong { link_to "View All Users", admin_users_path }
@@ -53,7 +55,9 @@ ActiveAdmin::Dashboards.build do
   section "Recent Auctions" do
     table_for Auctions.order("created_at desc").limit(5) do
       column :id
-      column :name
+      column :name do |auction|
+        link_to auction.name, admin_auction_path(auction)
+      end
       column :created_at
     end
     strong { link_to "View All Auctions", admin_auctions_path }
