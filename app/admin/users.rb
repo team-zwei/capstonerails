@@ -1,4 +1,10 @@
 ActiveAdmin.register User do
+	filter :id
+	filter :username
+	filter :email
+	filter :created_at
+	filter :updated_at
+	
   index do
   	column :id
   	column :username
