@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
-  def index  	
+  def index
+  	@auctions = Auctions.all	
   end
 end

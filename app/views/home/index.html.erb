@@ -1,28 +1,20 @@
-<div id="row" class="row">
-	<div id="span" class="span9">
-		This is the home page.
-
-	</div><!-- /span -->
-</div><!-- / -->
-
 <div class="row">
-    <div class="span12">
-      <h2>Highly customizable</h2>
-      <p>With a bit of extra markup, it's possible to add any kind of HTML content like headings, paragraphs, or buttons into thumbnails.</p>
-      <ul class="thumbnails">
-      	<% 10.times do # @auctions.each do |auction| %>
+	<div class="span12">
+	  <h2>Highly customizable</h2>
+	  <p>With a bit of extra markup, it's possible to add any kind of HTML content like headings, paragraphs, or buttons into thumbnails.</p>
+	  <ul class="thumbnails">
+	  	<% @auctions.each do |auction| %>
 	        <li class="span3">
 	          <div class="thumbnail">
 	            <img src="http://placehold.it/210x150" alt="">
 	            <div class="caption">
-	              <h5>TODO @auction.title</h5>
-	              <p><%= "TODO description of the item to auction. @auction.description"%></p>
-	              <p><%= link_to "Bid Now!", root_url %></p>
+	              <h5><%= auction.name %></h5>
+	              <p><%= auction.description %></p>
+	              <p><%= link_to "Bid Now!", "#" %></p>
 	            </div>
 	          </div>
 	        </li>
 	    <% end %>
-      </ul>
-    </div>
-  </div>
-
+	  </ul>
+	</div>
+</div>
