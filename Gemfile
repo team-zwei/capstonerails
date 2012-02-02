@@ -10,8 +10,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'activeadmin'
 
 # Gems used for pushing data to clients
-gem 'thin'
-gem 'faye'
+#gem 'thin'
+#gem 'faye'
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'

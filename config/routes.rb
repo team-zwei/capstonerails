@@ -1,6 +1,8 @@
 Capstone::Application.routes.draw do
   ActiveAdmin.routes(self)
 
+  get "admin/logout" => "sessions#destroy", :as => "admin/logout"
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   get "log_out" => "sessions#destroy", :as => "log_out"
