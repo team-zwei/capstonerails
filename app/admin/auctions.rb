@@ -1,3 +1,3 @@
-ActiveAdmin.register Auctions do
+ActiveAdmin.register Auction do
   
 end

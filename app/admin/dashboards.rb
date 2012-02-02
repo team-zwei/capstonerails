@@ -53,7 +53,7 @@ ActiveAdmin::Dashboards.build do
   end
 
   section "Recent Auctions" do
-    table_for Auctions.order("created_at desc").limit(5) do
+    table_for Auction.order("created_at desc").limit(5) do
       column :id
       column :name do |auction|
         link_to auction.name, admin_auction_path(auction)
