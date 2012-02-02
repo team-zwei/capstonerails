@@ -9,6 +9,7 @@
 #  updated_at      :datetime        not null
 #  username        :string(255)
 #  auth_token      :string(255)
+#  admin           :boolean
 #
 
 class User < ActiveRecord::Base
