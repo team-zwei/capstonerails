@@ -9,6 +9,8 @@ Capstone::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
   get "auctions" => "auctions#index", :as => "auctions"
+  get "help" => "help#index", :as => "help"
+  get "account" => "account#index", :as => "account"
 
   root :to => "home#index"
 

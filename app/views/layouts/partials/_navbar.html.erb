@@ -9,11 +9,13 @@
         <li id="nav_auctions">
           <%= link_to "Auctions", auctions_path %>
         </li>
-        <li id="nav_account">
-          <a href="#">My Account</a>
-        </li>
+        <% if current_user %>
+          <li id="nav_account">
+            <%= link_to "My Account", account_path %>
+          </li>
+        <% end %>
         <li id="nav_help">
-          <a href="#">Help</a>
+          <%= link_to "Help", help_path %>
         </li>
         <% if @admin  %>
           <li class="">
