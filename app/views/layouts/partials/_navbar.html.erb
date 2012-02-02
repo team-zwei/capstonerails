@@ -15,10 +15,10 @@
         <li class="">
           <a href="#">Help</a>
         </li>
-        <% if @admin %>
-        <li class="">
-          <a href="">Admin</a>
-        </li>
+        <% if @admin  %>
+          <li class="">
+            <a href="/admin">Admin</a>
+          </li>
         <% end %>
         <% if current_user %>
           <li>
