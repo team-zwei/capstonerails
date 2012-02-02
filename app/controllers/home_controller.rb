@@ -2,6 +2,6 @@ class HomeController < ApplicationController
   def index
   	# TODO: will need to find by some criteria
   	# 		maybe auctions ending soon or something
-  	@auctions = Auctions.all
+  	@auctions = Auction.all
   end
 end

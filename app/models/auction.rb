@@ -11,5 +11,5 @@
 #  end_time    :datetime
 #
 
-class Auctions < ActiveRecord::Base
+class Auction < ActiveRecord::Base
 end
