@@ -2,17 +2,17 @@
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "Capstone", root_url, class: "brand" %>
-      <ul class="nav">
-        <li>
+      <ul id="nav" class="nav">
+        <li id="nav_home">
           <%= link_to "Home", root_url %>
         </li>
-        <li class="">
-          <a href="#">Auctions</a>
+        <li id="nav_auctions">
+          <%= link_to "Auctions", auctions_path %>
         </li>
-        <li class="">
+        <li id="nav_account">
           <a href="#">My Account</a>
         </li>
-        <li class="">
+        <li id="nav_help">
           <a href="#">Help</a>
         </li>
         <% if @admin  %>
