@@ -1,21 +1,19 @@
 <div class="row">
 	<div class="span4 offset4">
-		<h1>Log in</h1>
+		<h2>Log In</h2>
 		<%= form_tag sessions_path do %>
 		  <div class="field">
-		    <%= label_tag :username, 'Username or email' %>
-		    <%= text_field_tag :username, params[:username] %>
+		    <%= text_field_tag :username, nil, placeholder: "Username" %>
 		  </div>
 		  <div class="field">
-		    <%= label_tag :password %>
-		    <%= password_field_tag :password %>
+		    <%= password_field_tag :password, nil, placeholder: "Password" %>
 		  </div>
       <div class="field">
         <label class="checkbox" for='<%="#{:remember_me}"%>'>
           <%= check_box_tag :remember_me, 1, params[:remember_me] %> Remember Me
         </label>
       </div>
-		  <div class="actions"><%= submit_tag "Log in", class: "btn primary" %></div>
+		  <div class="actions"><%= submit_tag "Log in", class: "btn btn-large primary" %></div>
 		<% end %>
 	</div>
 </div>
