@@ -1,7 +1,5 @@
-@import "home";
 @import "sessions";
-@import "users";
 
-.thumbnail {
+.auction-thumbnail {
 	height: 290px;
 }
