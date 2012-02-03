@@ -1,0 +1,14 @@
+<ul class="thumbnails">
+	<% @auctions.each do |auction| %>
+      <li class="span3">
+        <div class="thumbnail">
+          <img src="http://placehold.it/210x150" alt="">
+          <div class="caption">
+            <h5><%= auction.name %></h5>
+            <p><%= auction.description %></p>
+            <p><%= link_to "Bid Now!", "#" %></p>
+          </div>
+        </div>
+      </li>
+  <% end %>
+</ul>

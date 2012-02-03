@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
+  skip_before_filter :require_login
+
   def new
-    session[:return_to] = root_url
+    session[:return_to] ||= root_url
   end
 
   def create

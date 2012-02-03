@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
 	def index
-		@test = "testing";
+		@auctions = Auction.all
 	end
 end

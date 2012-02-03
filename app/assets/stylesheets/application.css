@@ -1,3 +1,7 @@
 @import "home";
 @import "sessions";
 @import "users";
+
+.thumbnail {
+	height: 290px;
+}

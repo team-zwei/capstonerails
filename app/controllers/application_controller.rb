@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :authenticate_admin_user!
   helper_method :current_admin_user
 
+  before_filter :require_login
 
   def destination
     url = session[:return_to] || root_url
@@ -29,6 +30,18 @@ class ApplicationController < ActionController::Base
   def current_admin_user 
     return nil unless @current_user && current_user.admin?
     @current_user
-  end 
+  end
+
+  def require_login
+    unless logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      session[:return_to] = request.fullpath
+      render "sessions/new"
+    end
+  end
+ 
+  def logged_in?
+    !!current_user
+  end
 
 end
