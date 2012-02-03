@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 		redirect_to root_url, notice: "Not accessible" and return
   	end
   	session[:return_to] = request.fullpath
-    render "sessions/new"
+    render "sessions/new", layout: "application"
   end 
 
   def current_admin_user 
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:error] = "You must be logged in to access this section"
       session[:return_to] = request.fullpath
-      render "sessions/new"
+      render "sessions/new", layout: "application"
     end
   end
  
