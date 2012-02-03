@@ -15,7 +15,7 @@
         <li class="">
           <a href="#">Help</a>
         </li>
-        <% if @admin  %>
+        <% if current_user && current_user.admin?  %>
           <li class="">
             <a href="/admin">Admin</a>
           </li>

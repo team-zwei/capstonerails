@@ -20,11 +20,10 @@ class ApplicationController < ActionController::Base
   def authenticate_admin_user!
   	if current_user
 		return @current_user if @current_user.admin?
-		redirect_to root_url, notice: "Not accessible"
-  	else
-	  	session[:return_to] = request.fullpath
-	    render "sessions/new"
-	end
+		redirect_to root_url, notice: "Not accessible" and return
+  	end
+  	session[:return_to] = request.fullpath
+    render "sessions/new"
   end 
 
   def current_admin_user 

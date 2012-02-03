@@ -21,8 +21,7 @@
 
 </head>
 <body>
-  <% @admin = true if current_user && current_user.admin? %>
-  <%= render "/layouts/partials/navbar", locals: {admin: @admin} %>
+  <%= render "/layouts/partials/navbar" %>
 
   <%= render "/layouts/partials/header" %>
 
