@@ -5,8 +5,11 @@
           <img src="http://placehold.it/210x150" alt="">
           <div class="caption">
             <h5><%= auction.name %></h5>
-            <p><%= auction.description %></p>
-            <p><%= link_to "Bid Now!", "#" %></p>
+            <div style="height:65px">
+              <p><%= auction.description %></p>
+            </div><!-- / -->
+            <h5>Time Remaining: 00:<%= Random.new.rand(10..50) %></h5>
+            <p><%= link_to "Bid Now!", "#", class: "btn success" %></p>
           </div>
         </div>
       </li>
