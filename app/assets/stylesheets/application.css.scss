@@ -1,5 +1,10 @@
 @import "sessions";
+@import "twitter/bootstrap";
 
 .auction-thumbnail {
 	height: 290px;
+}
+
+body {
+	margin-top: 60px;
 }
