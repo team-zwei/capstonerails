@@ -3,12 +3,11 @@
     <h1>Sign Up</h1>
 
     <%= form_for @user do |f| %>
-      <%= f.text_field :email, placeholder: "Email" %>
-      <%= f.text_field :username, placeholder: "Username" %>
-      <%= f.password_field :password, placeholder: "Password" %>
-      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
-      <br>
-      <%= f.submit "Register", class: "btn primary" %>
+      <%= f.text_field :email, placeholder: "Email Address" %>
+      <%= f.text_field :username, placeholder: "Username"  %>
+      <%= f.password_field :password, placeholder: "Password"  %>
+      <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
+      <%= f.submit class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
