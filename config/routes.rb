@@ -14,7 +14,9 @@ Capstone::Application.routes.draw do
 
   root :to => "home#index"
 
+  resources :bids
   resources :users
+  resources :auctions
   resources :sessions
   resources :password_resets
 

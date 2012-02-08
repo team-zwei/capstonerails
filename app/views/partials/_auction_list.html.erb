@@ -1,3 +1,4 @@
+<%= render "partials/bid_modal" %>
 <ul class="thumbnails">
 	<% @auctions.each do |auction| %>
       <li class="span3">
@@ -9,7 +10,7 @@
               <p><%= auction.description %></p>
             </div><!-- / -->
             <h5>Time Remaining: 00:<%= Random.new.rand(10..50) %></h5>
-            <p><%= link_to "Bid Now!", "#", class: "btn btn-success" %></p>
+            <p><%= link_to "Bid Now!", "#", { class: "btn btn-success", onclick: "$('#bid_modal').modal('show')" } %></p>
           </div>
         </div>
       </li>
