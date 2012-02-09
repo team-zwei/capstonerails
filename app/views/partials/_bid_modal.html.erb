@@ -1,26 +1,18 @@
-<script>
-  $(document).ready(function () {
-    $('#bid_modal').modal({
-      backdrop: true,
-      keyboard: true    
-    });
-    $('#bid_modal').modal('hide');
-  });
-</script>
 <%= form_tag bids_path, remote: true %>
-  <div id="bid_modal" class="modal">
-    <div class="modal-header">
+  <div id="bid_modal" class="modal" style="display: none;">
+    <div class="modal-header" style="font-size: 4em;">
       <a class="close" data-dismiss="modal">×</a>
-      <h3>Submit a bid</h3>
+      <!-- <h3>Submit a bid</h3> -->
     </div>
     <div class="modal-body">
       <p>
         <%= label_tag "Bid Amount" %>
         <%= text_field_tag :bid, "$500.00" %>
+        <!-- TODO: Modify this bid amount to be dynamic -->
       </p>
     </div>
     <div class="modal-footer">
       <input type="submit" class="btn btn-success" value="Submit Bid">
-      <input type="button" class="btn" onclick="$('#bid_modal').modal('hide')" value="Cancel" style="float: left;">
+      <input type="button" class="btn" data-dismiss="modal" value="Cancel" style="float: left;">
     </div>
   </div>
