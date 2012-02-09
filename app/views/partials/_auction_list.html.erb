@@ -1,12 +1,15 @@
 <script>
+  var stock_modal;
   $(document).ready(function () {
+    stock_modal = $('#bid_modal').clone().html();
     $(".bid_now").click(function () {
+      $('#bid_modal').html(stock_modal);
       $('#bid_modal').modal({
         backdrop: true,
         keyboard: true    
       });
 
-      // Fill modal with existing dom elements
+      // Fill modal with copies of existing dom elements
       var id = $(this).attr('id').split('_')[3];
       var auction_id = 'auction_'+id;
 
