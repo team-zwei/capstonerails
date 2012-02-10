@@ -11,9 +11,6 @@ ActiveAdmin.register User do
   	column :email
   	column :created_at
   	column :updated_at
-    column do |user|
-        link_to "View", admin_user_path(user)
-        link_to "Edit", admin_user_path(user)
-      end
+    default_actions
   end
 end
