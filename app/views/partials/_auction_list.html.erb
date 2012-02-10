@@ -25,6 +25,8 @@
       time.clone().prependTo(modal_body);
       desc.clone().prependTo(modal_body);
       thumbnail.clone().prependTo(modal_body);
+
+      return false;
     });
   });
 </script>
@@ -41,7 +43,7 @@
             </div>
             <h5 class="auction_time">Time Remaining: 00:<%= Random.new.rand(10..50) %></h5>
             <p>
-              <%= link_to "Bid Now!", "#", { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
+              <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
             </p>
           </div>
         </div>

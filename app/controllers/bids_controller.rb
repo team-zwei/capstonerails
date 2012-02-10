@@ -1,5 +1,7 @@
 class BidsController < ApplicationController
-	def create
-		render json: params[:bid];
-	end
+  def new
+  end
+
+  def create
+  end
 end
