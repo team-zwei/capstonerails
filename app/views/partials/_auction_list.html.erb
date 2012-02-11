@@ -1,16 +1,50 @@
+<script>
+  var stock_modal;
+  $(document).ready(function () {
+    stock_modal = $('#bid_modal').clone().html();
+    $(".bid_now").click(function () {
+      $('#bid_modal').html(stock_modal);
+      $('#bid_modal').modal({
+        backdrop: true,
+        keyboard: true    
+      });
+
+      // Fill modal with copies of existing dom elements
+      var id = $(this).attr('id').split('_')[3];
+      var auction_id = 'auction_'+id;
+
+      var thumbnail = $('#'+auction_id+' .auction_thumbnail');
+      var title = $('#'+auction_id+' .auction_title');
+      var desc = $('#'+auction_id+' .auction_description');
+      var time = $('#'+auction_id+' .auction_time');
+
+      var modal_body = $('#bid_modal .modal-body');
+      var modal_title = $('#bid_modal .modal-header');
+      
+      title.clone().appendTo(modal_title);
+      time.clone().prependTo(modal_body);
+      desc.clone().prependTo(modal_body);
+      thumbnail.clone().prependTo(modal_body);
+
+      return false;
+    });
+  });
+</script>
 <%= render "partials/bid_modal" %>
 <ul class="thumbnails">
 	<% @auctions.each do |auction| %>
-      <li class="span3">
-        <div class="thumbnail auction-thumbnail">
-          <img src="http://placehold.it/210x150" alt="">
+      <li id="auction_<%= auction.id %>" class="span3">
+        <div class="thumbnail">
+          <img class="auction_thumbnail" src="http://placehold.it/210x150" alt="">
           <div class="caption">
-            <h5><%= auction.name %></h5>
-            <div style="height:65px">
+            <h5 class="auction_title"><%= auction.name %></h5>
+            <div class="auction_description" style="height: 65px;">
               <p><%= auction.description %></p>
-            </div><!-- / -->
-            <h5>Time Remaining: 00:<%= Random.new.rand(10..50) %></h5>
-            <p><%= link_to "Bid Now!", "#", { class: "btn btn-success", onclick: "$('#bid_modal').modal('show')" } %></p>
+            </div>
+            <h5 class="auction_time">Time Remaining: 00:<%= Random.new.rand(10..50) %></h5>
+            <p>
+              <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
+            </p>
           </div>
         </div>
       </li>

@@ -41,18 +41,15 @@ ActiveAdmin::Dashboards.build do
   # section "Membership Summary", :if => :memberships_enabled?
   # section "Membership Summary", :if => Proc.new { current_admin_user.account.memberships.any? }
 
-  section "Recent Users" do
-    table_for User.order("created_at desc").limit(5) do
+  section "Recent Bids", if: Bid.count > 0, :priority => 1 do
+    table_for Bid.order("created_at desc").limit(5) do
       column :id
-      column :username do |user|
-        link_to user.username, admin_user_path(user)
-      end
+      column :updated_at
       column :created_at
     end
-    strong { link_to "View All Users", admin_users_path }
   end
 
-  section "Recent Auctions" do
+  section "Recent Auctions", if: Auction.count > 0, :priority => 2 do
     table_for Auction.order("created_at desc").limit(5) do
       column :id
       column :name do |auction|
@@ -62,4 +59,16 @@ ActiveAdmin::Dashboards.build do
     end
     strong { link_to "View All Auctions", admin_auctions_path }
   end
+
+  section "Recent Users", if: User.count > 0, :priority => 3 do
+    table_for User.order("created_at desc").limit(5) do
+      column :id
+      column :username do |user|
+        link_to user.username, admin_user_path(user)
+      end
+      column :created_at
+    end
+    strong { link_to "View All Users", admin_users_path }
+  end
+  
 end
