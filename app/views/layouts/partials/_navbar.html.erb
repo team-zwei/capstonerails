@@ -24,17 +24,17 @@
         <% end %>
         <% if current_user %>
           <li>
-            <a href="/log_out">
+            <a href="/logout">
               <i class="icon-off icon-white"></i>
               &nbsp;Log Out
             </a>
           </li>
         <% else %>
           <li>
-            <%= link_to "Sign Up", sign_up_path %>
+            <%= link_to "Sign Up", signup_path %>
           </li>
           <li>
-            <%= link_to "Log In", log_in_path %>
+            <%= link_to "Log In", login_path %>
           </li>
         <% end %>
       </ul>

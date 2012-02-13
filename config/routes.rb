@@ -9,9 +9,9 @@ Capstone::Application.routes.draw do
   
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
   get "auctions" => "auctions#index", :as => "auctions"
   get "help" => "help#index", :as => "help"
   get "account" => "account#index", :as => "account"
@@ -19,9 +19,8 @@ Capstone::Application.routes.draw do
   root :to => "home#index"
 
   resources :users
-  resources :auctions do
-    resources :bids
-  end
+  resources :auctions
+  resources :bids, path: '/auction/bids'
   resources :sessions
   resources :password_resets
 

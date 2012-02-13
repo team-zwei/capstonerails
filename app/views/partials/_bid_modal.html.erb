@@ -1,4 +1,21 @@
-<%= form_tag auction_bids_path, remote: true %>
+<script>
+  $(function() {
+    $("#bid_modal_form")
+      .bind("ajax:beforeSend", function(evt, xhr, settings){
+        if ( settings.dataType == undefined ) {
+          xhr.setRequestHeader("Accept", "text/javascript, */*; q=0.5");
+        }
+      })
+      .bind("ajax:error", function(evt, xhr, status, error) {
+        console.log('TODO: Show login modal');
+      })
+      .bind("ajax:success", function(evt, data, status, xhr) {
+        
+      });
+  });
+</script>
+
+<%= form_tag bids_path, remote: true, id: "bid_modal_form" %>
   <div id="bid_modal" class="modal" style="display: none;">
     <div class="modal-header">
       <a class="close" data-dismiss="modal">×</a>
