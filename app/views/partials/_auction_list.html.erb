@@ -44,7 +44,11 @@
             </div>
             <h5 class="auction_time">Time Remaining: 00:<%= Random.new.rand(10..50) %></h5>
             <p>
+<<<<<<< HEAD
               <%= link_to "Bid Now!", new_bid_path, { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
+=======
+              <%= link_to "Bid Now!", new_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
+>>>>>>> b05843d123495fd03bd1d9cd8288111818220a97
             </p>
           </div>
         </div>

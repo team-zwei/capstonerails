@@ -5,6 +5,7 @@ class BidsController < ApplicationController
 
   def create
   	if current_user
+  		
   	else
   		respond_with do |format|
   			format.html {redirect_to login_path, status: 401, alert: "Must be logged in to bid."}
