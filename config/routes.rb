@@ -1,9 +1,8 @@
 Capstone::Application.routes.draw do
-  get "bids/new"
-
-  get "bids/create"
 
   ActiveAdmin.routes(self)
+
+  match "account" => "users#show"
 
   get "admin/logout" => "sessions#destroy", :as => "admin/logout"
   
@@ -19,8 +18,9 @@ Capstone::Application.routes.draw do
   root :to => "home#index"
 
   resources :users
-  resources :auctions
-  resources :bids, path: '/auction/bids'
+  resources :auctions do
+    resources :bids
+  end
   resources :sessions
   resources :password_resets
 

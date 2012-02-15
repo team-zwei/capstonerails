@@ -15,7 +15,7 @@
   });
 </script>
 
-<%= form_tag bids_path, remote: true, id: "bid_modal_form" %>
+<%= form_tag auction_bids_path(@auction), remote: true, id: "bid_modal_form" do %>
   <div id="bid_modal" class="modal" style="display: none;">
     <div class="modal-header">
       <a class="close" data-dismiss="modal">×</a>
@@ -35,7 +35,8 @@
       </p>
     </div>
     <div class="modal-footer">
-      <input type="submit" class="btn btn-success" value="Submit Bid">
+      <%= submit_tag "Submit Bid", class: "btn btn-success" %>
       <input type="button" class="btn" data-dismiss="modal" value="Cancel" style="float: left;">
     </div>
   </div>
+<% end %>
