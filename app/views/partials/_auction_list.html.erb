@@ -38,16 +38,19 @@
       <li id="auction_<%= auction.id %>" class="span3">
         <div class="thumbnail">
           <img class="auction_thumbnail" src="http://placehold.it/210x150" alt="">
-          <%= link_to "More Info", auction_path(auction.id) %>
           <div class="caption">
             <h5 class="auction_title"><%= auction.name %></h5>
             <div class="auction_description" style="height: 65px;">
               <p><%= auction.description %></p>
             </div>
-            <h5 class="auction_time">Time Remaining: 00:<%= Random.new.rand(10..50) %></h5>
-            <p>
+            <h5 class="auction_time">
+              Time Remaining: 00:<%= Random.new.rand(10..50) %>
+            </h5>
+            <br>
+            <div class="form-inline">
               <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
-            </p>
+              <%= link_to "More Info", auction_path(auction.id), {class: "btn btn-primary", style: "float: right;"} %>
+            </div>
           </div>
         </div>
       </li>
