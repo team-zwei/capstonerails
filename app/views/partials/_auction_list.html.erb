@@ -25,6 +25,8 @@
       time.clone().prependTo(modal_body);
       desc.clone().prependTo(modal_body);
       thumbnail.clone().prependTo(modal_body);
+      
+      $('#bid_modal #auction_id').attr('val',auction_id)
 
       return false;
     });

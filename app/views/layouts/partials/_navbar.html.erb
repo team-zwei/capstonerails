@@ -15,7 +15,7 @@
           </li>
         <% end %>
         <li id="nav_help">
-          <%= link_to "Help", help_path %>
+          <%= link_to "Help", "/help"%>
         </li>
         <% if current_user && current_user.admin?  %>
           <li class="">
