@@ -44,6 +44,12 @@ ActiveAdmin::Dashboards.build do
   section "Recent Bids", :priority => 1 do
     table_for Bid.order("created_at desc").limit(5) do
       column :id
+      column :amount
+      column "Auction ID", :auction_id
+      column "User ID", :user_id
+      column :username do |bid|
+        User.find_by_id(bid.user_id).username
+      end 
       column :updated_at
       column :created_at
     end
