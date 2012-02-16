@@ -11,3 +11,5 @@ Auction.create(name: "4br 4bath House", description: "A charming 4 bedroom, 4 ba
 Auction.create(name: "John Deere Tractor", description: "It's been said that some women find this tractor sexy. That said, the point is still up for debate.")
 Auction.create(name: "Pile of sticks", description: "Brand new pile of sticks. No rotting pieces of wood in here.")
 Auction.create(name: "Nothing", description: "The winner of this auction will get absolutely nothing.")
+
+Bid.create(amount: 100.00, user_id: User.find_by_username("test").id, auction_id: Auction.find_by_name("Nothing").id)

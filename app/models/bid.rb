@@ -12,4 +12,6 @@
 
 class Bid < ActiveRecord::Base
 	attr_accessible :amount
+  belongs_to :auction
+  belongs_to :user
 end

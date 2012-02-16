@@ -1,26 +1,24 @@
 Capstone::Application.routes.draw do
-  get "bids/new"
-
-  get "bids/create"
 
   ActiveAdmin.routes(self)
 
-  get "admin/logout" => "sessions#destroy", :as => "admin/logout"
-  
+  match "account" => "users#show"
+
+  get "admin/logout" => "sessions#destroy", as: "admin/logout"
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  get "logout" => "sessions#destroy", :as => "logout"
-  get "login" => "sessions#new", :as => "login"
-  get "signup" => "users#new", :as => "signup"
-  get "auctions" => "auctions#index", :as => "auctions"
-  get "help" => "help#index", :as => "help"
-  get "account" => "account#index", :as => "account"
+  post "auctions/bids" => "bids#create"
+  
+  get "logout" => "sessions#destroy", as: "logout"
+  get "login" => "sessions#new", as: "login"
+  get "signup" => "users#new", as: "signup"
 
-  root :to => "home#index"
+  root to: "home#index"
 
   resources :users
-  resources :auctions
-  resources :bids, path: '/auction/bids'
+  resources :auctions do
+    resources :bids
+  end
   resources :sessions
   resources :password_resets
 
