@@ -12,4 +12,4 @@ Auction.create(name: "John Deere Tractor", description: "It's been said that som
 Auction.create(name: "Pile of sticks", description: "Brand new pile of sticks. No rotting pieces of wood in here.")
 Auction.create(name: "Nothing", description: "The winner of this auction will get absolutely nothing.")
 
-Bid.create(amount: 100.00, user_id: User.find_by_username("test").id, auction_id: Auction.find_by_name("Nothing").id)
+bid = Bid.new(amount: 100.00); bid.user_id = User.find_by_username("test").id; bid.auction_id = Auction.find_by_name("Nothing").id; bid.save!
