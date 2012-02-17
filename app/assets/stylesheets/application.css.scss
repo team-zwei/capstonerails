@@ -13,8 +13,10 @@ body {
 }
 
 #footer-container {
+	position: fixed;
+	bottom: 0;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	// margin-bottom: 10px;
 	text-align: center;
 	background-color: #000;
 	color: #A5CD0A;
