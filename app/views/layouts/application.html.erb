@@ -18,6 +18,17 @@
   <%= javascript_include_tag "application" %>
   <script src="/js/modernizr-2.0.6.min.js"></script>
 
+  <script type="text/javascript" charset="utf-8">
+    $(function(){
+      var loginStatus = function() {
+        var logged_in = <%= logged_in? %>;
+        return { is_logged_in: function(){ return logged_in; } }
+      }
+
+      global_login_status = loginStatus();
+    });
+  </script>
+
 </head>
 <body>
   <%= render "/layouts/partials/navbar" %>
