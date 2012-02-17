@@ -20,13 +20,32 @@
 
       var modal_body = $('#bid_modal .modal-body');
       var modal_title = $('#bid_modal .modal-header');
+      var modal_desc = $('#bid_modal .modal-description');
+      var modal_time = $('#bid_modal .modal-time');
+      var modal_thumb = $('#bid_modal .modal-thumbnail');
       
+<<<<<<< HEAD
+      var titleClone = title.clone();
+      var timeClone = time.clone();
+      var descClone = desc.clone();
+      //var thumbClone = thumbnail.clone();
+
+      var titleString = titleClone.text();
+      var timeString = timeClone.text();
+      var descString = descClone.text();
+
+      modal_title.append(titleString);
+      modal_time.prepend(timeString);
+      modal_desc.prepend(descString);
+      thumbnail.clone().prependTo(modal_thumb);
+=======
       title.clone().appendTo(modal_title);
       time.clone().prependTo(modal_body);
       desc.clone().prependTo(modal_body);
       thumbnail.clone().prependTo(modal_body);
       
       $('#bid_modal #auction_id').attr('val',auction_id)
+>>>>>>> 4e562fbe18032cd01efa09cd5af6b57088c7c070
 
       return false;
     });
