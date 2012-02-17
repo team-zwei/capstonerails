@@ -20,20 +20,23 @@
 
       var modal_body = $('#bid_modal .modal-body');
       var modal_title = $('#bid_modal .modal-header');
+      var modal_desc = $('#bid_modal .modal-description');
+      var modal_time = $('#bid_modal .modal-time');
+      var modal_thumb = $('#bid_modal .modal-thumbnail');
       
       var titleClone = title.clone();
       var timeClone = time.clone();
       var descClone = desc.clone();
-      var thumbClone = thumbnail.clone();
+      //var thumbClone = thumbnail.clone();
 
       var titleString = titleClone.text();
       var timeString = timeClone.text();
       var descString = descClone.text();
 
       modal_title.append(titleString);
-      modal_body.prepend(timeString);
-      modal_body.prepend(descString);
-      thumbnail.clone().prependTo(modal_body);
+      modal_time.prepend(timeString);
+      modal_desc.prepend(descString);
+      thumbnail.clone().prependTo(modal_thumb);
 
       return false;
     });
@@ -52,7 +55,7 @@
             </div>
             <h5 class="auction_time">Time Remaining: 00:<%= Random.new.rand(10..50) %></h5>
             <p>
-              <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
+              <%= link_to "Bid Now!", new_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
             </p>
           </div>
         </div>
