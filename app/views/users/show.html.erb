@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="span4 offset4">
+    <h2>Profile</h2>
+    <h3>Username:</h3> <%= @current_user.username %>
+    <h3>Email: </h3> <%= @current_user.email %>
+    <h4>Bids</h4>
+    <% @current_user.bids.each do |bid| %>
+      <h5><%= bid.id %>: <%= bid.amount %></h5>
+    <% end %>
+  </div>
+</div>
+
+<%= javascript_include_tag "account" %>

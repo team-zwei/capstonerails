@@ -13,4 +13,9 @@ class UsersController < ApplicationController
       render "new"
     end
   end
+
+  def show
+    redirect_to new_session_path if !current_user
+    @current_user
+  end
 end

@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :username, :password, :password_confirmation
   has_secure_password
 
+  has_many :bids
+  has_many :auctions, through: :bids
+
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,    presence: true, uniqueness: { case_sensitive: false }, format: { with: valid_email_regex }
   validates :username, presence: true, uniqueness: { case_sensitive: false }
