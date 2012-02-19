@@ -32,13 +32,12 @@ body {
 	height: 290px;
 }
 
-.richard_green {
-	// color: #A5CD0A;
-}
-
-////////////////////////////////////////////
-/*   added to style brand w/ green text   */
-////////////////////////////////////////////
+// added to style brand w/ green text
 .navbar .brand {
 	color: #A5CD0A;
+}
+
+// added to push down intro text in div
+#main-container {
+	padding-top: 10px;
 }
