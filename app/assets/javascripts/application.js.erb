@@ -13,3 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+
+$(function(){
+  var loginStatus = function() {
+    var logged_in = <%= (@current_user ? true : false) %>;
+    return { is_logged_in: function(){ return logged_in; } }
+  }
+
+  global_login_status = loginStatus();
+});
