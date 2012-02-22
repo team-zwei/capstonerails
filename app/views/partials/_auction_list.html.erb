@@ -10,34 +10,11 @@
       });
 
       // Fill modal with copies of existing dom elements
-      var id = $(this).attr('id').split('_')[3];
-      var auction_id = 'auction_'+id;
-
-      var thumbnail = $('#'+auction_id+' .auction_thumbnail_image');
-      var title = $('#'+auction_id+' .auction_thumbnail_title');
-      var desc = $('#'+auction_id+' .auction_thumbnail_description');
-      var time = $('#'+auction_id+' .auction_thumbnail_time');
-
-      var modal_body = $('#bid_modal .modal-body');
-      var modal_title = $('#bid_modal .modal-header');
-      var modal_desc = $('#bid_modal .modal-description');
-      var modal_time = $('#bid_modal .modal-time');
-      var modal_thumb = $('#bid_modal .modal-thumbnail');
-      
-      var titleClone = title.clone();
-      var timeClone = time.clone();
-      var descClone = desc.clone();
-      //var thumbClone = thumbnail.clone();
-
-      var titleString = titleClone.text();
-      var timeString = timeClone.text();
-      var descString = descClone.text();
-
-      modal_title.append(titleString);
-      modal_time.prepend(timeString);
-      modal_desc.prepend(descString);
-      thumbnail.clone().prependTo(modal_thumb);
-      
+      var auction_id = 'auction_'+ $(this).attr('id').split('_')[3];
+      $('#bid_modal .modal-header').prepend($('#'+auction_id+' .auction_thumbnail_title').text());
+      $('#bid_modal .modal-description').prepend($('#'+auction_id+' .auction_thumbnail_description_text').text());
+      $('#bid_modal .modal-time').prepend($('#'+auction_id+' .auction_thumbnail_time').text());
+      $('#bid_modal .modal-thumbnail').append($('#'+auction_id+' .auction_thumbnail_image').clone());
       $('#bid_modal #auction_id').attr('val',auction_id)
 
       return false;
@@ -53,7 +30,7 @@
           <div class="caption">
             <h5 class="auction_thumbnail_title"><%= auction.name %></h5>
             <div class="auction_thumbnail_description">
-              <p><%= auction.description %> <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %></p>
+              <p><span class="auction_thumbnail_description_text"><%= auction.description %></span> <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %></p>
               
             </div>
             <h5 class="auction_thumbnail_time">
