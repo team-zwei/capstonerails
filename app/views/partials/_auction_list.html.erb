@@ -2,7 +2,7 @@
   var stock_modal;
   $(document).ready(function () {
     stock_modal = $('#bid_modal').clone().html();
-    $(".bid_now").click(function () {
+    $(".auction_thumbnail_bid_now").click(function () {
       $('#bid_modal').html(stock_modal);
       $('#bid_modal').modal({
         backdrop: true,
@@ -13,10 +13,10 @@
       var id = $(this).attr('id').split('_')[3];
       var auction_id = 'auction_'+id;
 
-      var thumbnail = $('#'+auction_id+' .auction_thumbnail');
-      var title = $('#'+auction_id+' .auction_title');
-      var desc = $('#'+auction_id+' .auction_description');
-      var time = $('#'+auction_id+' .auction_time');
+      var thumbnail = $('#'+auction_id+' .auction_thumbnail_image');
+      var title = $('#'+auction_id+' .auction_thumbnail_title');
+      var desc = $('#'+auction_id+' .auction_thumbnail_description');
+      var time = $('#'+auction_id+' .auction_thumbnail_time');
 
       var modal_body = $('#bid_modal .modal-body');
       var modal_title = $('#bid_modal .modal-header');
@@ -48,7 +48,7 @@
 <ul class="thumbnails">
 	<% @auctions.each do |auction| %>
       <li id="auction_<%= auction.id %>" class="span3">
-        <div class="auction_thumbnail">
+        <div class="thumbnail auction_thumbnail">
           <img class="auction_thumbnail_image" src="http://placehold.it/210x150" alt="">
           <div class="caption">
             <h5 class="auction_thumbnail_title"><%= auction.name %></h5>
