@@ -48,20 +48,20 @@
 <ul class="thumbnails">
 	<% @auctions.each do |auction| %>
       <li id="auction_<%= auction.id %>" class="span3">
-        <div class="thumbnail">
-          <img class="auction_thumbnail" src="http://placehold.it/210x150" alt="">
+        <div class="auction_thumbnail">
+          <img class="auction_thumbnail_image" src="http://placehold.it/210x150" alt="">
           <div class="caption">
-            <h5 class="auction_title"><%= auction.name %></h5>
-            <div class="auction_description" style="height: 65px;">
-              <p><%= auction.description %></p>
+            <h5 class="auction_thumbnail_title"><%= auction.name %></h5>
+            <div class="auction_thumbnail_description">
+              <p><%= auction.description %> <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %></p>
+              
             </div>
-            <h5 class="auction_time">
+            <h5 class="auction_thumbnail_time">
               Time Remaining: 00:<%= Random.new.rand(10..50) %>
             </h5>
             <br>
-            <div class="form-inline">
-              <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-success bid_now" } %>
-              <%= link_to "More Info", auction_path(auction.id), {class: "btn btn-primary", style: "float: right;"} %>
+            <div>
+              <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
             </div>
           </div>
         </div>

@@ -28,8 +28,16 @@ body {
 	background: #222;
 }
 
-.auction-thumbnail {
-	height: 290px;
+.auction_thumbnail {
+	height: 320px;
+}
+
+.auction_thumbnail_time {
+	text-align: center;
+}
+
+.auction_thumbnail_bid_now {
+	margin-left: 25%;
 }
 
 // added to style brand w/ green text
