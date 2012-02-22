@@ -13,18 +13,19 @@ class BidsController < ApplicationController
   		bid = Bid.new amount: Float(params[:bid_amount][/\d+(.\d{2})?/])
       bid.user_id = current_user.id
       bid.auction_id = params[:id] || params[:auction_id]
-      if bid.save!
-        bid.auction.add_to_ending_time(600) # ten minutes
-        message = { auction_id: bid.auction_id, time: bid.auction.get_remaining_time }
-        PrivatePub.publish_to("/bids/new", message)
+      bid.auction.end_time += 600 # ten minutes #TODO add time to end_time appropriately
+      if bid.save! && bid.auction.save!
+        PrivatePub.publish_to("/bids/new", message: { auction_id: bid.auction_id, time: bid.auction.get_remaining_time })
         response = 'success'
+        status_code = 200
       else
         response = 'failure'
+        status_code = 400
       end
       
       respond_with do |format|
-        format.html {redirect_to root_url, status: 200, notice: response}
-        format.js {render json: {message: response}, status: 200}
+        format.html {redirect_to root_url, status: status_code, notice: response}
+        format.js {render json: {message: response}, status: status_code}
       end
   	else
   		respond_with do |format|
