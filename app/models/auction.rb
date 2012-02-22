@@ -14,4 +14,14 @@
 class Auction < ActiveRecord::Base
   has_many :bids
   has_many :users, through: :bids, as: :bidders
+
+  def add_to_end_time!(seconds)
+  	# Adds seconds to the end time
+  	self.end_time = self.end_time + seconds
+  end
+
+  def get_remaining_time
+  	# Returns seconds
+  	self.end_time - Time.now()
+  end
 end
