@@ -34,7 +34,7 @@
               
             </div>
             <h5 class="auction_thumbnail_time">
-              Time Remaining: 00:<%= Random.new.rand(10..50) %>
+              Time Remaining: <%= ("%02d" % auction.get_hours) + ":" + ("%02d" % auction.get_minutes) + ":" + ("%02d" % auction.get_seconds) %>
             </h5>
             <br>
             <div>

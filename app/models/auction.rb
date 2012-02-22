@@ -22,6 +22,19 @@ class Auction < ActiveRecord::Base
 
   def get_remaining_time
   	# Returns seconds
-  	self.end_time - Time.now()
+  	self.end_time - Time.now() if !self.nil?
   end
+
+  def get_hours
+    (self.get_remaining_time / 3600).to_i
+  end
+
+  def get_minutes
+    (self.get_remaining_time / 60 % 60).to_i
+  end
+
+  def get_seconds
+    (self.get_remaining_time % 60).to_i
+  end
+  
 end
