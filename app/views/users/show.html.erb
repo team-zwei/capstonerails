@@ -1,12 +1,75 @@
 <div class="row">
-  <div class="span4 offset4">
-    <h2>Profile</h2>
-    <h3>Username:</h3> <%= @current_user.username %>
-    <h3>Email: </h3> <%= @current_user.email %>
-    <h4>Bids</h4>
-    <% @current_user.bids.each do |bid| %>
-      <h5><%= bid.id %>: <%= bid.amount %></h5>
-    <% end %>
+	<div class="span12">
+		<h2>
+			<%= @current_user.firstname+" "+@current_user.lastname %>
+		</h2>
+	</div>
+  <div class="span4">
+  	<table class="table">
+  		<tr>
+  			<td>
+  				Username
+  			</td>
+  			<td>
+  				<%= @current_user.username %>
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
+  				Email
+  			</td>
+  			<td>
+  				<%= @current_user.email %>
+  			</td>
+  		</tr>
+  		<% if @current_user.admin? %>
+  			<tr>
+  				<td>
+  					Admin
+  				</td>
+  				<td>
+  					Yes
+  				</td>
+  			</tr>
+  		<% end %>
+  	</table>
+  	<h3>
+  		Recent Bids
+  	</h3>
+  	<table class="table">
+  		<% if @current_user.bids.length > 0 %>
+	  		<% @current_user.bids.find(:all, order: 'created_at desc').each do |bid| %>
+	  			<tr>
+	  				<th>
+	  					Auction
+	  				</th>
+	  				<th>
+	  					Amount
+	  				</th>
+	  				<th>
+	  					Date
+	  				</th>
+	  			</tr>
+	  			<tr>
+	  				<td>
+	  					<%= Auction.find_by_id(bid.user_id).name %>
+	  				</td>
+	  				<td>
+	  					<%= bid.amount %>
+	  				</td>
+	  				<td>
+	  					<%= bid.created_at %>
+	  				</td>
+	  			</tr>
+	  		<% end %>
+	  	<% else %>
+	  		<tr>
+	  			<td>
+	  				You haven't bid on anything yet.  Why not take a look at some <%= link_to "auctions", auctions_path %>?
+	  			</td>
+	  		</tr>
+	  	<% end %>
+  	</table>
   </div>
 </div>
 
