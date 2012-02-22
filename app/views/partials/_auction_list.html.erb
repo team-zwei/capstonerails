@@ -50,10 +50,10 @@
       <li id="auction_<%= auction.id %>" class="span3">
         <div class="thumbnail auction_thumbnail">
           <img class="auction_thumbnail_image" src="http://placehold.it/210x150" alt="">
-          <div class="caption">
+          <div class="auction_thumbnail_caption">
             <h5 class="auction_thumbnail_title"><%= auction.name %></h5>
             <div class="auction_thumbnail_description">
-              <p><%= auction.description %> &hellip; <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %></p>
+              <p><%= auction.description %>&hellip; <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %></p>
               
             </div>
             <h5 class="auction_thumbnail_time">
