@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.0'
 gem 'jquery-rails'
 gem 'bootstrap-sass-rails'
+gem 'private_pub'
 
 # Gem used to provide secure authentication (used by has_secure_password)
 gem 'bcrypt-ruby', '~> 3.0.0'
