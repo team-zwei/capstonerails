@@ -4,3 +4,8 @@
 $(document).ready ->
 	$("#nav li:not(#nav_home)").attr('class', '')
 	$("#nav_home").attr('class', 'active')
+
+
+PrivatePub.subscribe "/bids/new", (data, channel) ->
+  console.log data.message
+  true
