@@ -22,22 +22,34 @@
             <a href="/admin">Admin</a>
           </li>
         <% end %>
-        <% if current_user %>
+      </ul>
+      <% if current_user %>
+        <ul id="nav_session" class="nav pull-right">
           <li>
             <a href="/logout">
               <i class="icon-off icon-white"></i>
               &nbsp;Log Out
             </a>
           </li>
-        <% else %>
+        </ul>
+      <% else %>
+      <ul class="nav pull-right">
           <li>
             <%= link_to "Sign Up", signup_path %>
           </li>
-          <li>
+        </ul>
+        <%= form_tag sessions_path, {class: 'navbar-search pull-right'} do %>
+        <!-- <form class="navbar-search pull-right"> -->
+          <!-- <li>
             <%= link_to "Log In", login_path %>
-          </li>
+          </li> -->
+          <!-- <input type="text" class="search-query span2" placeholder="Username/Email"> -->
+          <%= text_field_tag :username, nil, {class: 'search-query span2', placeholder: "Username"} %>
+          <!-- <input type="text" class="search-query span2" placeholder="Password"> -->
+          <%= password_field_tag :password, nil, {class: 'search-query span2', placeholder: "Password"} %>
+          <%= submit_tag "Log in", style: 'visibility: hidden; width: 1px; height: 1px;' %>
         <% end %>
-      </ul>
+      <% end %>
     </div>
   </div>
 </div>
