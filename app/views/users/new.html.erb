@@ -1,13 +1,26 @@
+<%= stylesheet_link_tag "users", :media => "all" %>
 <div class="row">
   <div class="span4 offset4">
     <h1>Sign Up</h1>
-
+    <br>
     <%= form_for @user do |f| %>
-      <%= f.text_field :email, placeholder: "Email Address" %>
-      <%= f.text_field :username, placeholder: "Username"  %>
-      <%= f.password_field :password, placeholder: "Password"  %>
-      <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
-      <%= f.submit class: "btn btn-primary" %>
+      <div class="input-prepend">
+        <span class="add-on">Email</span>
+        <%= f.text_field :email, placeholder: "Email Address" %>
+      </div>
+      <div class="input-prepend">
+        <span class="add-on">Username</span>
+        <%= f.text_field :username, placeholder: "Username"  %>
+      </div>
+      <div class="input-prepend">
+        <span class="add-on">Password</span>
+        <%= f.password_field :password, placeholder: "Password"  %>
+      </div>
+      <div class="input-prepend">
+        <span class="add-on">Confirm</span>
+        <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
+      </div>
+      <%= f.submit class: "btn btn-primary" %>      
     <% end %>
   </div>
 </div>
