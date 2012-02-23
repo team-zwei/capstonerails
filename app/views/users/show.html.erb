@@ -38,18 +38,18 @@
   	</h3>
   	<table class="table">
   		<% if @current_user.bids.length > 0 %>
+  			<tr>
+  				<th>
+  					Auction
+  				</th>
+  				<th>
+  					Amount
+  				</th>
+  				<th>
+  					Date
+  				</th>
+  			</tr>
 	  		<% @current_user.bids.find(:all, order: 'created_at desc').each do |bid| %>
-	  			<tr>
-	  				<th>
-	  					Auction
-	  				</th>
-	  				<th>
-	  					Amount
-	  				</th>
-	  				<th>
-	  					Date
-	  				</th>
-	  			</tr>
 	  			<tr>
 	  				<td>
 	  					<%= Auction.find_by_id(bid.user_id).name %>
