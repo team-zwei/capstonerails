@@ -1,4 +1,7 @@
+<%= javascript_include_tag "auction_list" %>
+<%= stylesheet_include_tag "auction_list", media: all %>
 <script>
+  // TODO: Move this to the asset and rewrite in coffeescript
   var stock_modal;
   $(document).ready(function () {
     stock_modal = $('#bid_modal').clone().html();
@@ -30,12 +33,16 @@
           <div class="auction_thumbnail_caption">
             <h5 class="auction_thumbnail_title"><%= auction.name %></h5>
             <div class="auction_thumbnail_description">
-              <p><span class="auction_thumbnail_description_text"><%= auction.description %>&hellip;</span> <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %></p>
+              <p>
+                <span class="auction_thumbnail_description_text">
+                  <%= auction.description %>&hellip;
+                </span> <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %>
+              </p>
               
             </div>
-            <h3 class="auction_thumbnail_time">
+            <h4 class="auction_thumbnail_time">
               <%= ("%02d" % auction.get_hours) + ":" + ("%02d" % auction.get_minutes) + ":" + ("%02d" % auction.get_seconds) %>
-            </h3>
+            </h4>
             <br>
             <div>
               <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
