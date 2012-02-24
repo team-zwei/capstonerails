@@ -7,4 +7,5 @@ $(document).ready ->
 		() -> 
 			num = $(this).attr('data-image-number') - 1
 			$("#myCarousel").carousel(num)
+			false
 	)
