@@ -1,29 +1,5 @@
 <%= javascript_include_tag "auction_list" %>
-<%= stylesheet_include_tag "auction_list", media: all %>
-<script>
-  // TODO: Move this to the asset and rewrite in coffeescript
-  var stock_modal;
-  $(document).ready(function () {
-    stock_modal = $('#bid_modal').clone().html();
-    $(".auction_thumbnail_bid_now").click(function () {
-      $('#bid_modal').html(stock_modal);
-      $('#bid_modal').modal({
-        backdrop: true,
-        keyboard: true    
-      });
-
-      // Fill modal with copies of existing dom elements
-      var auction_id = 'auction_'+ $(this).attr('id').split('_')[3];
-      $('#bid_modal .modal-header').prepend($('#'+auction_id+' .auction_thumbnail_title').text());
-      $('#bid_modal .modal-description').prepend($('#'+auction_id+' .auction_thumbnail_description_text').text());
-      $('#bid_modal .modal-time').prepend($('#'+auction_id+' .auction_thumbnail_time').text());
-      $('#bid_modal .modal-thumbnail').append($('#'+auction_id+' .auction_thumbnail_image').clone());
-      $('#bid_modal #auction_id').attr('value', $(this).attr('id').split('_')[3]);
-
-      return false;
-    });
-  });
-</script>
+<%= stylesheet_link_tag "auction_list", :media => "all" %>
 <%= render "partials/bid_modal" %>
 <ul class="thumbnails">
 	<% @auctions.each do |auction| %>
@@ -40,9 +16,9 @@
               </p>
               
             </div>
-            <h4 class="auction_thumbnail_time">
+            <h2 class="auction_thumbnail_time">
               <%= ("%02d" % auction.get_hours) + ":" + ("%02d" % auction.get_minutes) + ":" + ("%02d" % auction.get_seconds) %>
-            </h4>
+            </h2>
             <br>
             <div>
               <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>

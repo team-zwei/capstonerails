@@ -5,6 +5,14 @@
     <br>
     <%= form_for @user do |f| %>
       <div class="input-prepend">
+        <span class="add-on">First Name</span>
+        <%= f.text_field :firstname, placeholder: "First Name" %>
+      </div>
+      <div class="input-prepend">
+        <span class="add-on">Last Name</span>
+        <%= f.text_field :lastname, placeholder: "Last Name" %>
+      </div>
+      <div class="input-prepend">
         <span class="add-on">Email</span>
         <%= f.text_field :email, placeholder: "Email Address" %>
       </div>
