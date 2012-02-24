@@ -33,9 +33,9 @@
               <p><span class="auction_thumbnail_description_text"><%= auction.description %>&hellip;</span> <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %></p>
               
             </div>
-            <h5 class="auction_thumbnail_time">
-              Time Remaining: <%= ("%02d" % auction.get_hours) + ":" + ("%02d" % auction.get_minutes) + ":" + ("%02d" % auction.get_seconds) %>
-            </h5>
+            <h3 class="auction_thumbnail_time">
+              <%= ("%02d" % auction.get_hours) + ":" + ("%02d" % auction.get_minutes) + ":" + ("%02d" % auction.get_seconds) %>
+            </h3>
             <br>
             <div>
               <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
