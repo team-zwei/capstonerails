@@ -184,6 +184,7 @@ DEPENDENCIES
   bootstrap-sass-rails
   coffee-rails (~> 3.2.1)
   jquery-rails
+  kaminari
   private_pub
   rails (= 3.2.0)
   sass-rails (~> 3.2.3)

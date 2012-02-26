@@ -5,6 +5,9 @@ gem 'jquery-rails'
 gem 'bootstrap-sass-rails'
 gem 'private_pub'
 
+# Gem for pagination
+gem 'kaminari'
+
 # Gem used to provide secure authentication (used by has_secure_password)
 gem 'bcrypt-ruby', '~> 3.0.0'
 

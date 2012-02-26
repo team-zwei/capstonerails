@@ -17,7 +17,7 @@
               
             </div>
             <h2 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
-              Time Remaining: <%= auction.get_time_string %>
+              <%= auction.get_time_string %>
             </h2>
             <br>
             <div>
@@ -28,3 +28,4 @@
       </li>
   <% end %>
 </ul>
+<%= paginate @auctions %>

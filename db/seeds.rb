@@ -14,5 +14,8 @@ Auction.create(name: "Pile of sticks", description: "Brand new pile of sticks. N
 Auction.create(name: "Nothing", description: "The winner of this auction will get absolutely nothing.", end_time: time)
 Auction.create(name: "Cheesy Poofs", description: "Cheetos has nothing on these.", end_time: time)
 Auction.create(name: "Grandma's lace doilies", description: "Great for placing other antiques on top of!", end_time: time)
+Auction.create(name: "Something", description: "The winner of this auction will absolutely get something.", end_time: time)
+Auction.create(name: "Something Else", description: "The winner of this auction will absolutely get something else.", end_time: time)
+Auction.create(name: "Something Entirely Different", description: "The winner of this auction will absolutely get something entirely different.", end_time: time)
 
 bid = Bid.new(amount: 100.00); bid.user_id = User.find_by_username("test").id; bid.auction_id = Auction.find_by_name("Nothing").id; bid.save!
