@@ -3,3 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
 	$(".carousel").carousel('cycle')
+	$(".thumbnail").click(
+		() -> 
+			num = $(this).attr('data-image-number') - 1
+			$("#myCarousel").carousel(num)
+			false
+	)

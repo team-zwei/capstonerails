@@ -1,0 +1,28 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.auction_thumbnail {
+	height: 345px;
+}
+
+.auction_thumbnail_title {
+	padding-top: 5px;
+	height: 20px;
+}
+
+.auction_thumbnail_time {
+	text-align: center;
+}
+
+.auction_thumbnail_bid_now {
+	margin-left: 25%;
+}
+
+.auction_thumbnail_description {
+	height: 60px;
+	max-height: 60px;
+}
+
+.auction_thumbnail_caption {
+	height: 150px;
+}

@@ -45,10 +45,14 @@ ActiveAdmin::Dashboards.build do
     table_for Bid.order("created_at desc").limit(5) do
       column :id
       column :amount
-      column "Auction ID", :auction_id
-      column "User ID", :user_id
+      column "Auction ID", :auction_id do |bid|
+        link_to bid.auction_id, admin_auction_path(bid.auction_id)
+      end
+      column "User ID", :user_id do |bid|
+        link_to bid.user_id, admin_user_path(bid.user_id)
+      end
       column :username do |bid|
-        User.find_by_id(bid.user_id).username
+        link_to User.find_by_id(bid.user_id).username, admin_user_path(bid.user_id)
       end 
       column :updated_at
       column :created_at
