@@ -16,8 +16,8 @@
               </p>
               
             </div>
-            <h2 class="auction_thumbnail_time">
-              <%= ("%02d" % auction.get_hours) + ":" + ("%02d" % auction.get_minutes) + ":" + ("%02d" % auction.get_seconds) %>
+            <h2 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
+              Time Remaining: <%= auction.get_time_string %>
             </h2>
             <br>
             <div>
