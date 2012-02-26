@@ -33,8 +33,8 @@
               <p><span class="auction_thumbnail_description_text"><%= auction.description %>&hellip;</span> <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info" %></p>
               
             </div>
-            <h5 class="auction_thumbnail_time">
-              Time Remaining: <%= ("%02d" % auction.get_hours) + ":" + ("%02d" % auction.get_minutes) + ":" + ("%02d" % auction.get_seconds) %>
+            <h5 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
+              Time Remaining: <%= auction.get_time_string %>
             </h5>
             <br>
             <div>

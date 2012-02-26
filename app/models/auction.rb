@@ -36,5 +36,9 @@ class Auction < ActiveRecord::Base
   def get_seconds
     (self.get_remaining_time % 60).to_i
   end
+
+  def get_time_string
+    ("%02d" % self.get_hours) + ":" + ("%02d" % self.get_minutes) + ":" + ("%02d" % self.get_seconds)
+  end
   
 end
