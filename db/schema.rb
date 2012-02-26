@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222211036) do
+ActiveRecord::Schema.define(:version => 20120226211232) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -48,11 +48,14 @@ ActiveRecord::Schema.define(:version => 20120222211036) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.string   "description"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.decimal  "starting_bid_price",    :precision => 15, :scale => 2
+    t.decimal  "minimum_bid_increment", :precision => 15, :scale => 2
+    t.integer  "current_bid_id"
   end
 
   create_table "bids", :force => true do |t|
