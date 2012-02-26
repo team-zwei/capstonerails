@@ -7,7 +7,7 @@
         }
       })
       .bind("ajax:error", function(evt, xhr, status, error) {
-        console.log("[ERROR] "+error.message);
+        console.log("[XHR ERROR] "+error.message);
       })
       .bind("ajax:success", function(evt, data, status, xhr) {
         // TODO: this stuff
