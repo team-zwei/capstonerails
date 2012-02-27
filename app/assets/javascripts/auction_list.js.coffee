@@ -2,6 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+$(".auction_thumbnail").each(function () {
+    var id = $(this).parent().attr('id');
+    var time_elem = $("#"+id+" h2.auction_thumbnail_time");
+    var time = time_elem.attr('data-time-remaining');
+    var timer = new countdownTimer(time, function () {
+    
+    });
+});
+
 stock_modal = undefined
 $(document).ready ->
   stock_modal = $("#bid_modal").clone().html()
@@ -23,4 +32,5 @@ $(document).ready ->
     console.log "amount: " + data.message.amount + "\nauction_id: " + data.message.auction_id + "\ntime: " + data.message.time
 
 updateAuction = (auction_id, time, amount) ->
-  $("auction_" + auction_id + " div.auction_thumbnail_time").text time
+  var timer = new countdownTimer ->
+  # $("auction_" + auction_id + " div.auction_thumbnail_time").text time
