@@ -42,5 +42,9 @@ class Auction < ActiveRecord::Base
   def get_time_string
     ("%02d" % self.get_hours) + ":" + ("%02d" % self.get_minutes) + ":" + ("%02d" % self.get_seconds)
   end
+
+  def get_current_price
+    "$" + "1000"
+  end
   
 end
