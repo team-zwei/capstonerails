@@ -15,6 +15,9 @@
               </p>
               
             </div>
+            <h4 class="auction_thumbnail_price" data-current-price="<%= auction.get_current_price %>">
+              <%= auction.get_current_price %>
+            </h4>
             <h2 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
               <%= auction.get_time_string %>
             </h2>
