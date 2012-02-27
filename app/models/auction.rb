@@ -44,7 +44,7 @@ class Auction < ActiveRecord::Base
   end
 
   def get_current_price
-    "$" + "1000"
+    "$" + "1076576457600".gsub(/(\d)(?=\d{3}+(\.\d*)?$)/,'\1,')
   end
   
 end
