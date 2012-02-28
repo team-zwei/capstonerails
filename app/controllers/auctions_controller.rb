@@ -1,6 +1,5 @@
 class AuctionsController < ApplicationController
 	def index
-		# TODO: Change to end_time when filled with data
 		@auctions = Auction.order("end_time desc").page(params[:page]).per(12)
 	end
 	def show
