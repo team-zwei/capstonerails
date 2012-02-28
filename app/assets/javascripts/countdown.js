@@ -1,46 +1,43 @@
 var countdownTimer = function(secondsRemaining, callback) {
-  var timeLeft = secondsRemaining;
   var timer;
+  var timeLeft = secondsRemaining;
 
-  var cb = callback;
+  init();
 
-  tick();
-  timer = setInterval(tick, 1000); // 1000 ms to tick every second.
+  function init() {
+    tick();
+    timer = setInterval(tick, 1000); // 1000 ms to tick every second.
+  }
 
   function tick() {
-    timeLeft -= 1;
-    cb(renderTimeString());
+    decrementTime();
+    callback(renderTimeString());
   }
+
+  function decrementTime() { timeLeft -= 1; }
 
   function updateTime(seconds) {
     timeLeft = seconds;
-    console.log("time reset to " + seconds + " seconds");
+    tick();
   }
 
   function renderTimeString() {
     var time = timeLeft;
-    var result = "";
-    result += formatNumber(time / 86400)     + ":";
-    result += formatNumber(time / 3600)      + ":";
-    result += formatNumber((time / 60) % 60) + ":";
-    result += formatNumber(time % 60);
-    return result;
+    return formatNumber(time / 86400)+ ":" + formatNumber(time / 3600) + ":"
+          + formatNumber((time / 60) % 60) + ":" + formatNumber(time % 60);
   }
 
   function formatNumber(number) {
     result = parseInt(number).toString();
-    if (result.length == 1) {
-      result = "0" + result;
-    }
+    if (result.length == 1) { result = "0" + result; }
     return result;
   }
 
   return {
-    updateSecondsRemaining: function(newSecondsRemaining) {
+    updateSecondsRemaining: function(newSecondsRemaining) { 
       updateTime(newSecondsRemaining);
     }
   }
-
 }
 
 var timers = {};
