@@ -1,2 +1,12 @@
 <%= javascript_include_tag params[:controller] %>
+<div class="well">
+	<form class="form-search" style="margin: 0px;" method="get" action="<%= auctions_path %>">
+
+		<input type="text" name="search" class="input-medium search-query" style="width: 70%;" value="<%= params[:search] %>">
+
+		<button type="submit" class="btn btn-primary" style="width: 16%;"><i class="icon-search icon-white"></i>&nbsp;Search</button>
+
+		<%= link_to "Show All", auctions_path, { class: "btn", style: "width: 7%;"} %>
+	</form>
+</div>
 <%= render "/partials/auction_list", locals: @auctions %>

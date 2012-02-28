@@ -8,6 +8,9 @@ gem 'private_pub'
 # Gem for pagination
 gem 'kaminari'
 
+# Gem for search
+gem 'thinking-sphinx', '2.0.10'
+
 # Gem used to provide secure authentication (used by has_secure_password)
 gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -20,7 +23,7 @@ gem 'activeadmin'
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
-  gem 'sqlite3'
+  gem 'pg'
 end
 
 # Gems used only for assets and not required
