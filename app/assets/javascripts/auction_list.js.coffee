@@ -21,3 +21,6 @@ $(document).ready ->
 
   PrivatePub.subscribe "/bids/new", (data, channel) ->
     console.log "amount: " + data.message.amount + "\nauction_id: " + data.message.auction_id + "\ntime: " + data.message.time
+
+updateAuction = (auction_id, time, amount) ->
+  $("auction_" + auction_id + " div.auction_thumbnail_time").text time
