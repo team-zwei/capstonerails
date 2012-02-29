@@ -2,13 +2,16 @@
 #
 # Table name: auctions
 #
-#  id          :integer         not null, primary key
-#  name        :string(255)
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
-#  description :string(255)
-#  start_time  :datetime
-#  end_time    :datetime
+#  id                    :integer         not null, primary key
+#  name                  :string(255)
+#  created_at            :datetime        not null
+#  updated_at            :datetime        not null
+#  description           :string(255)
+#  start_time            :datetime
+#  end_time              :datetime
+#  starting_bid_price    :decimal(15, 2)
+#  minimum_bid_increment :decimal(15, 2)
+#  current_bid_id        :integer
 #
 
 class Auction < ActiveRecord::Base
@@ -41,6 +44,15 @@ class Auction < ActiveRecord::Base
 
   def get_time_string
     ("%02d" % self.get_hours) + ":" + ("%02d" % self.get_minutes) + ":" + ("%02d" % self.get_seconds)
+  end
+
+  def get_current_price
+    if self.current_bid_id
+      amount = Bid.find_by_id(self.current_bid_id).amount 
+    else
+      amount = self.starting_bid_price
+    end
+    ("$%.2f" % amount).gsub /(\d)(?=(\d{3})+(.\d{2})$)/, '\1,'
   end
   
 end

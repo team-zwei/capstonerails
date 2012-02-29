@@ -12,6 +12,8 @@
 #  admin                  :boolean
 #  password_reset_token   :string(255)
 #  password_reset_sent_at :datetime
+#  firstname              :string(255)
+#  lastname               :string(255)
 #
 
 class User < ActiveRecord::Base
