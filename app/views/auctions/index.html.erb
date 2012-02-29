@@ -1,12 +1,19 @@
 <%= javascript_include_tag params[:controller] %>
 <div class="well">
-	<form class="form-search" style="margin: 0px;" method="get" action="<%= auctions_path %>">
+	<%= form_tag auctions_path, { method: :get, class: "form-inline" } do %>
+	<!-- <form class="form-inline" method="get" action="<%= auctions_path %>"> -->
 
-		<input type="text" name="search" class="input-medium search-query" style="width: 70%;" value="<%= params[:search] %>">
+		<label for="search">Search:</label>
+		<input type="text" name="search" class="input-medium" value="<%= params[:search] %>">
+		<br>
+		<label for="price_min">Min Price:</label><input type="text" name="price_min" class="input-medium" value="<%= params[:price_min] %>">
+		<br>
+		<label for="price_max">Max Price:</label><input type="text" name="price_max" class="input-medium" value="<%= params[:price_max] %>">
+		<br>
 
-		<button type="submit" class="btn btn-primary" style="width: 16%;"><i class="icon-search icon-white"></i>&nbsp;Search</button>
+		<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>&nbsp;Search</button>
 
 		<%= link_to "Show All", auctions_path, { class: "btn", style: "width: 7%;"} %>
-	</form>
+	<% end %>
 </div>
 <%= render "/partials/auction_list", locals: @auctions %>

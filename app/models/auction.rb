@@ -19,8 +19,8 @@ class Auction < ActiveRecord::Base
   has_many :users, through: :bids, as: :bidders
 
   define_index do
-    indexes :name, :sortable => true
-    indexes :description
+    indexes :name, sortable: true
+    indexes :description    
 
     has created_at, updated_at, start_time, end_time
   end

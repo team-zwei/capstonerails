@@ -1,13 +1,20 @@
 class AuctionsController < ApplicationController
-	skip_before_filter :require_login, only: [:index]
+	skip_before_filter :require_login
 
 	def index
-		if params[:search]
-			@auctions = Auction.search params[:search], order: :end_time, sort_mode: :desc 
-		else
-			@auctions = Auction.order("end_time desc").page(params[:page]).per(12)
-		end
+		@auctions = Auction.search params[:search], order: :end_time, sort_mode: :desc if params[:search]
+
+		@auctions.delete_if { |auction|
+			params[:price_min].to_f > Bid.find_by_id(auction.current_bid_id) unless auction.current_bid_id.nil? || auction.starting_bid_price
+		} if params[:price_min]
+
+		@auctions.delete_if { |auction|
+			params[:price_max].to_f < Bid.find_by_id(auction.current_bid_id) unless auction.current_bid_id.nil? || auction.starting_bid_price
+		} if params[:price_max]
+
+		@auctions ||= Auction.order("end_time desc").page(params[:page]).per(12)
 	end
+
 	def show
 		if params[:id] === 'bids'
 			redirect_to root_url
