@@ -4,7 +4,7 @@
 	<% @auctions.each do |auction| %>
       <li id="auction_<%= auction.id %>" class="span3">
         <div class="thumbnail auction_thumbnail">
-          <img class="auction_thumbnail_image" src="http://placehold.it/210x150" alt="">
+          <%= link_to image_tag("http://placehold.it/210x150", class: "auction_thumbnail_image", :border => 0 ), auction_path(auction.id) , :title => "title text" %>
           <div class="auction_thumbnail_caption">
             <h5 class="auction_thumbnail_title"><%= auction.name %></h5>
             <div class="auction_thumbnail_description">
