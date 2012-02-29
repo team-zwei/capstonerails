@@ -30,13 +30,13 @@
         </div>
       <p>
         <%= label_tag "Bid Amount" %>
-        <%= text_field_tag :bid_amount, "$500.00" %>
+        <%= text_field_tag :bid_amount, "$500.00",class: "modal-amount" %>
         <!-- TODO: Modify this bid amount to be dynamic -->
         <%= hidden_field_tag :auction_id %>
       </p>
     </div>
     <div class="modal-footer">
-      <%= submit_tag "Submit Bid", class: "btn btn-success" %>
+      <%= submit_tag "Submit Bid", class: "btn btn-success modal-submit" %>
       <input type="button" class="btn" data-dismiss="modal" value="Cancel" style="float: left;">
     </div>
   </div>

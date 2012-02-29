@@ -15,16 +15,14 @@
               </p>
               
             </div>
-            <div class="alert alert-success" style="margin-bottom: -3px;">
+            <div class="alert alert-success" style="padding: 8px 0px 8px 0px; text-align: center;">
               <h3 class="auction_thumbnail_price" data-current-price="<%= auction.get_current_price %>">
                 <%= auction.get_current_price %>
               </h3>
               <h3 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
                 <%= auction.get_time_string %>
               </h3>
-              <div>
-                <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
-              </div>
+              <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
             </div>
           </div>
         </div>

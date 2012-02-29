@@ -14,7 +14,11 @@ class BidsController < ApplicationController
       bid.user_id = current_user.id
       bid.auction_id = params[:id] || params[:auction_id]
       bid.auction.end_time += 600 # ten minutes #TODO add time to end_time appropriately
+
       if bid.save! && bid.auction.save!
+        bid.auction.current_bid_id = bid.id
+        bid.auction.save!
+        
         PrivatePub.publish_to "/bids/new", message: { auction_id: bid.auction_id, time: bid.auction.get_remaining_time, amount: bid.amount }
         response = 'success'
         status_code = 200
