@@ -16,8 +16,8 @@
               
             </div>
             <div class="alert alert-success" style="padding: 8px 0px 8px 0px; text-align: center;">
-              <h3 class="auction_thumbnail_price" data-current-price="<%= auction.get_current_price %>">
-                <%= auction.get_current_price %>
+              <h3 class="auction_thumbnail_price" data-current-price="<%= auction.get_current_price %>" data-min-bid-increment="<%= auction.minimum_bid_increment %>">
+                $<%= auction.get_current_price %>
               </h3>
               <h3 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
                 <%= auction.get_time_string %>

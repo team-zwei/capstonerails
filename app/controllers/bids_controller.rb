@@ -1,5 +1,6 @@
 class BidsController < ApplicationController
-	respond_to :js, :html
+  skip_before_filter :require_login, only: [:create]
+	respond_to :json, :html
 
   def index
   end
@@ -29,12 +30,13 @@ class BidsController < ApplicationController
       
       respond_with do |format|
         format.html {redirect_to root_url, status: status_code, notice: response}
-        format.js {render json: {message: response}, status: status_code}
+        format.json {render json: {message: response}, status: status_code}
       end
   	else
+      Rails.logger.info "TESTING TESTING TESTING ==========================="
   		respond_with do |format|
   			format.html {redirect_to login_path, status: 401, alert: "Must be logged in to bid."}
-  			format.js {render json: {message: "Must be logged in to bid."}, status: 401}
+  			format.json {render json: {message: "Must be logged in to bid."}, status: 401}
   		end
   	end
   end

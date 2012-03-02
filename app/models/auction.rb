@@ -59,7 +59,7 @@ class Auction < ActiveRecord::Base
     else
       amount = self.starting_bid_price
     end
-    ("$%.2f" % amount).gsub(/(\d)(?=(\d{3})+(.\d{2})$)/, '\1,')
+    ("%.2f" % amount).gsub(/(\d)(?=(\d{3})+(.\d{2})$)/, '\1,')
   end
   
 end
