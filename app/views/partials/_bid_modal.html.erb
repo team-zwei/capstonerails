@@ -29,15 +29,12 @@
       </div>
       <div class="modal-time">
       </div>
-      <div>
-        <%= label_tag :bid_amount, "Bid Amount" %>
-        <div class="input-prepend">
-          <%= label_tag :bid_amount, "$", class: "add-on" %>
-          <%= text_field_tag :bid_amount, "", class: "modal-amount input-medium" %>
-        </div>
-        <!-- TODO: Modify this bid amount to be dynamic -->
-        <%= hidden_field_tag :auction_id %>
+      <%= label_tag :bid_amount, "Bid Amount" %>
+      <div class="input-prepend">
+        <%= label_tag :bid_amount, "$", class: "add-on" %>
+        <%= text_field_tag :bid_amount, "", class: "modal-amount input-medium" %>
       </div>
+      <%= hidden_field_tag :auction_id %>
     </div>
     <div class="modal-footer">
       <%= submit_tag "Submit Bid", class: "btn btn-success modal-submit" %>
