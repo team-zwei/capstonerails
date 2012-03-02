@@ -21,16 +21,23 @@
 
 </head>
 <body>
-  <div id="wrapper">
-    <%= render "/layouts/partials/navbar" %>
+  <div class="wrapper">
 
+    <%= render "/layouts/partials/navbar" %>
     <%= render "/layouts/partials/header" %>
 
-    <div id="main-container" class="container">
+    <div class="container-fluid">
+     
+      <div id="main-container" class="container">
 
-        <%= yield %>
-        
-    </div> <!-- /main-container -->
+          <%= yield %>
+          
+      </div> <!-- /main-container -->
+
+    </div> <!-- /.container-fluid -->
+
+    <div class="push"><!-- if footer is close to content puosh down --></div>
+
   </div>
 
   <%= render "layouts/partials/footer" %>

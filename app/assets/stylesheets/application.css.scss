@@ -5,154 +5,52 @@ html, body {
 	height: 100%;
 }
 
-/*Opera Fix*/
-body:before {
-	content:"";
-	height:100%;
-	float:left;
-	width:0;
-	margin-top:-32767px;
-}
-
 body {
-	margin-top: 60px;
 	background-image:url('/images/bg_light_wood.png');
 }
 
-#wrapper {
+.wrapper {
 	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -40px;
 }
 
 #main-container {
 	overflow:auto;
-	padding-bottom: 23px;
 	background: #FFF;
 	border-radius: 3px;
-	padding: 0px 20px 0px 20px;
-	margin-bottom: 60px;
-}
-
-#footer-container {
-	position: relative;
-	margin-top: -23px; /* negative value of footer height */
-	height: 23px;
-	clear:both;
-	width: 100%;
-	bottom: 0;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	margin-top: 10px;
-	text-align: center;
-	background-color: #191919;
-	color: #A5CD0A;
-}
-
-.modal-backdrop {
-	background: #222;
-}
-
-// added to style brand w/ green text
-.navbar .brand {
-	color: #A5CD0A;
-}
-
-// added to push down intro text in div
-#main-container {
-	padding-top: 10px;
-}
-
-// In progress fix for dealing with footer problem - do not delete
-/*
-@media (max-width: 480px) {
-	#wrapper {
-		min-height: 465px;
-	}
-}
-@media (max-width: 768px) {
-	#wrapper {
-		min-height: 465px;
-	}
-}
-@media (min-width: 768px) and (max-width: 980px) {
-	#wrapper {
-		min-height: 465px;
-	}
-}
-@media (max-width: 980px) {
-	#wrapper {
-		min-height: 465px;
-	}
-}
-@media (min-width: 980px) {
-	#wrapper {
-		min-height: 465px;
-	}
-}
-@media (min-width: 1200px) {
-	#wrapper {
-		min-height: 465px;
-	}
-}
- // end in progress fix
-
-/*
-// This does not work because of navbar...
-
-@import "sessions";
-@import "twitter/bootstrap";
-
-html {
-	margin:0;
-   	padding:0;
-   	height:100%;
-}
-
-body {
-	background-image:url('/images/bg_light_wood.png');
-	margin:0;
-   	padding:0;
-   	height:100%;
-	margin-top: 60px;
-}
-
-#wrapper {
-	min-height: 100%;
-   	position: relative;
-}
-
-#main-container {
-	background: #FFF;
-	border-radius: 3px;
-	padding-top: 0px;
-	padding-right: 20px;
 	padding-left: 20px;
-	padding-bottom: 23px;
+	padding-right: 20px;
+	padding-top: 10px; /* to push down intro text in div */
+	padding-bottom: 20px; /* same as height of footer */
 }
 
 #footer-container {
-	height: 23px;
-	width: 100%;
-	position: absolute;
-   	bottom: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	// margin-top: 10px;
-	text-align: center;
+	height: 20px;
+	border-top: 1px solid #eee;
 	background-color: #191919;
+	text-align: center;
 	color: #A5CD0A;
+}
+
+/* Space to add between footer and rest of the content, when they are close */
+.push {
+	height: 60px;
+}
+
+/* Makes some space for navigation bar */
+.wrapper > .container-fluid {
+	padding-top: 60px;
 }
 
 .modal-backdrop {
 	background: #222;
 }
 
-// added to style brand w/ green text
+/* Added to style brand w/ green text */
 .navbar .brand {
-	color#A5CD0A;
+	color: #A5CD0A;
 }
-
-// added to push down intro text in div
-#main-container {
-	padding-top: 10px;
-}
-*/
