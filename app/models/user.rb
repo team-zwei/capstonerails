@@ -17,7 +17,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :username, :password, :password_confirmation, :firstname, :lastname
+  attr_accessible :email, :username, :password, :password_confirmation, :firstname, :lastname, :phonenumber
   has_secure_password
 
   has_many :bids
@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   validates :email,    presence: true, uniqueness: { case_sensitive: false }, format: { with: valid_email_regex }
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :password, presence: true
+  validates :firstname, presence: true
+  validates :lastname, presence: true
   
   before_create { generate_token(:auth_token) }
 
