@@ -11,9 +11,13 @@ body {
 	height: 100%;
 }
 
-#main-container {
-	/*min-height: 100%;*/
+#wrapper {
+	min-height: 100%;
    	position: relative;
+	
+}
+
+#main-container {
 	background: #FFF;
 	border-radius: 3px;
 	padding-top: 0px;
