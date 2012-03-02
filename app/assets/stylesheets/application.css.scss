@@ -1,6 +1,10 @@
 @import "sessions";
 @import "twitter/bootstrap";
 
+html {
+	height: 100%;
+}
+
 body {
 	margin-top: 60px;
 	background-image:url('/images/bg_light_wood.png');
@@ -8,18 +12,24 @@ body {
 }
 
 #main-container {
+	/*min-height: 100%;*/
+   	position: relative;
 	background: #FFF;
 	border-radius: 3px;
-	padding: 0px 20px 0px 20px;
-	margin-bottom: 60px;
+	padding-top: 0px;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-bottom: 23px;
 }
 
 #footer-container {
+	height: 23px;
 	width: 100%;
-	bottom: 0;
+	position: absolute;
+   	bottom: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 	text-align: center;
 	background-color: #191919;
 	color: #A5CD0A;
