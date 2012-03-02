@@ -61,5 +61,10 @@ class Auction < ActiveRecord::Base
     end
     ("%.2f" % amount).gsub(/(\d)(?=(\d{3})+(.\d{2})$)/, '\1,')
   end
+
+  def set_new_price
+    # add code
+    
+  end
   
 end
