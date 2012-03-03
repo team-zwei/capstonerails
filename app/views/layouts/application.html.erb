@@ -21,19 +21,27 @@
 
 </head>
 <body>
-  <div id="wrapper">
-  <%= render "/layouts/partials/navbar" %>
+  <div class="wrapper">
 
-  <%= render "/layouts/partials/header" %>
+    <%= render "/layouts/partials/navbar" %>
+    <%= render "/layouts/partials/header" %>
 
-  <div id="main-container" class="container">
+    <div class="container-fluid">
+     
+      <div id="main-container" class="container">
 
-      <%= yield %>
-      
-  </div> <!-- /main-container -->
+          <%= yield %>
+          
+      </div> <!-- /main-container -->
+
+    </div> <!-- /.container-fluid -->
+
+    <div class="push"><!-- if footer is close to content puosh down --></div>
+
+  </div>
 
   <%= render "layouts/partials/footer" %>
-</div>
+
 <!--[if lt IE 7 ]>
   <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
   <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
