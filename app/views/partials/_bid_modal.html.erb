@@ -8,7 +8,10 @@
       })
       .bind("ajax:error", function(evt, xhr, status, error) {
         console.log("[XHR ERROR] "+error.message+" with status: "+status);
-        console.log(error);
+
+        if (xhr.status == 401) {
+          $('div.modal-error').append('You must be logged in to bid.').show();
+        }
       })
       .bind("ajax:success", function(evt, data, status, xhr) {
         $("#bid_modal").modal('hide');
@@ -23,12 +26,23 @@
       <!-- <h3>Submit a bid</h3> -->
     </div>
     <div class="modal-body">
+      <div class="alert alert-error modal-error" style="display: none;">
+        <!-- <a class="close" data-dismiss="alert">×</a> -->
+      </div>
+
+      <div class="alert alert-info modal-info" style="display: none;">
+        <!-- <a class="close" data-dismiss="alert">×</a> -->
+      </div>
+
       <div class="modal-thumbnail">
       </div>
+
       <div class="modal-description" style="height: 65px;">
       </div>
+
       <div class="modal-time">
       </div>
+
       <%= label_tag :bid_amount, "Bid Amount" %>
       <div class="input-prepend">
         <%= label_tag :bid_amount, "$", class: "add-on" %>
