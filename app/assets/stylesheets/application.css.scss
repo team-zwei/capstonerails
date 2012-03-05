@@ -1,58 +1,60 @@
 @import "sessions";
 @import "twitter/bootstrap";
 
-html {
+html, body {
 	height: 100%;
 }
 
 body {
-	margin-top: 60px;
 	background-image:url('/images/bg_light_wood.png');
-	height: 100%;
 }
 
 a.auction_thumbnail_more_info.label:hover {
 	color: white;
 }
 
-#wrapper {
+.wrapper {
 	min-height: 100%;
-   	position: relative;
-	
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -40px;
 }
 
 #main-container {
+	overflow:auto;
 	background: #FFF;
 	border-radius: 3px;
-	padding-top: 0px;
-	padding-right: 20px;
 	padding-left: 20px;
-	padding-bottom: 23px;
+	padding-right: 20px;
+	padding-top: 10px; /* to push down intro text in div */
+	padding-bottom: 20px; /* same as height of footer */
 }
 
 #footer-container {
-	height: 23px;
-	width: 100%;
-	position: absolute;
-   	bottom: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	/*margin-top: 10px;*/
-	text-align: center;
+	height: 20px;
+	border-top: 1px solid #eee;
 	background-color: #191919;
+	text-align: center;
 	color: #A5CD0A;
+}
+
+/* Space to add between footer and rest of the content, when they are close */
+.push {
+	height: 60px;
+}
+
+/* Makes some space for navigation bar */
+.wrapper > .container-fluid {
+	padding-top: 60px;
 }
 
 .modal-backdrop {
 	background: #222;
 }
 
-// added to style brand w/ green text
+/* Added to style brand w/ green text */
 .navbar .brand {
 	color: #A5CD0A;
-}
-
-// added to push down intro text in div
-#main-container {
-	padding-top: 10px;
 }
