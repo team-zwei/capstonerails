@@ -17,7 +17,7 @@ a.auction_thumbnail_more_info.label:hover {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -40px;
+	margin: 0 auto -41px; /* extra px to prevent scroll bar.  there is 1px off somewhere else, notice 1px white line on top of footer */
 }
 
 #main-container {
