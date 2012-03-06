@@ -3,40 +3,55 @@
     $("#bid_modal_form")
       .bind("ajax:beforeSend", function(evt, xhr, settings){
         if ( settings.dataType == undefined ) {
-          xhr.setRequestHeader("Accept", "text/javascript, */*; q=0.5");
+          xhr.setRequestHeader("Accept", "application/json, */*; q=0.5");
         }
       })
       .bind("ajax:error", function(evt, xhr, status, error) {
-        console.log("[XHR ERROR] "+error.message);
+        console.log("[XHR ERROR] "+error.message+" with status: "+status);
+
+        if (xhr.status == 401) {
+          $('div.modal-error').append('You must be logged in to bid.').show();
+        }
       })
       .bind("ajax:success", function(evt, data, status, xhr) {
-        // TODO: this stuff
+        $("#bid_modal").modal('hide');
       });
   });
 </script>
 
-<%= form_tag auction_bids_path, remote: true, id: "bid_modal_form" do %>
+<%= form_tag auction_bids_path, remote: true, id: "bid_modal_form", class: "form-horizontal" do %>
   <div id="bid_modal" class="modal hide fade" style="display: none;">
     <div class="modal-header">
       <a class="close" data-dismiss="modal">&times;</a>
       <!-- <h3>Submit a bid</h3> -->
     </div>
     <div class="modal-body">
-        <div class="modal-thumbnail">
-        </div>
-        <div class="modal-description" style="height: 65px;">
-        </div>
-        <div class="modal-time">
-        </div>
-      <p>
-        <%= label_tag "Bid Amount" %>
-        <%= text_field_tag :bid_amount, "$500.00" %>
-        <!-- TODO: Modify this bid amount to be dynamic -->
-        <%= hidden_field_tag :auction_id %>
-      </p>
+      <div class="alert alert-error modal-error" style="display: none;">
+        <!-- <a class="close" data-dismiss="alert">×</a> -->
+      </div>
+
+      <div class="alert alert-info modal-info" style="display: none;">
+        <!-- <a class="close" data-dismiss="alert">×</a> -->
+      </div>
+
+      <div class="modal-thumbnail">
+      </div>
+
+      <div class="modal-description" style="height: 65px;">
+      </div>
+
+      <div class="modal-time">
+      </div>
+
+      <%= label_tag :bid_amount, "Bid Amount" %>
+      <div class="input-prepend">
+        <%= label_tag :bid_amount, "$", class: "add-on" %>
+        <%= text_field_tag :bid_amount, "", class: "modal-amount input-medium" %>
+      </div>
+      <%= hidden_field_tag :auction_id %>
     </div>
     <div class="modal-footer">
-      <%= submit_tag "Submit Bid", class: "btn btn-success" %>
+      <%= submit_tag "Submit Bid", class: "btn btn-success modal-submit" %>
       <input type="button" class="btn" data-dismiss="modal" value="Cancel" style="float: left;">
     </div>
   </div>

@@ -18,6 +18,13 @@ class Auction < ActiveRecord::Base
   has_many :bids
   has_many :users, through: :bids, as: :bidders
 
+  define_index do
+    indexes :name, sortable: true
+    indexes :description    
+
+    has created_at, updated_at, start_time, end_time
+  end
+
   def add_to_end_time!(seconds)
   	# Adds seconds to the end time
   	self.end_time = self.end_time + seconds
@@ -52,7 +59,7 @@ class Auction < ActiveRecord::Base
     else
       amount = self.starting_bid_price
     end
-    ("$%.2f" % amount).gsub /(\d)(?=(\d{3})+(.\d{2})$)/, '\1,'
+    ("%.2f" % amount).gsub(/(\d)(?=(\d{3})+(.\d{2})$)/, '\1,')
   end
 
   def set_new_price
