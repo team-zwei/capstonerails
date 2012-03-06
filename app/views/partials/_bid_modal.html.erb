@@ -1,23 +1,5 @@
-<script>
-  $(function() {
-    $("#bid_modal_form")
-      .bind("ajax:beforeSend", function(evt, xhr, settings){
-        if ( settings.dataType == undefined ) {
-          xhr.setRequestHeader("Accept", "application/json, */*; q=0.5");
-        }
-      })
-      .bind("ajax:error", function(evt, xhr, status, error) {
-        console.log("[XHR ERROR] "+error.message+" with status: "+status);
-
-        if (xhr.status == 401) {
-          $('div.modal-error').append('You must be logged in to bid.').show();
-        }
-      })
-      .bind("ajax:success", function(evt, data, status, xhr) {
-        $("#bid_modal").modal('hide');
-      });
-  });
-</script>
+<%= javascript_include_tag "bid_modal" %>
+<%= stylesheet_link_tag "bid_modal", :media => "all" %>
 
 <%= form_tag auction_bids_path, remote: true, id: "bid_modal_form", class: "form-horizontal" do %>
   <div id="bid_modal" class="modal hide fade" style="display: none;">
