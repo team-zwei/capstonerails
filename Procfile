@@ -1,2 +1,2 @@
-faye:       		rackup private_pub.ru -s thin -E production
-thinking_sphinx:	rake thinking_sphinx:start
+private_pub:  		rackup private_pub.ru -s thin -E production
+thinking_sphinx:	bundle exec rake thinking_sphinx:run_in_foreground

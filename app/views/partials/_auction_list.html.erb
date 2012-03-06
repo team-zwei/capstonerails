@@ -11,7 +11,9 @@
               <p>
                 <span class="auction_thumbnail_description_text">
                   <%= truncate(auction.description, length: 60, separator: ' ') %>
-                </span> <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info label label-info" %>
+                </span>
+                <br>
+                <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info label label-info" %>
               </p>
             </div>
             <div class="alert alert-success" style="padding: 8px 0px 8px 0px; text-align: center;">
