@@ -20,6 +20,11 @@ a.auction_thumbnail_more_info.label:hover {
 	margin: 0 auto -41px; /* extra px to prevent scroll bar.  there is 1px off somewhere else, notice 1px white line on top of footer */
 }
 
+#header-container {
+	padding-top: 50px;
+	margin-bottom: -65px;
+}
+
 #main-container {
 	overflow:auto;
 	background: #FFF;
@@ -28,6 +33,7 @@ a.auction_thumbnail_more_info.label:hover {
 	padding-right: 20px;
 	padding-top: 10px; /* to push down intro text in div */
 	padding-bottom: 20px; /* same as height of footer */
+	margin-top: 15px;
 }
 
 #footer-container {
