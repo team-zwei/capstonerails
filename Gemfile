@@ -18,6 +18,7 @@ group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'sqlite3'
   gem 'foreman'
+  gem 'therubyracer'
 end
 
 # Gems used only for assets and not required
