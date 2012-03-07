@@ -17,10 +17,19 @@ $(document).ready ->
     $("#bid_modal .modal-time").prepend $("#" + auction_id + " .auction_thumbnail_time").text()
     $("#bid_modal .modal-thumbnail").append $("#" + auction_id + " .auction_thumbnail_image").clone()
     $("#bid_modal #auction_id").attr "value", $(this).attr("id").split("_")[3]
+    price_elem = $("#" + auction_id + " .auction_thumbnail_price")
+    $("#bid_modal .modal-amount").val (parseFloat(price_elem.attr('data-current-price'))+parseFloat(price_elem.attr('data-min-bid-increment'))).toFixed(2)
     false
 
   PrivatePub.subscribe "/bids/new", (data, channel) ->
     console.log "amount: " + data.message.amount + "\nauction_id: " + data.message.auction_id + "\ntime: " + data.message.time
+    timers["auction_"+data.message.auction_id+"_timer"].updateSecondsRemaining data.message.time
+    
+    new_price = parseFloat(data.message.amount).toFixed(2);
+    price_elem = $("#auction_"+data.message.auction_id+" h3.auction_thumbnail_price")
+    price_elem.text "$" + new_price
+    price_elem.attr 'data-current-price', new_price
 
-updateAuction = (auction_id, time, amount) ->
-  $("auction_" + auction_id + " div.auction_thumbnail_time").text time
+
+# updateAuction = (auction_id, time, amount) ->
+  # $("auction_" + auction_id + " div.auction_thumbnail_time").text time

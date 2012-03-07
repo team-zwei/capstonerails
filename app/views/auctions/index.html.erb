@@ -1,2 +1,38 @@
 <%= javascript_include_tag params[:controller] %>
+<%= form_tag auctions_path, { method: :get, class: "form-horizontal" } do %>
+	<!-- <form class="form-inline" method="get" action="<%= auctions_path %>"> -->
+	<fieldset>
+		<legend>Filter Auctions</legend>
+		<div class="control-group">
+			<label for="search" class="control-label">Search</label>
+			<div class="controls">
+				<input type="text" name="search" class="input-xl" value="<%= params[:search] %>">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="price_min" class="control-label">Min Price</label>
+			<div class="controls">
+				<div class="input-prepend">
+					<label class="add-on">$</label>
+					<input type="text" name="price_min" class="input-small" value="<%= params[:price_min] %>">
+				</div>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="price_max" class="control-label">Max Price</label>
+			<div class="controls">
+				<div class="input-prepend">
+					<label class="add-on">$</label>
+					<input type="text" name="price_max" class="input-small" value="<%= params[:price_max] %>">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<div class="form-actions">
+		<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>&nbsp;Search</button>
+		<%= link_to "Show All", auctions_path, { class: "btn", style: "width: 7%;"} %>
+	</div>
+<% end %>
 <%= render "/partials/auction_list", locals: @auctions %>

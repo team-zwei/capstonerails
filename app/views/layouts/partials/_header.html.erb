@@ -3,9 +3,15 @@
     <div class="span12">
       <header>
         <% if notice %>
-          <p class="alert alert-info"><%= notice %></p>
+          <div class="alert alert-info">
+            <a class="close" data-dismiss="alert">×</a>
+            <%= notice %>
+          </div>
         <% end; if alert %>
-          <p class="alert"><%= alert %></p>
+          <div class="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <%= alert %>
+          </div>
         <% end %>
       </header>
     </div>

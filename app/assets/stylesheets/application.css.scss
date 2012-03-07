@@ -9,6 +9,10 @@ body {
 	background-image:url('/images/bg_light_wood.png');
 }
 
+a.auction_thumbnail_more_info.label:hover {
+	color: white;
+}
+
 .wrapper {
 	min-height: 100%;
 	height: auto !important;
