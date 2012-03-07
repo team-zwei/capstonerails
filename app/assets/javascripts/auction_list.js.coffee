@@ -18,7 +18,9 @@ $(document).ready ->
     $("#bid_modal .modal-thumbnail").append $("#" + auction_id + " .auction_thumbnail_image").clone()
     $("#bid_modal #auction_id").attr "value", $(this).attr("id").split("_")[3]
     price_elem = $("#" + auction_id + " .auction_thumbnail_price")
-    $("#bid_modal .modal-amount").val (parseFloat(price_elem.attr('data-current-price'))+parseFloat(price_elem.attr('data-min-bid-increment'))).toFixed(2)
+    $("#bid_modal .modal-amount").val(
+      (parseFloat(price_elem.attr('data-current-price').replace(/\,/, ''))+
+      parseFloat(price_elem.attr('data-min-bid-increment'))).toFixed(2))
     false
 
   PrivatePub.subscribe "/bids/new", (data, channel) ->

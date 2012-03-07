@@ -28,7 +28,7 @@ var countdownTimer = function(secondsRemaining, callback) {
       result += formatNumber(time % 60);
     }
     else {
-      result = "00:00:00";
+      result = "Ended";
     }
     
     return result;

@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
 
   before_filter :require_login
 
+  # Override build_footer method in ActiveAdmin::Views::Pages
+  require 'active_admin_views_pages_base.rb'
+
   def destination
     url = session[:return_to] || root_url
     session[:return_to] = nil
