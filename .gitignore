@@ -12,6 +12,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*.pid
 /tmp
 
 # Ignore database.yml for local db development
