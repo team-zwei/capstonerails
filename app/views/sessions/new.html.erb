@@ -12,13 +12,13 @@
 		    <%= password_field_tag :password, nil, placeholder: "Password" %>
 		  </div>
 	      <div class="field">
-	        <label class="checkbox" for='<%="#{:remember_me}"%>'>
+	        <label class="checkbox" for='<%="#{:remember_me}"%>' style="float: left;">
 	          <%= check_box_tag :remember_me, 1, params[:remember_me] %> Remember Me
 	        </label>
-	        <%= link_to "Forgot Password?", new_password_reset_path %>
+	        <%= link_to "Forgot Password?", new_password_reset_path, style: "float: right;" %>
 	      </div>
 				<div class="actions">
-					<%= submit_tag "Login", class: "btn btn-primary" %>
+					<%= submit_tag "Login", class: "btn btn-primary btn-large span4" %>
 				</div>
 		<% end %>
 	</div>
