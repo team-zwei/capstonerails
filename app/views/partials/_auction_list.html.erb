@@ -1,8 +1,6 @@
-<%= stylesheet_link_tag "auction_list", :media => "all" %>
 <%= render "partials/bid_modal" %>
 <ul class="thumbnails">
-	<% if (@auctions.size > 0) %>
-    <% @auctions.each do |auction| %>
+	<% @auctions.each do |auction| %>
       <li id="auction_<%= auction.id %>" class="span3">
         <div class="thumbnail auction_thumbnail">
           <%= link_to image_tag("http://placehold.it/210x150&text="+(u auction.name), class: "auction_thumbnail_image", :border => 0 ), auction_path(auction.id) , :title => "title text" %>
@@ -29,11 +27,6 @@
           </div>
         </div>
       </li>
-    <% end %> 
-  <% else %>
-    <h3 style="text-align: center;">No open auctions.</h3>
   <% end %>
 </ul>
 <%= paginate @auctions %>
-<%= javascript_include_tag "auction_list" %>
-<%= javascript_include_tag "countdown" %>

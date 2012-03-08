@@ -14,14 +14,6 @@
 //= require jquery_ujs
 //= require private_pub
 //= require twitter/bootstrap
-
-$(function(){
-  var loginStatus = function() {
-    var logged_in = <%= (@current_user ? true : false) %>;
-    return { is_logged_in: function(){ return logged_in; } }
-  }
-
-  global_login_status = loginStatus();
-});
+//= require_tree .
 
 //parseInt($('#auction_7 .auction_thumbnail_time').attr('data-time-remaining'))
