@@ -29,6 +29,12 @@
 				</div>
 			</div>
 		</div>
+		<div class="control-group">
+			<label for="show_ended" class="control-label">Show Ended Auctions</label>
+			<div class="controls">
+				<input type="checkbox" id="show_ended" name="show_ended"<%= " checked" unless params[:show_ended].blank? %>>
+			</div>
+		</div>
 	</fieldset>
 	<div class="form-actions">
 		<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>&nbsp;Search</button>
