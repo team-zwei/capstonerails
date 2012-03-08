@@ -49,13 +49,3 @@ var countdownTimer = function(secondsRemaining, callback) {
   };
 
 };
-
-var timers = {};
-
-$('.auction_thumbnail').each(function(){
-  var id = $(this).parent().attr('id');
-  var time_elem = $('#' + id + " .auction_thumbnail_time");
-  timers[id + "_timer"] = countdownTimer(time_elem.attr('data-time-remaining'), function(result){
-    time_elem.text(result);
-  });
-});
