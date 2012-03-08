@@ -10,7 +10,7 @@ class AuctionsController < ApplicationController
 
 		@auctions.delete_if do |auction|
 			params[:price_min].to_f > (!auction.current_bid_id.nil? ? Bid.find_by_id(auction.current_bid_id).amount : auction.starting_bid_price)
-		end unless params[:price_min].blank?
+		end unless params[:price_min].blank? or @auctions.empty?
 
 		@auctions.delete_if do |auction|
 			params[:price_max].to_f < (!auction.current_bid_id.nil? ? Bid.find_by_id(auction.current_bid_id).amount : auction.starting_bid_price)

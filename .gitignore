@@ -12,4 +12,11 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*.pid
 /tmp
+
+# Ignore database.yml for local db development
+/config/database.yml
+
+# Ignore the Sphinx config file for local dev
+/config/development.sphinx.conf
