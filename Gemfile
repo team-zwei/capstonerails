@@ -4,7 +4,7 @@ gem 'rails', '3.2.0'
 gem 'jquery-rails', '2.0.0'
 gem 'bootstrap-sass-rails', '2.0.0.3'
 gem 'private_pub', '1.0.1'
-gem 'pg', '0.12.2'
+#gem 'pg', '0.12.2'
 
 # Gem for pagination
 gem 'kaminari', '0.13.0'
@@ -23,6 +23,7 @@ gem 'capistrano', '2.11.2'
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'foreman'
+  gem 'sqlite3'
 end
 
 # Gems used only for assets and not required
