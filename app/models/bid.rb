@@ -20,13 +20,13 @@ class Bid < ActiveRecord::Base
 
   def validate_bid_amount
     if self.auction.current_bid_id
-      return ((Bid.find_by_id(self.auction.current_bid_id).amount + self.auction.minimum_bid_increment) > self.amount) ? true : false
+      return ((Bid.find_by_id(self.auction.current_bid_id).amount + self.auction.minimum_bid_increment) > self.amount)
     else
-      return (self.auction.starting_bid_price >= self.amount) ? true : false
+      return self.auction.starting_bid_price >= self.amount
     end
   end
 
   def validate_end_time
-    return self.end_time > Time.now()
+    return self.auction.end_time > Time.now()
   end
 end
