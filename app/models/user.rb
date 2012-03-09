@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :bids
-  has_many :auctions, through: :bids
+  has_many :auctions, through: :bids, uniq: true
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,    presence: true, uniqueness: { case_sensitive: false }, format: { with: valid_email_regex }
