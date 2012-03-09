@@ -25,7 +25,7 @@ $(document).ready ->
     $("#bid_modal .modal-description").prepend  $("#" + auction_id + " .auction_thumbnail_description_text").text()
     $("#bid_modal .modal-time").prepend         $("#" + auction_id + " .auction_thumbnail_time").text()
     $("#bid_modal .modal-thumbnail").append     $("#" + auction_id + " .auction_thumbnail_image").clone()
-    $("#bid_modal #auction_id").attr "value", $(this).attr("id").split("_")[3]
+    $("#bid_modal #auction_id").attr "value", $(this).attr("id").split("_")[3]dsl
 
     price_elem = $("#" + auction_id + " .auction_thumbnail_price")
     $("#bid_modal .modal-amount").val(
@@ -42,4 +42,4 @@ $(document).ready ->
     price_elem.text "$" + new_price
     price_elem.attr 'data-current-price', new_price
 
-    $("#auction_"+data.message.auction_id+" .auction_thumbnail_price_time_container").effect("highlight", { color: "#FF9999" }, 1000);
+    $("#auction_"+data.message.auction_id+" .auction_thumbnail_price_time_container").effect("highlight", { color: "#FF9999" }, 1500);
