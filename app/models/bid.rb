@@ -18,10 +18,13 @@ class Bid < ActiveRecord::Base
   before_save :validate_bid_amount
 
   def validate_bid_amount
-    if self.auction.current_bid_id
-      return ((Bid.find_by_id(self.auction.current_bid_id).amount + self.auction.minimum_bid_increment) > self.amount) ? true : false
+    auction = self.auction
+    amount  = self.amount
+    bid_id     = auction.current_bid_id
+    if bid_id
+      ((Bid.find_by_id(bid_id).amount + auction.minimum_bid_increment) > amount) ? true : false
     else
-      return (self.auction.starting_bid_price >= self.amount) ? true : false
+      (auction.starting_bid_price >= amount) ? true : false
     end
   end
 end
