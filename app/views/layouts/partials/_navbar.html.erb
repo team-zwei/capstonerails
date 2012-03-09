@@ -3,20 +3,20 @@
     <div class="container">
       <%= link_to "ReAuction", root_url, class: "brand" %>
       <ul id="nav" class="nav">
-        <li id="nav_home">
+        <li id="nav_home" <%= "class='active'" if params[:controller] == "home" %> >
           <%= link_to "Home", root_url %>
         </li>
-        <li id="nav_auctions">
+        <li id="nav_auctions" <%= "class='active'" if params[:controller] == "auctions" %> >
           <%= link_to "Auctions", auctions_path %>
         </li>
-        <li id="nav_account">
+        <li id="nav_account" <%= "class='active'" if params[:controller] == "users" %> >
           <%= link_to "My Account", account_path %>
         </li>
-        <li id="nav_help">
+        <li id="nav_help" <%= "class='active'" if params[:controller] == "help" %> >
           <%= link_to "Help", "/help"%>
         </li>
         <% if current_user && current_user.admin?  %>
-          <li class="">
+          <li id="nav_admin" >
             <a href="/admin">Admin</a>
           </li>
         <% end %>
