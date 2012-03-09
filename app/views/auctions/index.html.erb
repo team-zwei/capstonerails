@@ -1,43 +1,49 @@
-<%= form_tag auctions_path, { method: :get, class: "form-horizontal" } do %>
-	<!-- <form class="form-inline" method="get" action="<%= auctions_path %>"> -->
-	<fieldset>
-		<legend>Filter Auctions</legend>
-		<div class="control-group">
-			<label for="search" class="control-label">Search</label>
-			<div class="controls">
-				<input type="text" name="search" class="input-xl" value="<%= params[:search] %>">
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label for="price_min" class="control-label">Min Price</label>
-			<div class="controls">
-				<div class="input-prepend">
-					<label class="add-on">$</label>
-					<input type="text" name="price_min" class="input-small" value="<%= params[:price_min] %>">
+<div id="auction_index_search_row" class="row">
+		<%= form_tag auctions_path, { method: :get, class: "form" } do %>
+			<!-- <form class="form-inline" method="get" action="<%= auctions_path %>"> -->
+			<fieldset>
+				<legend>Filter Auctions</legend>
+				<div id="auction_index_search_div" >
+					<div id="auction_index_search_query_div" class="control-group span3">
+						<label for="search" class="control-label">Search</label>
+						<div class="controls">
+							<input type="text" id="search" name="search" class="input-medium" value="<%= params[:search] %>">
+						</div>
+					</div>
+					<div id="auction_index_search_min_price_div" class="control-group span1">
+						<label for="price_min" class="control-label">Min Price</label>
+						<div class="controls">
+							<div class="input-prepend">
+								<label for="price_min" class="add-on">$</label>
+								<input type="text" id="price_min" name="price_min" class="input-small" value="<%= params[:price_min] %>">
+							</div>
+						</div>
+					</div>
+					<div id="auction_index_search_max_price_div" class="control-group span1">
+						<label for="price_max" class="control-label">Max Price</label>
+						<div class="controls">
+							<div class="input-prepend">
+								<label for="price_max" class="add-on">$</label>
+								<input type="text" id="price_max" name="price_max" value="<%= params[:price_max] %>">
+							</div>
+						</div>
+					</div>
+					<div id="auction_index_search_ended_auctions_div" class="control-group span3">
+						<div class="controls">
+							<input type="checkbox" id="show_ended" name="show_ended"<%= " checked" unless params[:show_ended].blank? %> >
+							<label for="show_ended" class="control-label">Show Ended Auctions</label>
+						</div>
+					</div>
+					<div id="auction_index_search_actions_div" class="span3">
+						<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>&nbsp;Search</button>
+						<%= link_to "Show All", auctions_path, { class: "btn"} %>
+					</div>
 				</div>
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label for="price_max" class="control-label">Max Price</label>
-			<div class="controls">
-				<div class="input-prepend">
-					<label class="add-on">$</label>
-					<input type="text" name="price_max" class="input-small" value="<%= params[:price_max] %>">
-				</div>
-			</div>
-		</div>
-		<div class="control-group">
-			<label for="show_ended" class="control-label">Show Ended Auctions</label>
-			<div class="controls">
-				<input type="checkbox" id="show_ended" name="show_ended"<%= " checked" unless params[:show_ended].blank? %>>
-			</div>
-		</div>
-	</fieldset>
-	<div class="form-actions">
-		<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>&nbsp;Search</button>
-		<%= link_to "Show All", auctions_path, { class: "btn", style: "width: 7%;"} %>
+			</fieldset>
+		<% end %>
+</div><!-- /row -->
+<div id="auction_index_auction_list_row" class="row">
+	<div class="span12">
+		<%= render "/partials/auction_list", locals: @auctions %>
 	</div>
-<% end %>
-<%= render "/partials/auction_list", locals: @auctions %>
+</div>
