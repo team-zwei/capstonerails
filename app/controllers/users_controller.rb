@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def show
     redirect_to new_session_path if !current_user
+    @auctions = current_user.auctions.page(params[:page]).per(8)
     @current_user
   end
 end
