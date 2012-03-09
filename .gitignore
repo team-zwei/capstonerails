@@ -20,3 +20,6 @@
 
 # Ignore the Sphinx config file for local dev
 /config/development.sphinx.conf
+
+# misc
+.DS_Store
