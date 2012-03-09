@@ -8,7 +8,7 @@ $(".auction_thumbnail").each ->
   time_elem = $("#" + id + " .auction_thumbnail_time")
   timers[id + "_timer"] = countdownTimer(time_elem.attr("data-time-remaining"), (result) ->
     time_elem.text result
-)
+  )
 
 stock_modal = undefined
 $(document).ready ->
@@ -20,11 +20,13 @@ $(document).ready ->
       keyboard: true
 
     auction_id = "auction_" + $(this).attr("id").split("_")[3]
-    $("#bid_modal .modal-header").prepend $("#" + auction_id + " .auction_thumbnail_title").text()
-    $("#bid_modal .modal-description").prepend $("#" + auction_id + " .auction_thumbnail_description_text").text()
-    $("#bid_modal .modal-time").prepend $("#" + auction_id + " .auction_thumbnail_time").text()
-    $("#bid_modal .modal-thumbnail").append $("#" + auction_id + " .auction_thumbnail_image").clone()
+
+    $("#bid_modal .modal-header").prepend       $("#" + auction_id + " .auction_thumbnail_title").text()
+    $("#bid_modal .modal-description").prepend  $("#" + auction_id + " .auction_thumbnail_description_text").text()
+    $("#bid_modal .modal-time").prepend         $("#" + auction_id + " .auction_thumbnail_time").text()
+    $("#bid_modal .modal-thumbnail").append     $("#" + auction_id + " .auction_thumbnail_image").clone()
     $("#bid_modal #auction_id").attr "value", $(this).attr("id").split("_")[3]
+
     price_elem = $("#" + auction_id + " .auction_thumbnail_price")
     $("#bid_modal .modal-amount").val(
       (parseFloat(price_elem.attr('data-current-price').replace(/\,/, ''))+
