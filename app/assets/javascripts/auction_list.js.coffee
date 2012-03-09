@@ -25,7 +25,7 @@ $(document).ready ->
     $("#bid_modal .modal-description").prepend  $("#" + auction_id + " .auction_thumbnail_description_text").text()
     $("#bid_modal .modal-time").prepend         $("#" + auction_id + " .auction_thumbnail_time").text()
     $("#bid_modal .modal-thumbnail").append     $("#" + auction_id + " .auction_thumbnail_image").clone()
-    $("#bid_modal #auction_id").attr "value", $(this).attr("id").split("_")[3]dsl
+    $("#bid_modal #auction_id").attr "value", $(this).attr("id").split("_")[3]
 
     price_elem = $("#" + auction_id + " .auction_thumbnail_price")
     $("#bid_modal .modal-amount").val(
