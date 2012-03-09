@@ -45,7 +45,6 @@ class BidsController < ApplicationController
         format.json {render json: {message: response}, status: status_code}
       end
   	else
-      Rails.logger.info "TESTING TESTING TESTING ==========================="
   		respond_with do |format|
   			format.html {redirect_to login_path, status: 401, alert: "Must be logged in to bid."}
   			format.json {render json: {message: "Must be logged in to bid."}, status: 401}
