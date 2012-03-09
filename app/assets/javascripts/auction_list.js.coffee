@@ -2,6 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+timers = {}
+$(".auction_thumbnail").each ->
+  id = $(this).parent().attr("id")
+  time_elem = $("#" + id + " .auction_thumbnail_time")
+  timers[id + "_timer"] = countdownTimer(time_elem.attr("data-time-remaining"), (result) ->
+    time_elem.text result
+)
+
 stock_modal = undefined
 $(document).ready ->
   stock_modal = $("#bid_modal").clone().html()
