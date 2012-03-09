@@ -32,6 +32,4 @@ $(document).ready ->
     price_elem.text "$" + new_price
     price_elem.attr 'data-current-price', new_price
 
-
-# updateAuction = (auction_id, time, amount) ->
-  # $("auction_" + auction_id + " div.auction_thumbnail_time").text time
+    $("#auction_"+data.message.auction_id+" .auction_thumbnail_price_time_container").effect("highlight", { color: "#FF9999" }, 1000);
