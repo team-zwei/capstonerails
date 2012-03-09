@@ -16,6 +16,7 @@ class Bid < ActiveRecord::Base
   belongs_to :user
 
   before_save :validate_bid_amount
+  before_save :validate_end_time
 
   def validate_bid_amount
     if self.auction.current_bid_id
@@ -23,5 +24,9 @@ class Bid < ActiveRecord::Base
     else
       return (self.auction.starting_bid_price >= self.amount) ? true : false
     end
+  end
+
+  def validate_end_time
+    return self.end_time > Time.now()
   end
 end
