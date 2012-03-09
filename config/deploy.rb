@@ -46,7 +46,7 @@ end
 
 namespace :deploy do
   task :dms do
-    drop_db
+    #drop_db
     create_db
     migrate
     seed_db
