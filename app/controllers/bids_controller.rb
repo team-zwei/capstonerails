@@ -17,14 +17,15 @@ class BidsController < ApplicationController
       bid.auction.end_time += 600 # ten minutes #TODO add time to end_time appropriately
 
       # get current bid to verify amount
-      # cbid = Bid.find_by_id(bid.auction.current_bid_id)
-      # inc = bid.auction.minimum_bid_increment
+      current_amount = (bid.auction.current_bid_id) ? 
+                        Bid.find_by_id(bid.auction.current_bid_id).amount : 
+                        bid.auction.starting_bid_price
+      increment_amount = bid.auction.minimum_bid_increment
 
-      # if bid.amount < cbid.amount + inc
-      #   response = 'minimum bid not met'
-      #   status_code = 412 # precondition failed HTTP response
-      # els
-      if bid.save! && bid.auction.save!
+      if bid.amount < current_amount + increment_amount
+        response = 'minimum bid not met'
+        status_code = 412 # precondition failed HTTP response
+      elsif bid.save! && bid.auction.save!
         bid.auction.current_bid_id = bid.id
         bid.auction.save!
         
