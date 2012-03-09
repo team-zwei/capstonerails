@@ -16,9 +16,17 @@ class UsersController < ApplicationController
 
   def show
     redirect_to new_session_path if !current_user
-    @active_auctions = current_user.auctions.where("end_time > now()").page(params[:page]).per(8)
-    # @won_auctions = current_user.auctions
-    # @lost_auctions = current_user.auctions
+
+    auctions = @current_user.auctions
+    active_auctions = auctions.where "end_time > now()"
+    won_auctions = Auction.find_by_winner_id @current_user.id
+    lost_auctions = auctions.where "winner_id != #{@current_user.id}"
+
+    @active_auctions = active_auctions.page(params[:page]).per(8) if active_auctions
+    @won_auctions = won_auctions.page(params[:page]).per(8) if won_auctions
+    @lost_auctions = lost_auctions.page(params[:page]).per(8) if lost_auctions
+
+    @bids = @current_user.bids
 
     @current_user
   end

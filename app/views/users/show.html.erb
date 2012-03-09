@@ -53,23 +53,68 @@
             <h3>
               Recent Activity
             </h3>
+            <hr />
+            <% if @bids %>
+              <table class="table">
+              <tr>
+                <th>
+                  Auction Title
+                </th>
+                <th>
+                  Bid Time
+                </th>
+                <th>
+                  Bid Amount
+                </th>
+              </tr>
+                <% @bids.each do |bid| %>
+                  <tr>
+                    <td>
+                      <%= Auction.find_by_id(bid.auction_id).name %>
+                    </td>
+                    <td>
+                      <%= bid.created_at %>
+                    </td>
+                    <td>
+                      <%= bid.amount %>
+                    </td>
+                  </tr>
+                <% end %>
+                </table>
+            <% else %>
+              <h4>No recent activity yet. Get to bidding!</h4>
+            <% end %>
           </div>
         </div>
       </div>
       <div class="tab-pane fade" id="active">
-        <p>You still have a chance to win these auctions, bid now to increase your chance of success!</p>
-        <hr />
-        <%= render "partials/auction_list", locals: @auctions = @active_auctions %>
+        <% if @active_auctions %>
+          <p>You still have a chance to win these auctions, bid now to increase your chance of success!</p>
+          <hr />
+          <%= render "partials/auction_list", locals: @auctions = @active_auctions %>
+        <% else %>
+          <p>You haven't bid on anything yet. Why don't you go bid on <%= link_to "something", auctions_path %>?</p>
+          <hr />
+        <% end %> 
       </div>
       <div class="tab-pane fade" id="won">
-        <p>You have won the following auctions:</p>
-        render partial here
+        <% if @won_auctions %>
+          <p>You have won the following auctions:</p>
+          <%= render "partials/auction_list", locals: @auctions = @won_auctions %>
+        <% else %>
+          <p>Oh, no! You haven't won anything yet.</p>
+          <hr />
+        <% end %>
       </div>
       <div class="tab-pane fade" id="lost">
-        <p>Unfortunately you didn't win the following auctions, but you can always try to win <%= link_to "something else", auctions_path %>.</p>
-        <hr />
-        <p>
-        </p>
+        <% if @lost_auctions %>
+          <p>Unfortunately you didn't win the following auctions, but you can always try to win <%= link_to "something else", auctions_path %>.</p>
+          <hr />
+          <%= render "partials/auction_list", locals: @auctions = @lost_auctions %>
+        <% else %>
+          <p>Perhaps not having lost an auction is worth congratulations, but shouldn't you really be bidding on <%= link_to "something", auctions_path %>?</p>
+          <hr />
+        <% end %>
       </div>
     </div>
   </div>

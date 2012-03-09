@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226211232) do
+ActiveRecord::Schema.define(:version => 20120309064806) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120226211232) do
     t.decimal  "starting_bid_price",    :precision => 15, :scale => 2
     t.decimal  "minimum_bid_increment", :precision => 15, :scale => 2
     t.integer  "current_bid_id"
+    t.integer  "winner_id"
   end
 
   create_table "bids", :force => true do |t|
