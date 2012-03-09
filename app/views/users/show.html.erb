@@ -1,23 +1,26 @@
 <div class="row">
 	<div class="span12 columns">
-     <h2>
-       <%= @current_user.firstname+" "+@current_user.lastname %>
-     </h2>
-     <ul id="tab" class="nav nav-tabs">
-       <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-       <li class=""><a href="#someOtherStuff" data-toggle="tab">someOtherStuff</a></li>
-       <li class="dropdown">
-         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Auctions <b class="caret"></b></a>
-         <ul class="dropdown-menu">
-           <li><a href="#active" data-toggle="tab">active</a></li>
-           <li><a href="#won" data-toggle="tab">won</a></li>
-           <li><a href="#lost" data-toggle="tab">lost</a></li>
-         </ul>
-       </li>
-     </ul>
-     <div id="myTabContent" class="tab-content">
-       <div class="tab-pane fade active in" id="profile">
-         <table class="table">
+    <h2>
+      <%= @current_user.firstname+" "+@current_user.lastname %>
+    </h2>
+    <ul id="tab" class="nav nav-tabs">
+      <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Auctions <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#active" data-toggle="tab">active</a></li>
+          <li><a href="#won" data-toggle="tab">won</a></li>
+          <li><a href="#lost" data-toggle="tab">lost</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade active in" id="profile">
+        <div class="row">
+          <div class="span6">
+            <table class="table">
               <tr>
                 <td>
                   Username
@@ -45,128 +48,29 @@
                 </tr>
               <% end %>
             </table>
-       </div>
-       <div class="tab-pane fade" id="someOtherStuff">
-         <p>Pig corned beef turducken, capicola biltong leberkas pork andouille. Short ribs pancetta beef ribs ham hock, sirloin andouille fatback shoulder swine flank sausage boudin jerky ham shank. Ball tip beef ribs shank, tongue frankfurter ribeye cow shoulder. Frankfurter strip steak swine, turkey sirloin bacon pork loin hamburger tenderloin pork ham prosciutto. Chicken pork belly pork capicola. Frankfurter andouille corned beef, jerky salami beef kielbasa leberkas swine.
-
-Filet mignon cow shankle short loin, capicola bresaola turkey venison pastrami pig meatball pancetta. Filet mignon swine rump, meatloaf pancetta chuck spare ribs pork belly hamburger frankfurter jowl shoulder beef ribs salami capicola. Andouille shoulder drumstick tri-tip sirloin, fatback pork loin. Ground round andouille pancetta salami fatback.
-
-Strip steak cow pork belly, shank ball tip shoulder filet mignon meatball ground round flank tenderloin andouille pork loin. Short loin meatball ribeye, fatback pork chop chuck leberkas pastrami shoulder bacon sausage frankfurter. Bresaola turkey pastrami ground round turducken spare ribs. Tri-tip chuck capicola, ground round fatback andouille venison jerky beef ribeye brisket strip steak. Brisket boudin chicken kielbasa prosciutto, frankfurter pancetta ground round meatloaf sausage. Pork belly jowl leberkas, ball tip andouille flank capicola filet mignon ribeye tenderloin ham jerky. Filet mignon jerky short loin venison shankle.
-
-Biltong brisket pork loin, ribeye pork chop prosciutto tri-tip beef ribs turducken drumstick leberkas. Turkey meatloaf short loin, cow bresaola tri-tip filet mignon ham short ribs frankfurter pork belly. Capicola bresaola short ribs bacon pork belly t-bone, biltong salami sirloin pork loin chuck. Bresaola shankle turducken short loin pig jerky prosciutto tongue pancetta, fatback jowl andouille. Boudin ham hock chuck corned beef turkey, prosciutto short loin. Bresaola bacon drumstick, jerky meatball short loin ground round chicken frankfurter shoulder jowl biltong pork loin shank ham.
-
-Capicola leberkas beef ribs andouille cow pork meatball rump shankle, venison turkey swine fatback pancetta. Turducken leberkas pastrami, ham ball tip tenderloin flank. Biltong t-bone chicken kielbasa. Pastrami biltong venison, jerky rump short ribs beef ribs pancetta. Sirloin turducken biltong ground round venison. Pancetta pastrami strip steak, flank leberkas bresaola filet mignon shankle biltong boudin spare ribs sirloin. Cow shank ground round ball tip, leberkas filet mignon tri-tip pork fatback.
-         </p>
-       </div>
-       <div class="tab-pane fade" id="active">
-         <p>You still have a chance to win these auctions, bid now to increase your chance of success!</p>
-         <hr />
-         <p>Pig corned beef turducken, capicola biltong leberkas pork andouille. Short ribs pancetta beef ribs ham hock, sirloin andouille fatback shoulder swine flank sausage boudin jerky ham shank. Ball tip beef ribs shank, tongue frankfurter ribeye cow shoulder. Frankfurter strip steak swine, turkey sirloin bacon pork loin hamburger tenderloin pork ham prosciutto. Chicken pork belly pork capicola. Frankfurter andouille corned beef, jerky salami beef kielbasa leberkas swine.
-
-Filet mignon cow shankle short loin, capicola bresaola turkey venison pastrami pig meatball pancetta. Filet mignon swine rump, meatloaf pancetta chuck spare ribs pork belly hamburger frankfurter jowl shoulder beef ribs salami capicola. Andouille shoulder drumstick tri-tip sirloin, fatback pork loin. Ground round andouille pancetta salami fatback.
-
-Strip steak cow pork belly, shank ball tip shoulder filet mignon meatball ground round flank tenderloin andouille pork loin. Short loin meatball ribeye, fatback pork chop chuck leberkas pastrami shoulder bacon sausage frankfurter. Bresaola turkey pastrami ground round turducken spare ribs. Tri-tip chuck capicola, ground round fatback andouille venison jerky beef ribeye brisket strip steak. Brisket boudin chicken kielbasa prosciutto, frankfurter pancetta ground round meatloaf sausage. Pork belly jowl leberkas, ball tip andouille flank capicola filet mignon ribeye tenderloin ham jerky. Filet mignon jerky short loin venison shankle.
-
-Biltong brisket pork loin, ribeye pork chop prosciutto tri-tip beef ribs turducken drumstick leberkas. Turkey meatloaf short loin, cow bresaola tri-tip filet mignon ham short ribs frankfurter pork belly. Capicola bresaola short ribs bacon pork belly t-bone, biltong salami sirloin pork loin chuck. Bresaola shankle turducken short loin pig jerky prosciutto tongue pancetta, fatback jowl andouille. Boudin ham hock chuck corned beef turkey, prosciutto short loin. Bresaola bacon drumstick, jerky meatball short loin ground round chicken frankfurter shoulder jowl biltong pork loin shank ham.
-
-Capicola leberkas beef ribs andouille cow pork meatball rump shankle, venison turkey swine fatback pancetta. Turducken leberkas pastrami, ham ball tip tenderloin flank. Biltong t-bone chicken kielbasa. Pastrami biltong venison, jerky rump short ribs beef ribs pancetta. Sirloin turducken biltong ground round venison. Pancetta pastrami strip steak, flank leberkas bresaola filet mignon shankle biltong boudin spare ribs sirloin. Cow shank ground round ball tip, leberkas filet mignon tri-tip pork fatback.
-         </p>
-       </div>
-       <div class="tab-pane fade" id="won">
-         <p>Great success!  You have won the following auctions:</p>
-         <hr />
-         <p>Pig corned beef turducken, capicola biltong leberkas pork andouille. Short ribs pancetta beef ribs ham hock, sirloin andouille fatback shoulder swine flank sausage boudin jerky ham shank. Ball tip beef ribs shank, tongue frankfurter ribeye cow shoulder. Frankfurter strip steak swine, turkey sirloin bacon pork loin hamburger tenderloin pork ham prosciutto. Chicken pork belly pork capicola. Frankfurter andouille corned beef, jerky salami beef kielbasa leberkas swine.
-
-Filet mignon cow shankle short loin, capicola bresaola turkey venison pastrami pig meatball pancetta. Filet mignon swine rump, meatloaf pancetta chuck spare ribs pork belly hamburger frankfurter jowl shoulder beef ribs salami capicola. Andouille shoulder drumstick tri-tip sirloin, fatback pork loin. Ground round andouille pancetta salami fatback.
-
-Strip steak cow pork belly, shank ball tip shoulder filet mignon meatball ground round flank tenderloin andouille pork loin. Short loin meatball ribeye, fatback pork chop chuck leberkas pastrami shoulder bacon sausage frankfurter. Bresaola turkey pastrami ground round turducken spare ribs. Tri-tip chuck capicola, ground round fatback andouille venison jerky beef ribeye brisket strip steak. Brisket boudin chicken kielbasa prosciutto, frankfurter pancetta ground round meatloaf sausage. Pork belly jowl leberkas, ball tip andouille flank capicola filet mignon ribeye tenderloin ham jerky. Filet mignon jerky short loin venison shankle.
-
-Biltong brisket pork loin, ribeye pork chop prosciutto tri-tip beef ribs turducken drumstick leberkas. Turkey meatloaf short loin, cow bresaola tri-tip filet mignon ham short ribs frankfurter pork belly. Capicola bresaola short ribs bacon pork belly t-bone, biltong salami sirloin pork loin chuck. Bresaola shankle turducken short loin pig jerky prosciutto tongue pancetta, fatback jowl andouille. Boudin ham hock chuck corned beef turkey, prosciutto short loin. Bresaola bacon drumstick, jerky meatball short loin ground round chicken frankfurter shoulder jowl biltong pork loin shank ham.
-
-Capicola leberkas beef ribs andouille cow pork meatball rump shankle, venison turkey swine fatback pancetta. Turducken leberkas pastrami, ham ball tip tenderloin flank. Biltong t-bone chicken kielbasa. Pastrami biltong venison, jerky rump short ribs beef ribs pancetta. Sirloin turducken biltong ground round venison. Pancetta pastrami strip steak, flank leberkas bresaola filet mignon shankle biltong boudin spare ribs sirloin. Cow shank ground round ball tip, leberkas filet mignon tri-tip pork fatback.
-         </p>
-       </div>
-       <div class="tab-pane fade" id="lost">
-         <p>Unfortunately you didn't win the following auctions, but you can always try to win <%= link_to "something else", auctions_path %>.</p>
-         <hr />
-         <p>Pig corned beef turducken, capicola biltong leberkas pork andouille. Short ribs pancetta beef ribs ham hock, sirloin andouille fatback shoulder swine flank sausage boudin jerky ham shank. Ball tip beef ribs shank, tongue frankfurter ribeye cow shoulder. Frankfurter strip steak swine, turkey sirloin bacon pork loin hamburger tenderloin pork ham prosciutto. Chicken pork belly pork capicola. Frankfurter andouille corned beef, jerky salami beef kielbasa leberkas swine.
-
-Filet mignon cow shankle short loin, capicola bresaola turkey venison pastrami pig meatball pancetta. Filet mignon swine rump, meatloaf pancetta chuck spare ribs pork belly hamburger frankfurter jowl shoulder beef ribs salami capicola. Andouille shoulder drumstick tri-tip sirloin, fatback pork loin. Ground round andouille pancetta salami fatback.
-
-Strip steak cow pork belly, shank ball tip shoulder filet mignon meatball ground round flank tenderloin andouille pork loin. Short loin meatball ribeye, fatback pork chop chuck leberkas pastrami shoulder bacon sausage frankfurter. Bresaola turkey pastrami ground round turducken spare ribs. Tri-tip chuck capicola, ground round fatback andouille venison jerky beef ribeye brisket strip steak. Brisket boudin chicken kielbasa prosciutto, frankfurter pancetta ground round meatloaf sausage. Pork belly jowl leberkas, ball tip andouille flank capicola filet mignon ribeye tenderloin ham jerky. Filet mignon jerky short loin venison shankle.
-
-Biltong brisket pork loin, ribeye pork chop prosciutto tri-tip beef ribs turducken drumstick leberkas. Turkey meatloaf short loin, cow bresaola tri-tip filet mignon ham short ribs frankfurter pork belly. Capicola bresaola short ribs bacon pork belly t-bone, biltong salami sirloin pork loin chuck. Bresaola shankle turducken short loin pig jerky prosciutto tongue pancetta, fatback jowl andouille. Boudin ham hock chuck corned beef turkey, prosciutto short loin. Bresaola bacon drumstick, jerky meatball short loin ground round chicken frankfurter shoulder jowl biltong pork loin shank ham.
-
-Capicola leberkas beef ribs andouille cow pork meatball rump shankle, venison turkey swine fatback pancetta. Turducken leberkas pastrami, ham ball tip tenderloin flank. Biltong t-bone chicken kielbasa. Pastrami biltong venison, jerky rump short ribs beef ribs pancetta. Sirloin turducken biltong ground round venison. Pancetta pastrami strip steak, flank leberkas bresaola filet mignon shankle biltong boudin spare ribs sirloin. Cow shank ground round ball tip, leberkas filet mignon tri-tip pork fatback.
-         </p>
-       </div>
-     </div>
+          </div>
+          <div class="span6">
+            <h3>
+              Recent Activity
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="active">
+        <p>You still have a chance to win these auctions, bid now to increase your chance of success!</p>
+        <hr />
+        <%= render "partials/auction_list", locals: @auctions = @active_auctions %>
+      </div>
+      <div class="tab-pane fade" id="won">
+        <p>You have won the following auctions:</p>
+        render partial here
+      </div>
+      <div class="tab-pane fade" id="lost">
+        <p>Unfortunately you didn't win the following auctions, but you can always try to win <%= link_to "something else", auctions_path %>.</p>
+        <hr />
+        <p>
+        </p>
+      </div>
+    </div>
   </div>
-  <!--<div class="span4">
-  	<table class="table">
-  		<tr>
-  			<td>
-  				Username
-  			</td>
-  			<td>
-  				<%= @current_user.username %>
-  			</td>
-  		</tr>
-  		<tr>
-  			<td>
-  				Email
-  			</td>
-  			<td>
-  				<%= @current_user.email %>
-  			</td>
-  		</tr>
-  		<% if @current_user.admin? %>
-  			<tr>
-  				<td>
-  					Admin
-  				</td>
-  				<td>
-  					Yes
-  				</td>
-  			</tr>
-  		<% end %>
-  	</table>
-  	<h3>
-  		Recent Bids
-  	</h3>
-  	<table class="table user_show_bids_table">
-  		<% if @current_user.bids.length > 0 %>
-  			<tr>
-  				<th>
-  					Auction
-  				</th>
-  				<th>
-  					Amount
-  				</th>
-  				<th>
-  					Date
-  				</th>
-  			</tr>
-	  		<% @current_user.bids.find(:all, order: 'created_at desc').each do |bid| %>
-	  			<tr>
-	  				<td>
-	  					<%= Auction.find_by_id(bid.user_id).name %>
-	  				</td>
-	  				<td>
-	  					<%= bid.amount %>
-	  				</td>
-	  				<td>
-	  					<%= bid.created_at %>
-	  				</td>
-	  			</tr>
-	  		<% end %>
-	  	<% else %>
-	  		<tr>
-	  			<td>
-	  				You haven't bid on anything yet.  Why not take a look at some <%= link_to "auctions", auctions_path %>?
-	  			</td>
-	  		</tr>
-	  	<% end %>
-  	</table>
-  </div>-->
 </div>
