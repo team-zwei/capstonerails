@@ -15,20 +15,17 @@ class Bid < ActiveRecord::Base
   belongs_to :auction
   belongs_to :user
 
-  # before_save :validate_amount
+  before_save :validate
 
-  # def validate_amount
-  # 	puts self
+  def validate
+  	current_bid_amount = Bid.find_by_id((self.auction.current_bid_id) ? self.auction.current_bid_id : self.auction.starting_bid_price).amount
+  	minimum_bid_increment = self.auction.minimum_bid_increment
 
-  # 	return false
-
-  # 	current_bid_amount = Bid.find_by_id(self.auction.current_bid_id).amount
-  # 	minimum_bid_increment = self.auction.minimum_bid_increment
-
-  # 	if self.amount < (current_bid_amount + minimum_bid_increment)
-  # 		false
-  # 	else
-  # 		true
-  # 	end
-  # end
+  	if self.amount < (current_bid_amount + minimum_bid_increment) || 
+      self.end_time < Time.now()
+  		false
+  	else
+  		true
+  	end
+  end
 end

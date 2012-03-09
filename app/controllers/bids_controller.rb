@@ -22,7 +22,10 @@ class BidsController < ApplicationController
                         bid.auction.starting_bid_price
       increment_amount = bid.auction.minimum_bid_increment
 
-      if bid.amount < current_amount + increment_amount
+      if bid.auction.end_time < Time.now()
+        response = 'auction already ended'
+        status_code = 410
+      elsif bid.amount < current_amount + increment_amount
         response = 'minimum bid not met'
         status_code = 412 # precondition failed HTTP response
       elsif bid.save! && bid.auction.save!
