@@ -78,7 +78,7 @@ Capistrano::Configuration.instance.load do
           base: &base
             adapter: postgresql 
             username: #{Capistrano::CLI.ui.ask("Enter database username: ")}
-            password: #{Capistrano::CLI.ui.ask("Enter database password: ")}
+            password: #{Capistrano::CLI.password_prompt("Enter database password: ")}
             pool: 5
           development:
             database: capstone_development

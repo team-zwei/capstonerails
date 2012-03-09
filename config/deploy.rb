@@ -7,7 +7,7 @@ set :scm, "git"
 set :branch, "master"
 set :scm_verbose, true
 set :deploy_via, :remote_cache
-set :scm_passphrase, "#{Capistrano::CLI.ui.ask("Enter deploy user's ssh-key password: ")}" # The deploy user's ssh key passphrase
+set :scm_passphrase, "#{Capistrano::CLI.password_prompt("Enter deploy user's ssh-key password: ")}" # The deploy user's ssh key passphrase
 set :deploy_to, "/home/#{user}/#{domain}"
 set :use_sudo, false
 set :rvm_type, :user
