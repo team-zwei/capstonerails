@@ -1,34 +1,50 @@
-<%= stylesheet_link_tag "users", :media => "all" %>
 <div class="row">
-  <div class="span6 offset4">
-    <h1>Sign Up</h1>
-    <br>
-    <%= form_for @user do |f| %>
-      <div class="input-prepend">
-        <%= f.label :firstname, "First Name", class: "add-on" %>
-        <%= f.text_field :firstname, placeholder: "First Name" %>
-      </div>
-      <div class="input-prepend">
-        <%= f.label :lastname, "Last Name", class: "add-on" %>
-        <%= f.text_field :lastname, placeholder: "Last Name" %>
-      </div>
-      <div class="input-prepend">
-        <%= f.label :email, class: "add-on" %>
-        <%= f.text_field :email, placeholder: "Email Address" %>
-      </div>
-      <div class="input-prepend">
-        <%= f.label :username, class: "add-on" %>
-        <%= f.text_field :username, placeholder: "Username" %>
-      </div>
-      <div class="input-prepend">
-        <%= f.label :password, class: "add-on" %>
-        <%= f.password_field :password, placeholder: "Password" %>
-      </div>
-      <div class="input-prepend">
-        <%= f.label :password_confirmation, "Confirm", class: "add-on" %>
-        <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
-      </div>
-      <%= f.submit class: "btn btn-primary" %>  
+  <div class="span6 offset3">
+    <h1 class="offset2">Sign Up</h1>
+    <hr />
+    <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
+      <fieldset>
+        <div class="control-group">
+          <%= f.label :firstname, "First Name", class: "control-label" %>
+          <div class="controls">
+            <%= f.text_field :firstname, placeholder: "First Name" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :lastname, "Last Name", class: "control-label" %>
+          <div class="controls">
+            <%= f.text_field :lastname, placeholder: "Last Name" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :email, "Email Address", class: "control-label" %>
+          <div class="controls">
+            <%= f.text_field :email, placeholder: "Email Address" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :username, "Username", class: "control-label" %>
+          <div class="controls">
+            <%= f.text_field :username, placeholder: "Username" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :password, "Password", class: "control-label" %>
+          <div class="controls">
+            <%= f.password_field :password, placeholder: "Password" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :password_confirmation, "Confirm Password", class: "control-label" %>
+          <div class="controls">
+            <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %> 
+          </div>
+        </div>
+        <div class="form-actions">
+          <%= f.submit class: "btn btn-primary btn-large span2" %>
+          <%= link_to "Cancel", root_path, class: "btn btn-danger btn-large span1" %>
+        </div>
+      </fieldset>
     <% end %>
   </div>
 </div>

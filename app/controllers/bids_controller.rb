@@ -16,7 +16,19 @@ class BidsController < ApplicationController
       bid.auction_id = params[:id] || params[:auction_id]
       bid.auction.end_time += 600 # ten minutes #TODO add time to end_time appropriately
 
-      if bid.save! && bid.auction.save!
+      # get current bid to verify amount
+      current_amount = (bid.auction.current_bid_id) ? 
+                        Bid.find_by_id(bid.auction.current_bid_id).amount : 
+                        bid.auction.starting_bid_price
+      increment_amount = bid.auction.minimum_bid_increment
+
+      if bid.auction.end_time < Time.now()
+        response = 'auction already ended'
+        status_code = 410
+      elsif bid.amount < current_amount + increment_amount
+        response = 'minimum bid not met'
+        status_code = 412 # precondition failed HTTP response
+      elsif bid.save! && bid.auction.save!
         bid.auction.current_bid_id = bid.id
         bid.auction.save!
         
@@ -33,7 +45,6 @@ class BidsController < ApplicationController
         format.json {render json: {message: response}, status: status_code}
       end
   	else
-      Rails.logger.info "TESTING TESTING TESTING ==========================="
   		respond_with do |format|
   			format.html {redirect_to login_path, status: 401, alert: "Must be logged in to bid."}
   			format.json {render json: {message: "Must be logged in to bid."}, status: 401}

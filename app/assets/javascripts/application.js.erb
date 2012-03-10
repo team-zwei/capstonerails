@@ -11,17 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require private_pub
 //= require twitter/bootstrap
+//= require countdown
 
 $(function(){
-  var loginStatus = function() {
-    var logged_in = <%= (@current_user ? true : false) %>;
-    return { is_logged_in: function(){ return logged_in; } }
-  }
-
-  global_login_status = loginStatus();
+  $('.dropdown-toggle').dropdown()
 });
-
-//parseInt($('#auction_7 .auction_thumbnail_time').attr('data-time-remaining'))

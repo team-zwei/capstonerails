@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_login
+  skip_before_filter :require_login, only: [:new, :create]
   def new
     @user = User.new
   end
@@ -15,7 +15,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to new_session_path if !current_user
+    Rails.logger.info current_user
+
+    auctions = @current_user.auctions
+    active_auctions = auctions.where "end_time > now()"
+    won_auctions = Auction.find_by_winner_id @current_user.id
+    lost_auctions = auctions.where "winner_id != #{@current_user.id}"
+
+    @active_auctions = active_auctions.page(params[:page]).per(8) if active_auctions
+    @won_auctions = won_auctions.page(params[:page]).per(8) if won_auctions
+    @lost_auctions = lost_auctions.page(params[:page]).per(8) if lost_auctions
+
+    @bids = @current_user.bids
+
     @current_user
   end
 end

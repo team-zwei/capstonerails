@@ -3,20 +3,20 @@
     <div class="container">
       <%= link_to "ReAuction", root_url, class: "brand" %>
       <ul id="nav" class="nav">
-        <li id="nav_home">
+        <li id="nav_home" <%= "class='active'" if params[:controller] == "home" %> >
           <%= link_to "Home", root_url %>
         </li>
-        <li id="nav_auctions">
+        <li id="nav_auctions" <%= "class='active'" if params[:controller] == "auctions" %> >
           <%= link_to "Auctions", auctions_path %>
         </li>
-        <li id="nav_account">
+        <li id="nav_account" <%= "class='active'" if params[:controller] == "users" && params[:action] == "show" %> >
           <%= link_to "My Account", account_path %>
         </li>
-        <li id="nav_help">
+        <li id="nav_help" <%= "class='active'" if params[:controller] == "help" %> >
           <%= link_to "Help", "/help"%>
         </li>
         <% if current_user && current_user.admin?  %>
-          <li class="">
+          <li id="nav_admin" >
             <a href="/admin">Admin</a>
           </li>
         <% end %>
@@ -31,7 +31,7 @@
           </li>
         </ul>
       <% else %>
-      <ul class="nav pull-right">
+      <ul id="nav_login_form" class="nav pull-right">
         <li>
           <%= link_to "or Sign Up", signup_path %>
         </li>
@@ -42,10 +42,10 @@
             <%= link_to "Log In", login_path %>
           </li> -->
           <!-- <input type="text" class="search-query span2" placeholder="Username/Email"> -->
-          <%= text_field_tag :username, nil, {class: 'search-query span2', placeholder: "Username"} %>
+          <%= text_field_tag :username, nil, { id: "nav_username_input", class: 'span2', placeholder: "Username"} %>
           <!-- <input type="text" class="search-query span2" placeholder="Password"> -->
-          <%= password_field_tag :password, nil, {class: 'search-query span2', placeholder: "Password"} %>
-          <%= submit_tag "Login", class: 'search-query' %>
+          <%= password_field_tag :password, nil, { id: "nav_password_input", class: 'span2', placeholder: "Password"} %>
+          <%= submit_tag "Login", class: 'btn btn-success', id: 'navbar_btn' %>
         <% end %>
       <% end %>
     </div>

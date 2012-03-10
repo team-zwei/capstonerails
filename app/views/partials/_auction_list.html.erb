@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag "auction_list", :media => "all" %>
 <%= render "partials/bid_modal" %>
 <ul class="thumbnails">
 	<% @auctions.each do |auction| %>
@@ -16,7 +15,7 @@
                 <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info label label-info" %>
               </p>
             </div>
-            <div class="alert alert-success" style="padding: 8px 0px 8px 0px; text-align: center;">
+            <div class="alert alert-success auction_thumbnail_price_time_container" style="padding: 8px 0px 8px 0px; text-align: center;">
               <h3 class="auction_thumbnail_price" data-current-price="<%= auction.get_current_price %>" data-min-bid-increment="<%= auction.minimum_bid_increment %>">
                 $<%= auction.get_current_price %>
               </h3>
@@ -30,6 +29,5 @@
       </li>
   <% end %>
 </ul>
-<%= paginate @auctions %>
 <%= javascript_include_tag "auction_list" %>
-<%= javascript_include_tag "countdown" %>
+<%= paginate @auctions %>

@@ -3,17 +3,22 @@ class AuctionsController < ApplicationController
 
 	def index
 		if (params[:search].blank?)
-			@auctions ||= Auction.order("end_time desc").page(params[:page]).per(12)
+			@auctions = Auction.order("end_time desc").page(params[:page]).per(12)
 		else
 			@auctions = Auction.search params[:search], order: :end_time, sort_mode: :desc
 		end
+
 		@auctions.delete_if do |auction|
 			params[:price_min].to_f > (!auction.current_bid_id.nil? ? Bid.find_by_id(auction.current_bid_id).amount : auction.starting_bid_price)
-		end unless params[:price_min].blank?
+		end unless params[:price_min].blank? or @auctions.empty?
 
 		@auctions.delete_if do |auction|
 			params[:price_max].to_f < (!auction.current_bid_id.nil? ? Bid.find_by_id(auction.current_bid_id).amount : auction.starting_bid_price)
 		end unless params[:price_max].blank?
+
+		@auctions.delete_if do |auction|
+			auction.end_time < Time.now()
+		end unless !params[:show_ended].blank?
 	end
 
 	def show

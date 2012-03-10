@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226211232) do
+ActiveRecord::Schema.define(:version => 20120210154724) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -48,36 +48,37 @@ ActiveRecord::Schema.define(:version => 20120226211232) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
     t.string   "description"
     t.datetime "start_time"
     t.datetime "end_time"
     t.decimal  "starting_bid_price",    :precision => 15, :scale => 2
     t.decimal  "minimum_bid_increment", :precision => 15, :scale => 2
     t.integer  "current_bid_id"
+    t.integer  "winner_id"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
   end
 
   create_table "bids", :force => true do |t|
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
     t.decimal  "amount",     :precision => 15, :scale => 2
     t.integer  "auction_id"
     t.integer  "user_id"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
     t.string   "username"
-    t.string   "auth_token"
-    t.boolean  "admin"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
     t.string   "firstname"
     t.string   "lastname"
+    t.string   "password_digest"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "auth_token"
+    t.boolean  "admin"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
