@@ -12,8 +12,10 @@
 /log/*.pid
 /tmp
 
-# Ignore database.yml for local db development
+# Ignore database files
 /config/database.yml
+*.sqlite3
+
 
 # Ignore the Sphinx config file for local dev
 /config/development.sphinx.conf
