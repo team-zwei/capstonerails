@@ -19,11 +19,14 @@ $(document).ready ->
       backdrop: true
       keyboard: true
 
-    auction_id = "auction_" + $(this).attr("id").split("_")[3]
+    id = $(this).attr("id").split("_")[3]
+    auction_id = "auction_" + id
+
+    $("#bid_modal").attr('data-auction-id', id)
 
     $("#bid_modal .modal-header").prepend       $("#" + auction_id + " .auction_thumbnail_title").text()
     $("#bid_modal .modal-description").prepend  $("#" + auction_id + " .auction_thumbnail_description_text").text()
-    $("#bid_modal .modal-time").prepend         $("#" + auction_id + " .auction_thumbnail_time").text()
+    
     $("#bid_modal .modal-thumbnail").append     $("#" + auction_id + " .auction_thumbnail_image").clone()
     $("#bid_modal #auction_id").attr "value", $(this).attr("id").split("_")[3]
 
