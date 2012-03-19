@@ -20,7 +20,7 @@ class Bid < ActiveRecord::Base
   def validate_bid_amount
     bid_id = self.auction.current_bid_id
 
-    bid_id ? ((Bid.find_by_id(bid_id).amount + self.auction.minimum_bid_increment) > self.amount) : (self.auction.starting_bid_price >= self.amount)
+    bid_id ? ((Bid.find_by_id(bid_id).amount + self.auction.minimum_bid_increment) <= self.amount) : (self.auction.starting_bid_price <= self.amount)
   end
 
   def validate_end_time
