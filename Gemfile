@@ -5,6 +5,7 @@ gem 'jquery-rails', '2.0.0'
 gem 'bootstrap-sass-rails', '2.0.0.3'
 gem 'private_pub', '1.0.1'
 gem 'pg', '0.12.2'
+gem 'stripe', '1.6.2'
 
 # Gem for pagination
 gem 'kaminari', '0.13.0'

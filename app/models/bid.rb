@@ -15,18 +15,15 @@ class Bid < ActiveRecord::Base
   belongs_to :auction
   belongs_to :user
 
-  before_save :validate_bid_amount
-  before_save :validate_end_time
+  before_save :validate_bid_amount, :validate_end_time
 
   def validate_bid_amount
-    if self.auction.current_bid_id
-      return ((Bid.find_by_id(self.auction.current_bid_id).amount + self.auction.minimum_bid_increment) > self.amount)
-    else
-      return self.auction.starting_bid_price >= self.amount
-    end
+    bid_id = self.auction.current_bid_id
+
+    bid_id ? ((Bid.find_by_id(bid_id).amount + self.auction.minimum_bid_increment) > self.amount) : (self.auction.starting_bid_price >= self.amount)
   end
 
   def validate_end_time
-    return self.auction.end_time > Time.now()
+    self.auction.end_time > Time.now()
   end
 end

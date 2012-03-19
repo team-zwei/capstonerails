@@ -34,6 +34,19 @@
 							<label for="show_ended" class="control-label">Show Ended Auctions</label>
 						</div>
 					</div>
+					<div id="auction_index_search_num_per_page_div" class="control-group">
+						<div class="controls">
+							<%= select_tag(:num_per_page, options_for_select([[4,4], [8,8], [12,12], [16,16], [20,20]], params[:num_per_page] || 12), class: "span1") %>
+							<!-- <select id="num_per_page" name="num_per_page" class="span1">
+								<option>4</option>
+								<option>8</option>
+								<option>12</option>
+								<option>16</option>
+								<option>20</option>
+							</select> -->
+							<label for="num_per_page" class="control-label"> per page</label>
+						</div>
+					</div>
 					<div id="auction_index_search_actions_div" class="span3">
 						<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>&nbsp;Search</button>
 						<%= link_to "Show All", auctions_path, { class: "btn"} %>
