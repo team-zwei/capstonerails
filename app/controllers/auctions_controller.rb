@@ -3,9 +3,9 @@ class AuctionsController < ApplicationController
 
 	def index
 		if (params[:search].blank?)
-			@auctions = Auction.order("end_time desc").page(params[:page]).per(12)
+			@auctions = Auction.order("end_time desc").page(params[:page]).per(params[:num_per_page])
 		else
-			@auctions = Auction.search params[:search], order: :end_time, sort_mode: :desc
+			@auctions = Auction.search(params[:search], order: :end_time, sort_mode: :desc).page(params[:page]).per(params[:num_per_page])
 		end
 
 		@auctions.delete_if do |auction|

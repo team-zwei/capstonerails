@@ -1,32 +1,36 @@
 <%= render "partials/bid_modal" %>
 <ul class="thumbnails">
-	<% @auctions.each do |auction| %>
-      <li id="auction_<%= auction.id %>" class="span3">
-        <div class="thumbnail auction_thumbnail">
-          <%= link_to image_tag("http://placehold.it/210x150&text="+(u auction.name), class: "auction_thumbnail_image", :border => 0 ), auction_path(auction.id) , :title => "title text" %>
-          <div class="auction_thumbnail_caption">
-            <h5 class="auction_thumbnail_title"><%= auction.name %></h5>
-            <div class="auction_thumbnail_description">
-              <p>
-                <span class="auction_thumbnail_description_text">
-                  <%= truncate(auction.description, length: 60, separator: ' ') %>
-                </span>
-                <br>
-                <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info label label-info" %>
-              </p>
-            </div>
-            <div class="alert alert-success auction_thumbnail_price_time_container" style="padding: 8px 0px 8px 0px; text-align: center;">
-              <h3 class="auction_thumbnail_price" data-current-price="<%= auction.get_current_price %>" data-min-bid-increment="<%= auction.minimum_bid_increment %>">
-                $<%= auction.get_current_price %>
-              </h3>
-              <h3 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
-                <%= auction.get_time_string %>
-              </h3>
-              <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
+  <% if @auctions.size > 0 %>
+  	<% @auctions.each do |auction| %>
+        <li id="auction_<%= auction.id %>" class="span3">
+          <div class="thumbnail auction_thumbnail">
+            <%= link_to image_tag("http://placehold.it/210x150&text="+(u auction.name), class: "auction_thumbnail_image", :border => 0 ), auction_path(auction.id) , :title => "title text" %>
+            <div class="auction_thumbnail_caption">
+              <h5 class="auction_thumbnail_title"><%= auction.name %></h5>
+              <div class="auction_thumbnail_description">
+                <p>
+                  <span class="auction_thumbnail_description_text">
+                    <%= truncate(auction.description, length: 60, separator: ' ') %>
+                  </span>
+                  <br>
+                  <%= link_to "More Info", auction_path(auction.id), class: "auction_thumbnail_more_info label label-info" %>
+                </p>
+              </div>
+              <div class="alert alert-success auction_thumbnail_price_time_container" style="padding: 8px 0px 8px 0px; text-align: center;">
+                <h3 class="auction_thumbnail_price" data-current-price="<%= auction.get_current_price %>" data-min-bid-increment="<%= auction.minimum_bid_increment %>">
+                  $<%= auction.get_current_price %>
+                </h3>
+                <h3 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
+                  <%= auction.get_time_string %>
+                </h3>
+                <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+    <% end %>
+  <% else %>
+    <h3 style="text-align: center;">No live auctions</h3>
   <% end %>
 </ul>
 <%= javascript_include_tag "auction_list" %>
