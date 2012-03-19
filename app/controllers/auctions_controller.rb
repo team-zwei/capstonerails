@@ -14,11 +14,11 @@ class AuctionsController < ApplicationController
 
 		@auctions.delete_if do |auction|
 			params[:price_max].to_f < (!auction.current_bid_id.nil? ? Bid.find_by_id(auction.current_bid_id).amount : auction.starting_bid_price)
-		end unless params[:price_max].blank?
+		end unless params[:price_max].blank? or @auctions.empty?
 
 		@auctions.delete_if do |auction|
 			auction.end_time < Time.now()
-		end unless !params[:show_ended].blank?
+		end unless !params[:show_ended].blank? or @auctions.empty?
 	end
 
 	def show
