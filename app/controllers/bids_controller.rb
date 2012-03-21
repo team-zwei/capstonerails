@@ -29,7 +29,7 @@ class BidsController < ApplicationController
         response = 'minimum bid not met'
         status_code = 412 # precondition failed HTTP response
       elsif bid.save! && bid.auction.save!
-        bid.auction.current_bid_id = bid.id
+        bid.auction.current_bid_id = bid.id # TODO: fix this logic, saving auction twice
         bid.auction.save!
         
         PrivatePub.publish_to "/bids/new", message: { auction_id: bid.auction_id, time: bid.auction.get_remaining_time, amount: bid.amount }
