@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  stripe_customer_token: MyString
+  last4: 
+  expiration: 2012-03-21 10:53:51
+
+two:
+  user_id: 
+  stripe_customer_token: MyString
+  last4: 
+  expiration: 2012-03-21 10:53:51
