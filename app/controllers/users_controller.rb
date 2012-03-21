@@ -22,9 +22,9 @@ class UsersController < ApplicationController
     won_auctions = Auction.find_by_winner_id @current_user.id
     lost_auctions = auctions.where "winner_id != #{@current_user.id}"
 
-    @active_auctions = active_auctions.page(params[:page]).per(8) if active_auctions
-    @won_auctions = won_auctions.page(params[:page]).per(8) if won_auctions
-    @lost_auctions = lost_auctions.page(params[:page]).per(8) if lost_auctions
+    @active_auctions = active_auctions.page(params[:page]).per(8)
+    @won_auctions = won_auctions.page(params[:page]).per(8)
+    @lost_auctions = lost_auctions.page(params[:page]).per(8)
 
     @bids = @current_user.bids
 
