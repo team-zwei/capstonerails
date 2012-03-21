@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="tab-pane fade" id="active">
-        <% if @active_auctions %>
+        <% if !@active_auctions.blank? %>
           <p>You still have a chance to win these auctions, bid now to increase your chance of success!</p>
           <hr />
           <%= render "partials/auction_list", locals: @auctions = @active_auctions %>
@@ -98,7 +98,7 @@
         <% end %> 
       </div>
       <div class="tab-pane fade" id="won">
-        <% if @won_auctions %>
+        <% if !@won_auctions.blank? %>
           <p>You have won the following auctions:</p>
           <%= render "partials/auction_list", locals: @auctions = @won_auctions %>
         <% else %>
@@ -107,7 +107,7 @@
         <% end %>
       </div>
       <div class="tab-pane fade" id="lost">
-        <% if @lost_auctions %>
+        <% if !@lost_auctions.blank? %>
           <p>Unfortunately you didn't win the following auctions, but you can always try to win <%= link_to "something else", auctions_path %>.</p>
           <hr />
           <%= render "partials/auction_list", locals: @auctions = @lost_auctions %>
