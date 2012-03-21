@@ -1,5 +1,13 @@
 Capstone::Application.routes.draw do
 
+  get "payments/index"
+
+  get "payments/new"
+
+  get "payments/create"
+
+  get "payments/show"
+
   ActiveAdmin.routes(self)
 
   match "account" => "users#show"
