@@ -18,6 +18,8 @@ class Auction < ActiveRecord::Base
   has_many :bids
   has_many :users, through: :bids, as: :bidders
 
+  has_one :payment
+
   define_index do
     indexes :name, sortable: true
     indexes :description    

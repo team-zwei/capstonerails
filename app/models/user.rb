@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :bids
+  has_many :payments
   has_many :auctions, through: :bids, uniq: true
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

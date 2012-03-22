@@ -23,7 +23,11 @@
                 <h3 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
                   <%= auction.get_time_string %>
                 </h3>
+              <% if auction.winner_id != @current_user.id %>
                 <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
+              <% else %>
+                <%= link_to "Pay Now!", new_payment_path(), { id: "auction_pay_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_pay_now" } %>
+              <% end %>
               </div>
             </div>
           </div>
