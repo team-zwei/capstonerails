@@ -19,7 +19,7 @@ User.create(email: "test@test.com",
 
 time = Time.now + 86400 # setting to one day from current time at seeding.
 
-Auction.create( name: "iPod Touch 32GB",
+auction = Auction.create( name: "iPod Touch 32GB",
                 description: "A 32GB iPod Touch featuring the latest in Apple iPod Technology.",
                 starting_bid_price: 100.00,
                 minimum_bid_increment: 5.00,
@@ -89,6 +89,15 @@ Auction.create( name: "Something Entirely Different",
                 end_time: time
               )
 
+bid = Bid.new(amount: 105.00)
+bid.user_id = 1
+bid.auction_id = 1
+bid.save!
+
+auction.current_bid_id = bid.id
+auction.end_time = Time.now - 1
+auction.winner_id = 1
+auction.save!
 
 bid = Bid.new(amount: 1.00)
 bid.user_id = User.find_by_username("test").id

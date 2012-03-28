@@ -91,8 +91,10 @@ ActiveRecord::Schema.define(:version => 20120326143203) do
   create_table "payments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "auction_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "payment_method_id"
+    t.string   "stripe_card_token"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "users", :force => true do |t|

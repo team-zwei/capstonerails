@@ -13,12 +13,6 @@ Capstone::Application.routes.draw do
   get "signup" => "users#new", as: "signup"
   get "help" => "help#index", as: "help"
 
-  # TODO: do we need this?
-  get "payments/index"
-  get "payments/new"
-  get "payments/create"
-  get "payments/show"
-
   root to: "home#index"
 
   resources :users
@@ -27,5 +21,6 @@ Capstone::Application.routes.draw do
   end
   resources :sessions
   resources :password_resets
+  resources :payments
   
 end
