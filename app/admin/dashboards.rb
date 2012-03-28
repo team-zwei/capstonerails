@@ -80,5 +80,19 @@ ActiveAdmin::Dashboards.build do
     end
     strong { link_to "View All Users", admin_users_path }
   end
+
+  section "Recent Payments", :priority => 4 do
+    table_for Payment.order("created_at desc").limit(5) do
+      column :id
+      column :user_id do |user|
+        link_to user.username, admin_user_path(user)
+      end
+      column :auction_id do |auction|
+        link_to auction.name, admin_auction_path(auction)
+      end
+      column :created_at
+    end
+    strong { link_to "View All Payments", admin_payments_path }
+  end
   
 end

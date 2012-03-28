@@ -15,3 +15,7 @@ end
 ActiveAdmin.register User do
   menu :parent => "Advanced"
 end
+
+ActiveAdmin.register Payment do
+	menu :parent => "Advanced"
+end
