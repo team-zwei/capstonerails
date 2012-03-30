@@ -13,6 +13,8 @@ $ ->
       $("div.modal-error").html("This auction has already ended.").show()
     else if xhr.status is 412
     	$("div.modal-error").html("The minimum bid amount was not met.").show()
+    else
+      $("div.modal-error").html("An error occured.  If this persists, contact support.").show()
 
   ).bind "ajax:success", (evt, data, status, xhr) ->
     $("#bid_modal").modal "hide"

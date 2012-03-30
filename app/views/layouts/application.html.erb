@@ -11,12 +11,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag "application", :media => "all" %>
 
-  <%= javascript_include_tag "application" %>
-  <script src="/js/modernizr-2.0.6.min.js"></script>
+  <%= javascript_include_tag "https://js.stripe.com/v1/", "/js/modernizr-2.0.6.min.js", "application" %>
+
   <%= subscribe_to "/bids/new" %>
 
 </head>

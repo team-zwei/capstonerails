@@ -4,19 +4,21 @@
 #
 #  id                    :integer         not null, primary key
 #  name                  :string(255)
-#  created_at            :datetime        not null
-#  updated_at            :datetime        not null
 #  description           :string(255)
 #  start_time            :datetime
 #  end_time              :datetime
 #  starting_bid_price    :decimal(15, 2)
 #  minimum_bid_increment :decimal(15, 2)
 #  current_bid_id        :integer
+#  winner_id             :integer
+#  created_at            :datetime        not null
+#  updated_at            :datetime        not null
 #
 
 class Auction < ActiveRecord::Base
   has_many :bids
   has_many :users, through: :bids, as: :bidders
+  has_and_belongs_to_many :categories
 
   define_index do
     indexes :name, sortable: true
