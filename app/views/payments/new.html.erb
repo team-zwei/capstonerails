@@ -1,1 +1,31 @@
-<%= render 'partials/credit_card_form' %>
+<div class="row">
+	<div class="span6">
+		<table>
+			<thead>
+				<tr>
+					<th>
+						Auction Name
+					</th>
+					<th>
+						Auction Price
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>
+						<%= @auction.name %>
+					</td>
+					<td>
+						<%= Bid.find_by_id(@auction.current_bid).amount %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="span6">
+		<%= render 'partials/credit_card_form' %>
+	</div>
+</div>

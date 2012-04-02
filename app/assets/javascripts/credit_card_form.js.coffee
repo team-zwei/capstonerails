@@ -20,9 +20,11 @@ payment =
   handleStripeResponse: (status, response) ->
     if status == 200
       console.log response
+      $('#stripe_error').hide()
       $('#stripe_card_token').val response.id
       $('#stripe_card_last4').val response.card.last4
       $('#new_payment')[0].submit
     else
+      $('#stripe_error').show()
       $('#stripe_error').text(response.error.message)
       $('input[type=submit]').attr('disabled', false)

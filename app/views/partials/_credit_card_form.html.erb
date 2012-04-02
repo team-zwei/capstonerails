@@ -1,37 +1,25 @@
-<%= javascript_include_tag "credit_card_form", "https://js.stripe.com/v1/" %>
-<%= form_for @payment do |f| %>
-  <div id="stripe_error">
+<%= javascript_include_tag "https://js.stripe.com/v1/", "credit_card_form" %>
+<%= stylesheet_link_tag "credit_card_form", :media => "all" %>
+<%= form_tag '/payments', id: "new_payment" %>
+  <div id="stripe_error" class="alert alert-error">
 		<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 	</div>
-  <% if @payment.errors.any? %>
-    <div class="error_messages">
-      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
-      <ul>
-      <% @payment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.hidden_field :stripe_card_token %>
-  <%= f.hidden_field :stripe_card_last4 %>
-  <%= f.hidden_field :auction_id %>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>  
+  
+  <%= hidden_field_tag :stripe_card_token %>
+  <%= hidden_field_tag :stripe_card_last4 %>
+  <%= hidden_field_tag :auction_id %>
   <div class="field">
       <%= label_tag :card_number, "Credit Card Number " %>
       <%= text_field_tag :card_number, nil, name: nil %>
   </div>
   <div class="field">
       <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-      <%= text_field_tag :card_code, nil, name: nil %>
+      <%= text_field_tag :card_code, nil, name: nil, class: "span1" %>
   </div>
   <div class="field">
     <%= label_tag :card_month, "Card Expiration" %>
     <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: "span2"}%>
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "span1"}%>
   </div>
-  <div class="actions"><%= f.submit "Submit Payment" %></div>
-<% end %>
+  <div class="actions"><%= submit_tag "Submit Payment", class: "btn btn-success btn-large" %></div>
+</form>
