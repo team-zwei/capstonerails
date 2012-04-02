@@ -26,7 +26,7 @@
               <% if @current_user.blank? %>
                 <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
               <% elsif auction.winner_id == @current_user.id %>
-                <%= link_to "Pay Now!", '/payments/new', { id: "auction_pay_btn_#{auction.id}", class: "btn btn-large btn-primary auction_thumbnail_pay_now" } %>
+                <%= link_to "Pay Now!", new_payment_path(auction: auction.id), { id: "auction_pay_btn_#{auction.id}", class: "btn btn-large btn-primary auction_thumbnail_pay_now", :auction => auction.id } %>
               <% end %>
               </div>
             </div>

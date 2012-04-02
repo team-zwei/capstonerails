@@ -1,7 +1,8 @@
 class PaymentsController < ApplicationController
   def new
   	@payment = Payment.new
-  	@auction = Auction.find_by_id(params[:auction_id])
+  	@auction = Auction.find_by_id(params[:auction])
+  	@price = Bid.find_by_id(@auction.current_bid_id).amount
   end
 
   def create
