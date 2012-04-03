@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
 gem 'jquery-rails', '2.0.0'
-gem 'bootstrap-sass-rails', '2.0.2.1'
+gem 'bootstrap-sass-rails', '2.0.2.2'
 gem 'private_pub', '1.0.1'
 gem 'pg', '0.12.2'
 gem 'stripe', '1.6.2'
