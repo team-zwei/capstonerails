@@ -78,6 +78,12 @@ a.auction_thumbnail_more_info.label:hover {
 	margin-top: 0;
 }
 
-#nav_login_form input {
-	
+form.navbar-search.pull-right input {
+	background-color: grey;
+	border-color: grey;
+}
+
+form.navbar-search.pull-right input:focus {
+	background-color: white;
+	border-color: white;
 }
