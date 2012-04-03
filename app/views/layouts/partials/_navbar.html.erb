@@ -37,11 +37,6 @@
         </li>
         </ul>
         <%= form_tag sessions_path, {class: 'navbar-search pull-right'} do %>
-        <!-- <form class="navbar-search pull-right"> -->
-          <!-- <li>
-            <%= link_to "Log In", login_path %>
-          </li> -->
-          <!-- <input type="text" class="search-query span2" placeholder="Username/Email"> -->
           <%= text_field_tag :username, nil, { id: "nav_username_input", class: 'span2', placeholder: "Username"} %>
           <!-- <input type="text" class="search-query span2" placeholder="Password"> -->
           <%= password_field_tag :password, nil, { id: "nav_password_input", class: 'span2', placeholder: "Password"} %>
