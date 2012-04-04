@@ -7,44 +7,49 @@ class PaymentsController < ApplicationController
   end
 
   def create
-  	# Payments Model:
-  	#  id                :integer         not null, primary key
-		#  user_id           :integer
-		#  auction_id        :integer
-		#  payment_method_id :integer
-		#  stripe_card_token :string(255)
-		#  created_at        :datetime        not null
-		#  updated_at        :datetime        not null
-
-		@payment = Payment.new
-
-		@payment.user_id = current_user
-		@payment.auction_id = params[:auction_id]
-		@payment.stripe_card_token = params[:stripe_card_token]
 
 		auction = Auction.find_by_id(params[:auction_id])
+		amount = Bid.find_by_id(auction.current_bid_id).amount
+
+		@payment = Payment.new
+		@payment.user_id = current_user
+		@payment.auction_id = params[:auction_id]
+		@payment.amount = amount
 
 		begin
-			Stripe::Charge.create(
-				:amount => Bid.find_by_id(auction.current_bid_id).amount,
+			charge = Stripe::Charge.create(
+				# Find amount and change to integer of cents
+				:amount => (amount * 100).to_i,
 				:currency => "usd",
 				:card => params[:stripe_card_token],
-				:description => auction.name # TODO: Add site info
+				:description => "RWSAuctions: " + auction.name # TODO: Add site info
 			)
+
+			@payment.charge_id = charge.id
 		rescue Stripe::InvalidRequestError => e
-		  logger.error "Stripe error while creating customer: #{e.message}"
-		  errors.add :base, "There was a problem processing your credit card.  If this persists, contact support."
-		  false
+		  Rails.logger.error "Stripe error while creating charge: #{e.message}"
+		  # TODO: Redirect to a "confirmation page" and display any relevant info
+		  redirect_to root_url, error: "UNSUCCESSFUL CHARGE"
 		end
 
-		if !@payment.save!
-			# error
+		if @payment.save!
+			# render success page
+			if !params[:save_card].blank?
+				# create customer and save payment
+			end
+
+			# TODO: Redirect to a "confirmation page" and display any relevant info
+			redirect_to auction_payment_path(auction), notice: "Successful Charge"
 		else
-			# success
+			# render error page
+			# TODO: Redirect to a "confirmation page" and display any relevant info
+			redirect_to root_url, error: "UNSUCCESSFUL CHARGE"
 		end
   end
 
   def show
+  	@auction = Auction.find_by_id(params[:auction_id])
+  	@payment = @auction.payment
   end
 
   def index

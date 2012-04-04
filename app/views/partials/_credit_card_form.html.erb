@@ -7,7 +7,7 @@
   
   <%= hidden_field_tag :stripe_card_token %>
   <%= hidden_field_tag :stripe_card_last4 %>
-  <%= hidden_field_tag :auction_id %>
+  <%= hidden_field_tag :auction_id, @auction.id %>
   <div class="field">
       <%= label_tag :card_number, "Credit Card Number " %>
       <%= text_field_tag :card_number, nil, name: nil %>
@@ -20,6 +20,12 @@
     <%= label_tag :card_month, "Card Expiration" %>
     <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: "span2"}%>
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "span1"}%>
+    <br>
+    <label class="checkbox">
+    	<%= check_box_tag :save_card, "save_card" %>
+    	Save this card?
+  	</label>
+    
   </div>
   <div class="actions"><%= submit_tag "Submit Payment", class: "btn btn-success btn-large" %></div>
 </form>

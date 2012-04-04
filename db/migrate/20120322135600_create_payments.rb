@@ -4,7 +4,8 @@ class CreatePayments < ActiveRecord::Migration
       t.integer  :user_id
       t.integer  :auction_id
       t.integer  :payment_method_id
-      t.string   :stripe_card_token
+      t.decimal  :amount, precision: 15, scale: 2
+      t.string   :charge_id
       t.timestamps
     end
   end

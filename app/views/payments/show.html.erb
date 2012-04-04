@@ -1,2 +1,31 @@
-<h1>Payments#show</h1>
-<p>Find me in app/views/payments/show.html.erb</p>
+<div>
+	<h2>
+		Successful Payment
+	</h2>
+	<table class="table">
+		<tr>
+			<th>
+				Name
+			</th>
+			<td>
+				<%= @auction.name %>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				Price
+			</th>
+			<td>
+				$<%= @payment.amount %>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				Description
+			</th>
+			<td>
+				<%= @auction.description %>
+			</td>
+		</tr>
+	</table>
+</div>
