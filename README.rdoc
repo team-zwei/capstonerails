@@ -1,2 +1,3 @@
-####Realestate/Personal Property Auction Site
+Realestate/Personal Property Auction Site
+======
 For UTC Capstone Senior project and for Richard W. Smith and Associates
