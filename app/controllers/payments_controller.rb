@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
   def new
   	#  TODO: Filter if a payment has already been submitted
   	@payment = Payment.new
-  	@auction = Auction.find_by_id(params[:auction])
+  	@auction = Auction.find_by_id(params[:auction_id])
   	@price = Bid.find_by_id(@auction.current_bid_id).amount
   end
 
