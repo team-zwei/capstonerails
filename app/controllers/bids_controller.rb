@@ -17,9 +17,8 @@ class BidsController < ApplicationController
       bid.auction.end_time += 600 # ten minutes #TODO add time to end_time appropriately
 
       # get current bid to verify amount
-      current_amount = (bid.auction.current_bid_id) ? 
-                        Bid.find_by_id(bid.auction.current_bid_id).amount : 
-                        bid.auction.starting_bid_price
+      current_bid_id = bid.auction.current_bid_id
+      current_amount = (current_bid_id) ? Bid.find_by_id(current_bid_id).amount : bid.auction.starting_bid_price
       increment_amount = bid.auction.minimum_bid_increment
 
       if bid.auction.end_time < Time.now()
@@ -28,10 +27,7 @@ class BidsController < ApplicationController
       elsif bid.amount < current_amount + increment_amount
         response = 'minimum bid not met'
         status_code = 412 # precondition failed HTTP response
-      elsif bid.save! && bid.auction.save!
-        bid.auction.current_bid_id = bid.id # TODO: fix this logic, saving auction twice
-        bid.auction.save!
-        
+      elsif bid.save! && bid.auction.save! && bid.auction.update_attribute(:current_bid_id, bid.id)
         PrivatePub.publish_to "/bids/new", message: { auction_id: bid.auction_id, time: bid.auction.get_remaining_time, amount: bid.amount }
         response = 'success'
         status_code = 200
