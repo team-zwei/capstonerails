@@ -22,15 +22,13 @@ class PaymentsController < ApplicationController
           :description => current_user.email,
           :card => params[:stripe_card_token] # obtained with Stripe.js
         )
-        charge_params[:customer] = payment_method
+        charge_params[:customer] = payment_method.id
       else
-        charge_params[:card] = params[:stripe_card_token]
-      end
+      	charge_params[:card] = params[:stripe_card_token]
+			end
       charge = Stripe::Charge.create(charge_params)
 
       if (auction.payment = Payment.create user_id: current_user, amount: amount, charge_id: charge.id)
-        # render success page
-        # TODO: Redirect to a "confirmation page" and display any relevant info
         redirect_to auction_payment_path(auction), notice: "Successful Charge"
       else
         # render error page

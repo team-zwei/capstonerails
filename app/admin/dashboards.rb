@@ -84,11 +84,11 @@ ActiveAdmin::Dashboards.build do
   section "Recent Payments", :priority => 4 do
     table_for Payment.order("created_at desc").limit(5) do
       column :id
-      column :user_id do |user|
-        link_to user.username, admin_user_path(user)
+      column :user_id do |payment|
+        link_to User.find_by_id(payment.user_id).username, admin_user_path(payment.user_id)
       end
-      column :auction_id do |auction|
-        link_to auction.name, admin_auction_path(auction)
+      column :auction_id do |payment|
+        link_to Auction.find_by_id(payment.auction_id).name, admin_auction_path(payment.auction_id)
       end
       column :created_at
     end

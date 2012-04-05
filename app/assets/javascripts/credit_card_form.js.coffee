@@ -19,7 +19,7 @@ payment =
     return false
   
   handleStripeResponse: (status, response) ->
-    $('input[type=submit]').button('reset')
+    # $('input[type=submit]').button('reset')
 
     if status == 200
       console.log response
