@@ -11,7 +11,7 @@
 #  updated_at            :datetime        not null
 #
 
-class PaymentMethods < ActiveRecord::Base
+class PaymentMethod < ActiveRecord::Base
 	has_many :payments
 	has_one  :user
 end
