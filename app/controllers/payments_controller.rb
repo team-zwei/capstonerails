@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
           description:  "RWSAuctions: " + auction.name # TODO: Add site info
         }
         if !params[:save_card].blank?
-          charge_params[:customer] = current_user.add_payment_method(params[:stripe_card_token], params[:stripe_card_last4].to_i)
+          charge_params[:customer] = current_user.add_payment_method(params[:stripe_card_token], params[:stripe_card_last4].to_i, params[:stripe_card_type])
         else
           charge_params[:card] = params[:stripe_card_token]
         end

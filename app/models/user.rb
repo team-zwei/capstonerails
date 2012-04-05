@@ -52,10 +52,11 @@ class User < ActiveRecord::Base
   end
 
   # returns new stripe customer id
-  def add_payment_method(token, last4)
-    customer =  Stripe::Customer.create( description: self.email, card: token)
+  def add_payment_method(token, last4, type)
+    customer =  Stripe::Customer.create( description: self.username, email: self.email, card: token)
     payment_method = PaymentMethod.new(stripe_customer_token: customer.id, last4: last4, user_id: self)
     payment_method.expiration = Time.new(customer.active_card.exp_year,customer.active_card.exp_month) 
+    payment_method.card_type = type
     payment_method.save!
     customer.id
   end

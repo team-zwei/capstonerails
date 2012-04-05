@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20120404135410) do
   create_table "payment_methods", :force => true do |t|
     t.integer  "user_id"
     t.string   "stripe_customer_token"
+    t.string   "card_type"
     t.integer  "last4"
     t.datetime "expiration"
     t.datetime "created_at",            :null => false

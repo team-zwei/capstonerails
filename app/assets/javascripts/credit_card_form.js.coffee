@@ -26,6 +26,7 @@ payment =
       $('#stripe_error').hide()
       $('#stripe_card_token').val response.id
       $('#stripe_card_last4').val response.card.last4
+      $('#stripe_card_type').val response.card.type
       $('#new_payment')[0].submit()
     else
       $('#stripe_error').show()
