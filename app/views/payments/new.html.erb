@@ -35,6 +35,10 @@
 		<h2>
 			Payment Method
 		</h2>
-		<%= render 'partials/credit_card_form' %>
+		<% if @auction.payment.blank? %>
+			<%= render 'partials/credit_card_form' %>
+		<% else %>
+			Payment already submitted for this auction.
+		<% end %>
 	</div>
 </div>
