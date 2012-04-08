@@ -15,9 +15,8 @@
         <li id="nav_help" <%= "class='active'" if params[:controller] == "help" %> >
           
           <a href="/help">
-              <i class="icon-question-sign icon-white"></i>
-              &nbsp;Help
-            </a>
+            Help
+          </a>
         </li>
         <% if current_user && current_user.admin?  %>
           <li id="nav_admin" >
