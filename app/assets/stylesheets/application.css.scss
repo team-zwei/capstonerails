@@ -81,9 +81,11 @@ a.auction_thumbnail_more_info.label:hover {
 form.navbar-search.pull-right input:not([id="navbar_btn"]) {
 	background-color: #565656;
 	border-color: #565656;
+	color: white;
 }
 
-form.navbar-search.pull-right input:focus {
+form.navbar-search.pull-right input:focus:not([id="navbar_btn"]) {
 	background-color: white;
 	border-color: white;
+	color: grey;
 }
