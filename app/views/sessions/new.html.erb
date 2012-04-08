@@ -1,25 +1,36 @@
 <div class="row">
-	<div class="span4 offset4">
-		<h1>Login</h1>
-		<br>
-		<%= form_tag sessions_path do %>
-		  <div class="field input-prepend">
-		  	<span class="add-on">Username</span>
-		    <%= text_field_tag :username, nil, placeholder: "Username" %>
-		  </div>
-		  <div class="field input-prepend">
-		  	<span class="add-on">Password</span>
-		    <%= password_field_tag :password, nil, placeholder: "Password" %>
-		  </div>
-	      <div class="field">
-	        <label class="checkbox" for='<%="#{:remember_me}"%>' style="float: left;">
-	          <%= check_box_tag :remember_me, 1, params[:remember_me] %> Remember Me
+	<div class="span8 offset2">
+		<%= form_tag sessions_path, class: "form-horizontal" do %>
+		  <fieldset>
+		  	<legend>Login</legend>
+			  <div class="control-group">
+			  	<%= label_tag :username, "Username", class: "control-label" %>
+			  	<div class="controls">
+			  		<%= text_field_tag :username, nil, placeholder: "Username", tabindex: "1" %>
+			  	</div>
+			  </div>
+			  <div class="control-group" %>
+			  	<%= label_tag :password, "Password", class: "control-label" %>
+			  	<div class="controls">
+			  		 <%= password_field_tag :password, nil, placeholder: "Password", tabindex: "1" %>
+			  		 <p class="help-inline">
+			  		 	<%= link_to "Forgot Password?", new_password_reset_path, tabindex: "100" %>
+			  		 </p>
+			  	</div>
+			  </div>
+	      <div class="control-group">
+	        <label class="checkbox" for='<%="#{:remember_me}"%>'>
+	          <div class="controls">
+	          	<%= check_box_tag :remember_me, 1, params[:remember_me], tabindex: "1" %>
+	          </div>
+	          &nbsp;Remember Me
 	        </label>
-	        <%= link_to "Forgot Password?", new_password_reset_path, style: "float: right;" %>
 	      </div>
-				<div class="actions">
-					<%= submit_tag "Login", class: "btn btn-primary btn-large span4" %>
+				<div class="form-actions">
+					<%= submit_tag "Login", class: "btn btn-primary btn-large", tabindex: "1" %>
+					<%= link_to "Sign Up", new_user_path, class: "btn btn-large", tabindex: "1" %>
 				</div>
+		  </fieldset>
 		<% end %>
 	</div>
 </div>

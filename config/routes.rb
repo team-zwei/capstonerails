@@ -23,6 +23,7 @@ Capstone::Application.routes.draw do
     resource :payment
   end
 
+  resources :bids
   resources :sessions
   resources :password_resets  
 end
