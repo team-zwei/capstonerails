@@ -16,6 +16,4 @@ class Payment < ActiveRecord::Base
 	belongs_to :user
 	has_one    :payment_method
 
-	attr_accessible :stripe_card_token
-	attr_accessor :stripe_card_last4
 end

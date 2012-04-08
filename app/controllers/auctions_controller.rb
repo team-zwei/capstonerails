@@ -19,6 +19,8 @@ class AuctionsController < ApplicationController
 		@auctions.delete_if do |auction|
 			auction.end_time < Time.now()
 		end unless !params[:show_ended].blank? or @auctions.empty?
+
+		@current_user = current_user
 	end
 
 	def show

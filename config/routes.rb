@@ -1,7 +1,7 @@
 Capstone::Application.routes.draw do
   ActiveAdmin.routes(self)
 
-  match "account" => "users#show"
+  get "account" => "users#show"
 
   get "admin/logout" => "sessions#destroy", as: "admin/logout"
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -15,12 +15,14 @@ Capstone::Application.routes.draw do
 
   root to: "home#index"
 
-  resources :users
+  resources :users do
+    resources :payment_methods
+  end
   resources :auctions do
     resources :bids
+    resource :payment
   end
+
   resources :sessions
-  resources :password_resets
-  resources :payments
-  
+  resources :password_resets  
 end

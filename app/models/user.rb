@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
 
   has_many :bids
   has_many :payments
+  has_many :payment_methods
   has_many :auctions, through: :bids, uniq: true
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -48,5 +49,15 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at = Time.zone.now
     save!
     UserMailer.password_reset(self).deliver
+  end
+
+  # returns new stripe customer id
+  def add_payment_method(token, last4, type)
+    customer =  Stripe::Customer.create( description: self.username, email: self.email, card: token)
+    payment_method = PaymentMethod.new(stripe_customer_token: customer.id, last4: last4, user_id: self)
+    payment_method.expiration = Time.new(customer.active_card.exp_year,customer.active_card.exp_month) 
+    payment_method.card_type = type
+    payment_method.save!
+    customer.id
   end
 end

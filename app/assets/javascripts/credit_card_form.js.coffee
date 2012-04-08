@@ -1,11 +1,12 @@
 jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   payment.setupForm()
+  $('input[type=submit]').button()
 
 payment =
   setupForm: ->
     $('#new_payment').submit ->
-      $('input[type=submit]').attr('disabled', true)
+      $('input[type=submit]').button('loading')
       payment.processCard()
   
   processCard: ->
@@ -18,13 +19,15 @@ payment =
     return false
   
   handleStripeResponse: (status, response) ->
+    # $('input[type=submit]').button('reset')
+
     if status == 200
       console.log response
       $('#stripe_error').hide()
       $('#stripe_card_token').val response.id
       $('#stripe_card_last4').val response.card.last4
-      $('#new_payment')[0].submit
+      $('#stripe_card_type').val response.card.type
+      $('#new_payment')[0].submit()
     else
       $('#stripe_error').show()
       $('#stripe_error').text(response.error.message)
-      $('input[type=submit]').attr('disabled', false)

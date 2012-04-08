@@ -19,3 +19,7 @@ end
 ActiveAdmin.register Payment do
 	menu :parent => "Advanced"
 end
+
+ActiveAdmin.register PaymentMethod do
+	menu :parent => "Advanced"
+end
