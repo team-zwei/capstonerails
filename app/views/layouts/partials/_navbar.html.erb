@@ -17,7 +17,9 @@
         </li>
         <% if current_user && current_user.admin?  %>
           <li id="nav_admin" >
-            <a href="/admin">Admin</a>
+            <a href="/admin">
+              Admin
+            </a>
           </li>
         <% end %>
       </ul>
@@ -40,7 +42,7 @@
           <%= text_field_tag :username, nil, { id: "nav_username_input", class: 'span2', placeholder: "Username"} %>
           <!-- <input type="text" class="search-query span2" placeholder="Password"> -->
           <%= password_field_tag :password, nil, { id: "nav_password_input", class: 'span2', placeholder: "Password"} %>
-          <%= submit_tag "Login", class: 'btn btn-success', id: 'navbar_btn' %>
+          <%= submit_tag "Login", class: 'btn btn-primary', id: 'navbar_btn' %>
         <% end %>
       <% end %>
     </div>

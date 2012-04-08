@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120404135410) do
     t.decimal  "minimum_bid_increment", :precision => 15, :scale => 2
     t.integer  "current_bid_id"
     t.integer  "winner_id"
+    t.hstore   "data"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "status"
