@@ -29,5 +29,6 @@ payment =
       $('#stripe_card_type').val response.card.type
       $('#new_payment')[0].submit()
     else
+      $('input[type=submit]').button('reset')
       $('#stripe_error').show()
       $('#stripe_error').text(response.error.message)

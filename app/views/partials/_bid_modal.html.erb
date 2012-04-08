@@ -7,11 +7,9 @@
     </div>
     <div class="modal-body">
       <div class="alert alert-error modal-error" style="display: none;">
-        <!-- <a class="close" data-dismiss="alert">×</a> -->
       </div>
 
       <div class="alert alert-info modal-info" style="display: none;">
-        <!-- <a class="close" data-dismiss="alert">×</a> -->
       </div>
 
       <div class="modal-thumbnail">
@@ -23,7 +21,7 @@
       <div class="modal-time">
       </div>
 
-      <%= label_tag :bid_amount, "Bid Amount" %>
+      <%= label_tag :bid_amount, "Bid Amount", class: "bid-amount-label" %>
       <div class="input-prepend">
         <%= label_tag :bid_amount, "$", class: "add-on" %>
         <%= text_field_tag :bid_amount, "", class: "modal-amount input-medium" %>

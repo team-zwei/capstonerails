@@ -34,6 +34,7 @@ $(document).ready ->
     $("#bid_modal .modal-amount").val(
       (parseFloat(price_elem.attr('data-current-price').replace(/\,/, ''))+
       parseFloat(price_elem.attr('data-min-bid-increment'))).toFixed(2))
+    $("#bid_modal .bid-amount-label").text("Bid Amount (Enter $" + $("#bid_modal .modal-amount").val() + " or more):")
     false
 
   PrivatePub.subscribe "/bids/new", (data, channel) ->
