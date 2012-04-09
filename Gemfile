@@ -4,7 +4,7 @@ gem 'rails', '3.2.0'
 gem 'jquery-rails', '2.0.0'
 gem 'private_pub', '1.0.1'
 gem 'pg', '0.12.2'
-gem 'activerecord-postgres-hstore', '0.3.0'
+#gem 'activerecord-postgres-hstore', '0.3.0'
 gem 'stripe', '1.6.2'
 
 # Gem for pagination
@@ -24,7 +24,6 @@ gem 'capistrano', '2.11.2'
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'foreman'
-  
 end
 
 # Gems used only for assets and not required
