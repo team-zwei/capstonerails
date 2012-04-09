@@ -6,7 +6,8 @@
 #  user_id           :integer
 #  auction_id        :integer
 #  payment_method_id :integer
-#  stripe_card_token :string(255)
+#  amount            :decimal(15, 2)
+#  charge_id         :string(255)
 #  created_at        :datetime        not null
 #  updated_at        :datetime        not null
 #
