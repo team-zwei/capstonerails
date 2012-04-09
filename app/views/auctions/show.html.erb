@@ -8,74 +8,35 @@
 	<div class="span6">
 		<div id="myCarousel" class="carousel slide" style="width: 400px;">
 			<div class="carousel-inner">
-			  <div class="item active">
-			    <img src="http://placehold.it/400x300" alt="">
-			    <div class="carousel-caption">
-			      <h4>First image label</h4><!-- 
-			      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-			    </div>
-			  </div>
-			  <div class="item">
-			    <img src="http://placehold.it/400x300" alt="">
-			    <div class="carousel-caption">
-			      <h4>Second image label</h4><!-- 
-			      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-			    </div>
-			  </div>
-			  <div class="item">
-			    <img src="http://placehold.it/400x300" alt="">
-			    <div class="carousel-caption">
-			      <h4>Third image label</h4><!-- 
-			      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-			    </div>
-			  </div>
-			  <div class="item">
-			    <img src="http://placehold.it/400x300" alt="">
-			    <div class="carousel-caption">
-			      <h4>Fourth image label</h4><!-- 
-			      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-			    </div>
-			  </div>
-			  <div class="item">
-			    <img src="http://placehold.it/400x300" alt="">
-			    <div class="carousel-caption">
-			      <h4>Fifth image label</h4><!-- 
-			      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-			    </div>
-			  </div>
+				<% @auction.image_urls.each  do |key, value| %>
+					<div class="item<%= " active" if value.has_key?(:main) || key === @auction.image_urls.first[0] %>">
+					  <img src="<%=value[:url]%>" alt="">
+					  <div class="carousel-caption">
+					    <h4><%= value[:title] %></h4>
+					  </div>
+					</div>
+				<% end %>
 			</div>
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
 			<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
 		</div>
 		<ul class="thumbnails">	
-		  <li class="span1">
-		    <a href="#" class="thumbnail" data-image-number="1">
-		      <img src="http://placehold.it/130x90" alt="">
-		    </a>
-		  </li>
-		  <li class="span1">
-		    <a href="#" class="thumbnail" data-image-number="2">
-		      <img src="http://placehold.it/130x90" alt="">
-		    </a>
-		  </li>
-		  <li class="span1">
-		    <a href="#" class="thumbnail" data-image-number="3">
-		      <img src="http://placehold.it/130x90" alt="">
-		    </a>
-		  </li>
-		  <li class="span1">
-		    <a href="#" class="thumbnail" data-image-number="4">
-		      <img src="http://placehold.it/130x90" alt="">
-		    </a>
-		  </li>
-		  <li class="span1">
-		    <a href="#" class="thumbnail" data-image-number="5">
-		      <img src="http://placehold.it/130x90" alt="">
-		    </a>
-		  </li>
+			<% @auction.image_urls.each_with_index  do |image_url, index| %>
+				<li class="span1">
+				  <a href="#" class="thumbnail" data-image-number="<%= index + 1 %>">
+				    <img src="<%= image_url[1][:thumbnail] || image_url[1][:url] %>" alt="">
+				  </a>
+				</li>
+			<% end %>
 		</ul>
 	</div>
 	<div class="span6">
 		<p><%= @auction.description %></p>
+		<dl class="dl-horizontal">
+			<% @auction.data.each do |key, value| %>
+				<dt><%= key.gsub(/\b\w/){$&.upcase} %></dt>
+				<dd><%= value %></dd>
+			<% end if @auction.data %>
+		</dl>
 	</div>
 </div>

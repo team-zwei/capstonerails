@@ -15,7 +15,7 @@ html, body {
 }
 
 body {
-	background-image:url('/images/bg_light_wood.png');
+	background-image:url('/images/bg_dark_wood.png');
 }
 
 a.auction_thumbnail_more_info.label:hover {
@@ -81,9 +81,15 @@ a.auction_thumbnail_more_info.label:hover {
 form.navbar-search.pull-right input:not([id="navbar_btn"]) {
 	background-color: #565656;
 	border-color: #565656;
+	color: white;
 }
 
-form.navbar-search.pull-right input:focus {
+form.navbar-search.pull-right input:focus:not([id="navbar_btn"]) {
 	background-color: white;
 	border-color: white;
+	color: grey;
+}
+
+.add-on {
+	color: grey;
 }
