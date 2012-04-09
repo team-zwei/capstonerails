@@ -16,6 +16,8 @@
 #
 
 class Auction < ActiveRecord::Base
+  serialize :image_urls, Hash
+
   has_many :bids
   has_many :users, through: :bids, as: :bidders
   has_and_belongs_to_many :categories

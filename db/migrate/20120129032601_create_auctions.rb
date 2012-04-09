@@ -10,6 +10,7 @@ class CreateAuctions < ActiveRecord::Migration
       t.integer   :current_bid_id
       t.integer   :winner_id
       t.hstore    :data
+      t.text      :image_urls
 
       t.timestamps
     end

@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120404135410) do
     t.integer  "current_bid_id"
     t.integer  "winner_id"
     t.hstore   "data"
+    t.text     "image_urls"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "status"
