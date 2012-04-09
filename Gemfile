@@ -6,6 +6,7 @@ gem 'private_pub', '1.0.1'
 gem 'pg', '0.12.2'
 #gem 'activerecord-postgres-hstore', '0.3.0'
 gem 'stripe', '1.6.2'
+gem 'carrierwave', '0.6.1'
 
 # Gem for pagination
 gem 'kaminari', '0.13.0'
