@@ -226,7 +226,7 @@ DEPENDENCIES
   private_pub (= 1.0.1)
   rails (= 3.2.0)
   sass-rails (= 3.2.4)
-  therubyracer
   stripe (= 1.6.2)
+  therubyracer
   thinking-sphinx (= 2.0.10)
   uglifier (= 1.2.2)
