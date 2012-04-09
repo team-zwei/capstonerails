@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20120404135410) do
   create_table "auctions", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.text     "terms"
     t.datetime "start_time"
     t.datetime "end_time"
     t.decimal  "starting_bid_price",    :precision => 15, :scale => 2
