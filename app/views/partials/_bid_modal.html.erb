@@ -1,5 +1,5 @@
 <%= javascript_include_tag "bid_modal" %>
-<%= form_tag auction_bids_path, remote: true, id: "bid_modal_form", class: "form-horizontal" do %>
+<%= form_tag auction_bids_path, remote: true, id: "bid_modal_form", class: "form-inline" do %>
   <div id="bid_modal" class="modal hide fade" style="display: none;">
     <div class="modal-header">
       <a class="close" data-dismiss="modal">&times;</a>
@@ -22,9 +22,14 @@
       </div>
 
       <%= label_tag :bid_amount, "Bid Amount", class: "bid-amount-label" %>
-      <div class="input-prepend">
-        <%= label_tag :bid_amount, "$", class: "add-on" %>
-        <%= text_field_tag :bid_amount, "", class: "modal-amount input-medium" %>
+      <br />
+      <div class="control-group">
+        <div class="controls">
+          <div class="input-prepend">
+            <%= label_tag :bid_amount, "$", class: "add-on", style: "margin: 0px -5px 0px 0px" %>
+            <%= text_field_tag :bid_amount, "", class: "modal-amount input-medium" %>
+          </div>
+        </div>
       </div>
       <%= hidden_field_tag :auction_id %>
     </div>
