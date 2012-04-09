@@ -11,8 +11,11 @@
 #  minimum_bid_increment :decimal(15, 2)
 #  current_bid_id        :integer
 #  winner_id             :integer
+#  data                  :text
+#  image_urls            :text
 #  created_at            :datetime        not null
 #  updated_at            :datetime        not null
+#  status                :string(255)
 #
 
 require 'test_helper'

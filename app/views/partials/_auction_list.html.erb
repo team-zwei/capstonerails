@@ -23,14 +23,18 @@
                 <h3 class="auction_thumbnail_time" data-time-remaining="<%= auction.get_remaining_time %>">
                   <%= auction.get_time_string %>
                 </h3>
+              <% if @current_user.blank? or auction.winner_id != @current_user.id %>
                 <%= link_to "Bid Now!", new_auction_bid_path(auction), { id: "auction_bid_btn_#{auction.id}", class: "btn btn-large btn-success auction_thumbnail_bid_now" } %>
+              <% elsif auction.winner_id == @current_user.id %>
+                <%= link_to "Pay Now!", new_auction_payment_path(auction), { id: "auction_pay_btn_#{auction.id}", class: "btn btn-large btn-primary auction_thumbnail_pay_now", :auction => auction.id } %>
+              <% end %>
               </div>
             </div>
           </div>
         </li>
     <% end %>
   <% else %>
-    <h3 style="text-align: center;">No live auctions</h3>
+    <h3 style="text-align: center;">No auctions</h3>
   <% end %>
 </ul>
 <%= javascript_include_tag "auction_list" %>

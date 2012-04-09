@@ -73,9 +73,17 @@
 			      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
 			    </div>
 			  </div>
+				<% @auction.image_urls.each  do |key, value| %>
+					<div class="item<%= " active" if value.has_key?(:main) || key === @auction.image_urls.first[0] %>">
+					  <%= image_tag value[:url] %>
+					  <div class="carousel-caption">
+					    <h4><%= value[:title] %></h4>
+					  </div>
+					</div>
+				<% end %>
 			</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
 		</div>
 		<ul class="thumbnails" style="width: 400px;">	
 		  <li class="span1">
@@ -188,5 +196,24 @@
 			<p><%= "Read in info from database" %></p>
 			<br>
 		</div>
+		<ul class="thumbnails">	
+			<% @auction.image_urls.each_with_index  do |image_url, index| %>
+				<li class="span1">
+				  <a href="#" class="thumbnail" data-image-number="<%= index + 1 %>">
+				  	<%= image_tag image_url[1][:thumbnail] || image_url[1][:url] %>
+				  </a>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="span6">
+		<p><%= @auction.description %></p>
+		<dl class="dl-horizontal">
+			<% @auction.data.each do |key, value| %>
+			<% Rails.logger.info "key: #{key} \n value: #{value}" %>
+				<dt><%= key.to_s.gsub(/\b\w/){$&.upcase} %></dt>
+				<dd><%= value %></dd>
+			<% end if @auction.data %>
+		</dl>
 	</div>
 </div>

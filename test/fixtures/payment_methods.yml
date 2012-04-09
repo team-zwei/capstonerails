@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: payment_methods
+#
+#  id                    :integer         not null, primary key
+#  user_id               :integer
+#  stripe_customer_token :string(255)
+#  card_type             :string(255)
+#  last4                 :integer
+#  expiration            :datetime
+#  created_at            :datetime        not null
+#  updated_at            :datetime        not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  stripe_customer_token: MyString
+  last4: 
+  expiration: 2012-03-21 10:53:51
+
+two:
+  user_id: 
+  stripe_customer_token: MyString
+  last4: 
+  expiration: 2012-03-21 10:53:51

@@ -7,50 +7,31 @@
 
 }
 
-#auction_index_search_query_div {
-  width: 170px;
+.auction_index_search_form_padding {
+  padding-top: 10px;
 }
 
-#auction_index_search_query_div .controls {
-
+.auction_index_search_push_down {
+  margin-top: 10px;
 }
 
-#auction_index_search_min_price_div, #auction_index_search_max_price_div {
+
+#auction_index_search_row .input-prepend .add-on {
+  margin-right: -5px;
+}
+
+#auction_index_search_btn, #auction_index_show_active_btn {
   width: 120px;
 }
 
-#auction_index_search_query_div .control-label {
-
-}
-
- #auction_index_search_min_price_div .control-label, #auction_index_search_max_price_div .control-label {
-
- }
-
-#auction_index_search_actions_div {
-  display: inline;
-}
-
-#auction_index_search_actions_div .btn {
-  margin: 15px;
-}
-
-#auction_index_search_max_price_div input, #auction_index_search_min_price_div input {
-  width: 75px;
-}
-
-#auction_index_search_row legend {
-  padding-left: 20px;
-}
-
-#auction_index_search_div {
-  padding-top: 20px;
-}
-
-#auction_index_search_ended_auctions_div .controls, #auction_index_search_ended_auctions_div label {
-  display: inline;
+#auction_index_show_active_btn {
+  padding: 4px 0px 4px;
 }
 
 #auction_index_search_ended_auctions_div {
-  margin-top:25px;
+  margin-bottom: 5px;
+}
+
+#auction_index_search_row legend {
+  margin-left: 10px;
 }

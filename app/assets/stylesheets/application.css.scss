@@ -1,4 +1,4 @@
-@import "twitter/bootstrap";
+@import "bootstrap";
 @import "account";
 @import "auction_list";
 @import "auctions";
@@ -15,7 +15,7 @@ html, body {
 }
 
 body {
-	background-image:url('/images/bg_light_wood.png');
+	background-image:url('/images/bg_dark_wood.png');
 }
 
 a.auction_thumbnail_more_info.label:hover {
@@ -49,7 +49,6 @@ a.auction_thumbnail_more_info.label:hover {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	height: 20px;
-	border-top: 1px solid #eee;
 	background-color: #191919;
 	text-align: center;
 	color: #A5CD0A;
@@ -78,6 +77,18 @@ a.auction_thumbnail_more_info.label:hover {
 	margin-top: 0;
 }
 
-#nav_login_form input {
-	
+form.navbar-search.pull-right input:not([id="navbar_btn"]) {
+	background-color: #565656;
+	border-color: #565656;
+	color: white;
+}
+
+form.navbar-search.pull-right input:focus:not([id="navbar_btn"]) {
+	background-color: white;
+	border-color: white;
+	color: grey;
+}
+
+.add-on {
+	color: grey;
 }

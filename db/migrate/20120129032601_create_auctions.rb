@@ -9,6 +9,8 @@ class CreateAuctions < ActiveRecord::Migration
       t.decimal   :minimum_bid_increment, precision: 15, scale: 2
       t.integer   :current_bid_id
       t.integer   :winner_id
+      t.text      :data
+      t.text      :image_urls
 
       t.timestamps
     end
