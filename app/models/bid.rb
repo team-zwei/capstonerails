@@ -3,11 +3,11 @@
 # Table name: bids
 #
 #  id         :integer         not null, primary key
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
 #  amount     :decimal(15, 2)
 #  auction_id :integer
 #  user_id    :integer
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 
 class Bid < ActiveRecord::Base

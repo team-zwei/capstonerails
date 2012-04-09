@@ -11,12 +11,16 @@
 #  minimum_bid_increment :decimal(15, 2)
 #  current_bid_id        :integer
 #  winner_id             :integer
+#  data                  :text
+#  image_urls            :text
 #  created_at            :datetime        not null
 #  updated_at            :datetime        not null
+#  status                :string(255)
 #
 
 class Auction < ActiveRecord::Base
   serialize :image_urls, Hash
+  serialize :data, Hash
 
   has_many :bids
   has_many :users, through: :bids, as: :bidders
