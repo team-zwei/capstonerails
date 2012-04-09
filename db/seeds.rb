@@ -65,7 +65,12 @@ Auction.create( name: "4br 4bath House",
                           },
                     image5: { url: "http://placehold.it/400x300&text=4br+4bath+House+image5",
                             title: "image5"
-                          }
+                          },
+                },
+                data: {
+                  bedrooms: "4",
+                  bathrooms: "4",
+                  "square footage" => "2350"
                 }
               )
 
