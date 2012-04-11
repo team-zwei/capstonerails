@@ -8,7 +8,7 @@ class Image < ActiveRecord::Base
       "name" => read_attribute(:image),
       "size" => auction_image.size,
       "url" => auction_image.url,
-      #{}"thumbnail_url" => auction_image.thumb.url,
+      "thumbnail_url" => auction_image.thumb.url,
       "delete_url" => image_path(:id => id),
       "delete_type" => "DELETE" 
     }
