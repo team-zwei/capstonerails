@@ -84,8 +84,6 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
   end
 
   create_table "images", :force => true do |t|
-    t.string   "name"
-    t.string   "path"
     t.string   "auction_image"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
