@@ -1,20 +1,31 @@
 <%= stylesheet_link_tag "jquery.fileupload-ui", :media => "all" %>
-<%= stylesheet_link_tag "bootstrap.buttons", :media => "all" %>
 <%= javascript_include_tag "admin_auctions_form" %>
 <%= javascript_include_tag "jquery.iframe-transport" %>
 <%= javascript_include_tag "jquery.fileupload" %>
 <h2>Upload Images</h2>
 <%= form_for Image.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
   <div class="row">
-    <div class="span16 fileupload-buttonbar">
-      <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
-      <span class="btn success fileinput-button">
-        <span><%= t('photos.add_files') %>...</span>
-        <%= f.file_field :auction_image %>
+    <div class="span12 fileupload-buttonbar">
+      <div class="progressbar fileupload-progressbar nofade">
+        <div style="width:0%;"></div>
+      </div>
+      <span class="btn btn-success fileinput-button">
+          <i class="icon-plus icon-white"></i>
+          <span>Add files&hellip;</span>
+          <%= f.file_field :auction_image %>
       </span>
-      <button type="submit" class="btn primary start"><%= t('photos.start_upload') %></button>
-      <button type="reset" class="btn info cancel"><%= t('photos.cancel_upload') %></button>
-      <button type="button" class="btn danger delete"><%= t('photos.delete_selected') %></button>
+      <button type="submit" class="btn btn-primary start">
+          <i class="icon-upload icon-white"></i>
+          <span>Start upload</span>
+      </button>
+      <button type="reset" class="btn btn-warning cancel">
+          <i class="icon-ban-circle icon-white"></i>
+          <span>Cancel upload</span>
+      </button>
+      <button type="button" class="btn btn-danger delete">
+          <i class="icon-trash icon-white"></i>
+          <span>Delete</span>
+      </button>
       <input type="checkbox" class="toggle">
     </div>
   </div>
