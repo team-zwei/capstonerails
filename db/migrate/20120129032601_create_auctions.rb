@@ -3,6 +3,7 @@ class CreateAuctions < ActiveRecord::Migration
     create_table :auctions do |t|
       t.string    :name
       t.string    :description
+      t.text      :terms
       t.datetime  :start_time
       t.datetime  :end_time
       t.decimal   :starting_bid_price, precision: 15, scale: 2

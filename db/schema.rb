@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120404135410) do
+ActiveRecord::Schema.define(:version => 20120411143103) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20120404135410) do
   create_table "auctions", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.text     "terms"
     t.datetime "start_time"
     t.datetime "end_time"
     t.decimal  "starting_bid_price",    :precision => 15, :scale => 2
@@ -80,6 +81,13 @@ ActiveRecord::Schema.define(:version => 20120404135410) do
     t.boolean  "real_estate"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "auction_image"
+    t.integer  "auction_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "payment_methods", :force => true do |t|
