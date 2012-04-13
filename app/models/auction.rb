@@ -84,5 +84,15 @@ class Auction < ActiveRecord::Base
     new_price = self.get_current_price + new_bid
     Bid.find_by_id(self.current_bid_id).update_attribute(:amount, new_price)   
   end
+
+  def get_min_new_price
+    if self.current_bid_id
+      amount = Bid.find_by_id(self.current_bid_id).amount 
+    else
+      amount = self.starting_bid_price
+    end
+    min_new_price = self.minimum_bid_increment + amount
+    ("%.2f" % min_new_price).gsub(/(\d)(?=(\d{3})+(.\d{2})$)/, '\1,')
+  end
   
 end

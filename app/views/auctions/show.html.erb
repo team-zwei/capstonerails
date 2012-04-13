@@ -146,6 +146,30 @@
 				</li>
 			<% end %>
 		</ul>
+		
+	</div>
+	<div class="span6" id="Details">
+		<div class="Title">
+			<h2><%= @auction.name %></h2>
+			<br>
+		</div>
+		<p>Time Remaining: 1 day</p>
+		<div id="Current Bid">
+			<p>Current Bid: $<%= @auction.get_current_price %> [from randomuser]</p>
+			
+			 
+		</div>
+		<div id="Place Bid">
+			<%= "Place Bid:" %>
+			<%= form_for @auction, html: {class: "form-horizontal"} do |b| %>
+	      		<fieldset>
+			        <div class="controls">
+			          <%= b.text_field :get_min_new_price, placeholder: "New Bid" %>
+			        </div>
+			    </fieldset>
+		    <% end %>
+		</div>
+			<%= link_to "Place Bid", nil , { class: "btn btn-large btn-success" } %>
 		<div id="description1">
 			<br>
 			<h4><%= "Description: " %></h4>
@@ -163,54 +187,7 @@
 		<div id="Terms">
 			<h4><%= "Terms: " %></h4>
 			<br>
-			<p><%= "Some text will go here." %></p>
-			<br>
-		</div>
-	</div>
-	<div class="span6" id="Details">
-		<div class="Title">
-			<h2><%= @auction.name %></h2>
-			<br>
-		</div>
-		<div id="Time">
-			<h4><%= "Time Remaining:" %></h4>
-			<br>
-			<p><%= "This will have the time remaining" %></p>
-			<br>
-		</div>
-		<div id="Current Bid">
-			<h4><%= "Current Bid:" %></h4>
-			<br>
-			<%= form_for @auction, html: {class: "form-horizontal"} do |c| %>
-	      		<fieldset>
-			        <div class="controls">
-			          <%= c.text_field :starting_bid_price %>
-			        </div>
-			    </fieldset>
-		    <% end %>
-		</div>
-		<div id="Place Bid">
-			<h4><%= "Place Bid:" %></h4>
-			<br>
-			<%= form_for @auction, html: {class: "form-horizontal"} do |b| %>
-	      		<fieldset>
-			        <div class="controls">
-			          <%= b.text_field :minimum_bid_increment, placeholder: "New Bid" %>
-			        </div>
-			    </fieldset>
-		    <% end %>
-		</div>
-		<div id="Bidding">
-			<br>
-			<h4><%= "Bidding:" %></h4>
-			<br>
-			<%= link_to "Bid Now!", nil , { class: "btn btn-large btn-success" } %>
-		</div>
-		<div id="Last_Bidder">
-			<br>
-			<h4><%= "Last Bidder: " %></h4>
-			<br>
-			<p><%= "Read in info from database" %></p>
+			<p>Some text will go here.</p>
 			<br>
 		</div>
 	</div>
