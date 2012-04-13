@@ -18,3 +18,7 @@ end
 ActiveAdmin.register PaymentMethod do
 	menu :parent => "Advanced"
 end
+
+ActiveAdmin.register Image do
+	menu :parent => "Advanced"
+end

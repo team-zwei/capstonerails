@@ -3,7 +3,9 @@
 		<%= form_tag password_resets_path, class: "form-horizontal",method: :post do %>
 			<fieldset>
 				<legend>Reset Password</legend>
-
+				<p>
+					After submitting this form, you will receive an email with instructions on how to reset your password.
+				</p>
 				<div class="control-group">
 					<%= label_tag :email, "Email Address", class: "control-label" %>
 					<div class="controls">
