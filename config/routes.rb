@@ -1,4 +1,5 @@
 Capstone::Application.routes.draw do
+
   ActiveAdmin.routes(self)
 
   get "account" => "users#show"
@@ -25,5 +26,7 @@ Capstone::Application.routes.draw do
 
   resources :bids
   resources :sessions
-  resources :password_resets  
+  resources :password_resets
+
+  resources :images, :only => [:index, :create, :destroy]
 end

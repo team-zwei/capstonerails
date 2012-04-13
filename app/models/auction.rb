@@ -19,12 +19,13 @@
 #
 
 class Auction < ActiveRecord::Base
-  serialize :image_urls, Hash
+  serialize :image_urls, Hash #TODO remove this and use images model instead.
   serialize :data, Hash
 
   has_many :bids
   has_many :users, through: :bids, as: :bidders
   has_and_belongs_to_many :categories
+  has_many :images
 
   has_one :payment
 
