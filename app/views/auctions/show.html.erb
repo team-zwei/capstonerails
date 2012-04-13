@@ -40,12 +40,11 @@
 			<dt></dt>
 			<dd><%= form_for @auction, html: {class: "form-horizontal"} do |b| %>
 			          <%= b.text_field :get_min_new_price, placeholder: "New Bid" %>
+			<%= link_to "Place Bid", nil , { class: "btn btn-large btn-success" } %>
 		    <% end %>
 			</dd>
-			<%= link_to "Place Bid", nil , { class: "btn btn-large btn-success" } %>
 		<div id="description1">
-			<br>
-			<h4><%= "Description: " %></h4>
+			<h3>Description</h3>
 			<br>
 			<p><%= @auction.description %></p>
 				<dl class="dl-horizontal">
@@ -55,10 +54,9 @@
 						<dd><%= value %></dd>
 					<% end if @auction.data %>
 				</dl>
-			<br>
 		</div>
 		<div id="Terms">
-			<h4><%= "Terms: " %></h4>
+			<h3>Terms</h3>
 			<br>
 			<p>Some text will go here.</p>
 			<br>
