@@ -33,9 +33,9 @@
 			<h2><%= @auction.name %></h2>
 			<br>
 		</div>
-		<p>Time Remaining: 1 day</p>
+		<p><%= "Time Remaining: " + @auction.get_time_string %></p>
 		<div id="Current Bid">
-			<p>Current Bid: $<%= @auction.get_current_price %> [from randomuser]</p>
+			<p>Current Bid: $<%= @auction.get_current_price %> [from: <%= @auction.get_lastbid_username %>]</p>
 			
 			 
 		</div>
