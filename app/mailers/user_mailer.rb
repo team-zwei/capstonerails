@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  #default from: "from@example.com"
   # TODO: this ^
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -10,6 +10,12 @@ class UserMailer < ActionMailer::Base
   def password_reset(user)
     @user = user
 
-    mail to: user.email, subject: "Password Reset"
+    mail = Mail.new do 
+	from: from@example.com
+	to: user.email
+	subject: "Password Reset"
+	body: "Your new password is here"
+	end
+    mail.to_s
   end
 end

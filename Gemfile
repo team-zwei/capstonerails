@@ -26,6 +26,7 @@ gem 'capistrano', '2.11.2'
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'foreman'
+  gem 'therubyracer'  
 end
 
 # Gems used only for assets and not required
