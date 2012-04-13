@@ -33,22 +33,17 @@
 			<h2><%= @auction.name %></h2>
 			<br>
 		</div>
-		<p><%= "Time Remaining: " + @auction.get_time_string %></p>
-		<div id="Current Bid">
-			<p>Current Bid: $<%= @auction.get_current_price %> [from: <%= @auction.get_lastbid_username %>]</p>
-			
-			 
 		</div>
-		<div id="Place Bid">
-			<%= "Place Bid:" %>
-			<%= form_for @auction, html: {class: "form-horizontal"} do |b| %>
-	      		<fieldset>
-			        <div class="controls">
+		<dl class="dl-horizontal">
+			<dt><strong>Time Remaining</strong></dt> 
+			<dd><%= @auction.get_time_string %></dd>
+			<dt><strong>Current Bid</strong></dt> 
+			<dd>$<%= @auction.get_current_price %> [from: <%= @auction.get_lastbid_username %>]</dd>
+			<dt></dt>
+			<dd><%= form_for @auction, html: {class: "form-horizontal"} do |b| %>
 			          <%= b.text_field :get_min_new_price, placeholder: "New Bid" %>
-			        </div>
-			    </fieldset>
 		    <% end %>
-		</div>
+			</dd>
 			<%= link_to "Place Bid", nil , { class: "btn btn-large btn-success" } %>
 		<div id="description1">
 			<br>
