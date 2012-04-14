@@ -37,24 +37,30 @@
 			<dt><strong>Time Remaining</strong></dt> 
 			<dd><%= @auction.get_time_string %></dd>
 			<dt><strong>Current Bid</strong></dt> 
-			<dd>$<%= @auction.get_current_price %> [from: <%= @auction.get_lastbid_username %>]</dd>
+			<dd>$<%= @auction.get_current_price %>
+				<% if @current_bidder %>
+					by <%= link_to @current_bidder.username, users_path(@current_bidder) %>
+				<% else %>
+					- No bids have been placed yet.
+				<% end %>
+			</dd>
 			<dt></dt>
-			<dd><%= form_for @auction, html: {class: "form-horizontal"} do |b| %>
-			          <%= b.text_field :get_min_new_price, placeholder: "New Bid" %>
-			<%= link_to "Place Bid", nil , { class: "btn btn-large btn-success" } %>
+			<dd>
+				<%= form_tag auction_bids_path(@auction), remote: true, id: "bid_modal_form", class: "form-inline" do %>
+			    <%= text_field_tag :bid_amount, @auction.get_min_new_price %>
+					<%= submit_tag "Place Bid", class: "btn btn-large btn-success" %>
 		    <% end %>
 			</dd>
 		<div id="description1">
 			<h3>Description</h3>
-			<br>
+			<hr />
 			<p><%= @auction.description %></p>
-				<dl class="dl-horizontal">
-					<% @auction.data.each do |key, value| %>
-					<% Rails.logger.info "key: #{key} \n value: #{value}" %>
-						<dt><%= key.to_s.gsub(/\b\w/){$&.upcase} %></dt>
-						<dd><%= value %></dd>
-					<% end if @auction.data %>
-				</dl>
+			<dl class="dl-horizontal">
+				<% @auction.data.each do |key, value| %>
+					<dt><%= key.to_s.gsub(/\b\w/){$&.upcase} %></dt>
+					<dd><%= value %></dd>
+				<% end if @auction.data %>
+			</dl>
 		</div>
 		<div id="Terms">
 			<h3>Terms</h3>

@@ -28,6 +28,8 @@ class AuctionsController < ApplicationController
 			redirect_to root_url
 		elsif !(@auction = Auction.find_by_id params[:id])
 			redirect_to "/404.html"
+		else
+			@current_bidder = Bid.find_by_id(@auction.current_bid_id).user if @auction.current_bid_id
 		end
 	end
 end
