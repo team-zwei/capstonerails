@@ -39,7 +39,7 @@
 			<dt><strong>Current Bid</strong></dt> 
 			<dd>$<%= @auction.get_current_price %>
 				<% if @current_bidder %>
-					by <%= link_to @current_bidder.username, users_path(@current_bidder) %>
+					by <%= link_to @current_bidder.username, user_path(@current_bidder.id) %>
 				<% else %>
 					- No bids have been placed yet.
 				<% end %>
