@@ -1,7 +1,5 @@
 <%= stylesheet_link_tag "jquery.fileupload-ui", :media => "all" %>
-<%= javascript_include_tag "admin_auctions_form" %>
-<%= javascript_include_tag "jquery.iframe-transport" %>
-<%= javascript_include_tag "jquery.fileupload" %>
+<%= javascript_include_tag "admin_auctions_form", "jquery.iframe-transport", "jquery.fileupload" %>
 <h2>Upload Images</h2>
 <p>
   You can also drag and drop an image anywhere on the page.
@@ -119,7 +117,7 @@
 <script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
 <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<%= javascript_include_tag 'jquery.iframe-transport.js', 'jquery.fileupload.js', 'jquery.fileupload-ui.js', 'tmpl.min.js', 'locale.js' %>
+<%= javascript_include_tag 'jquery.iframe-transport.js', 'jquery.fileupload.js', 'jquery.fileupload-ui.js', 'tmpl.min.js', 'locale.js', 'main.js' %>
 <!-- add include_tag js files to config.assets.precompile in ...environments/production.rb if you have it in vendor/ assets -->
 
 <script type="text/javascript" charset="utf-8">
