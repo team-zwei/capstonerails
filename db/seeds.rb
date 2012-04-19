@@ -17,6 +17,10 @@ User.create(email: "test@test.com",
             lastname: "McTestit"
             )
 
+Category.create(name: "Land", real_estate: true)
+Category.create(name: "House", real_estate: true)
+Category.create(name: "Equipment", real_estate: false)
+
 time = Time.now + 86400 # setting to one day from current time at seeding.
 
 auction = Auction.create( name: "iPod Touch 32GB",

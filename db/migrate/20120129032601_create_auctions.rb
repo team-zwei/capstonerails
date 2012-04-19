@@ -2,6 +2,7 @@ class CreateAuctions < ActiveRecord::Migration
   def change
     create_table :auctions do |t|
       t.string    :name
+      t.string    :category
       t.string    :description
       t.text      :terms
       t.datetime  :start_time
