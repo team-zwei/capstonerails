@@ -52,9 +52,13 @@
 				<dd>
 					<%= form_tag auction_bids_path(@auction), remote: true, id: "bid_show_form", class: "form-inline" do %>
 					<%= label_tag :bid_amount, "Bid Amount", class: "more-amount-label" %>
-					<div class="price-input">
-			            <%= label_tag :bid_amount, "$", class: "add-on", style: "margin: 0px -5px 0px 0px" %>
-			            <%= text_field_tag :bid_amount, @auction.get_min_new_price, class: "more-amount input-medium" %>
+					<div class="control-group">
+				        <div class="controls">
+				          	<div class="input-prepend">
+					            <%= label_tag :bid_amount, "$", class: "add-on", style: "margin: 0px -5px 0px 0px" %>
+					            <%= text_field_tag :bid_amount, @auction.get_min_new_price, class: "more-amount input-medium" %>
+				          	</div>
+			          	</div>
 		          	</div>
 						<%= submit_tag "Place Bid", class: "btn btn-large btn-success show-submit" %>
 			    <% end %>
