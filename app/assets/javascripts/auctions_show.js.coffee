@@ -1,6 +1,9 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+time_elem = $("Details"+" .more_info_time")
+timer = countdownTimer(time_elem.attr("data-time-remaining"), (result) -> time_elem.text result
+)
 $(document).ready ->
 	$(".carousel").carousel('cycle')
 	$(".thumbnail").click(
@@ -18,6 +21,7 @@ $(document).ready ->
 
 	PrivatePub.subscribe "/bids/new", (data, channel) ->
 	    console.log "amount: " + data.message.amount + "\nauction_id: " + data.message.auction_id + "\ntime: " + data.message.time + "\nuser: " + data.message.user
+	    timer.updateSecondsRemaining data.message.time
 	    
 	    new_price = parseFloat(data.message.amount).toFixed(2);
 	    price_elem = $("dl-horizontal"+" dd.more_info_price")
