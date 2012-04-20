@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name"
+    t.string   "category"
     t.string   "description"
     t.text     "terms"
     t.datetime "start_time"

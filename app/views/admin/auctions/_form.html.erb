@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "jquery.fileupload-ui", :media => "all" %>
-<%= javascript_include_tag "admin_auctions_form", "jquery.iframe-transport", "jquery.fileupload" %>
+<%= stylesheet_link_tag "chosen", :media => "all" %>
 <h2>Upload Images</h2>
 <p>
   You can also drag and drop an image anywhere on the page.
@@ -114,37 +114,30 @@
 </script>
 
 <!-- The Templates and Load Image plugins are included for the FileUpload user interface -->
-<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
 <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<%= javascript_include_tag 'jquery.iframe-transport.js', 'jquery.fileupload.js', 'jquery.fileupload-ui.js', 'tmpl.min.js', 'locale.js', 'main.js' %>
-<!-- add include_tag js files to config.assets.precompile in ...environments/production.rb if you have it in vendor/ assets -->
 
-<script type="text/javascript" charset="utf-8">
-    $(function () {
-        // Initialize the jQuery File Upload widget:
-        $('#fileupload').fileupload();
-        // 
-        // Load existing files:
-        $.getJSON($('#fileupload').prop('action'), function (files) {
-          var fu = $('#fileupload').data('fileupload'), 
-            template;
-          fu._adjustMaxNumberOfFiles(-files.length);
-          template = fu._renderDownload(files)
-            .appendTo($('#fileupload .files'));
-          // Force reflow:
-          fu._reflow = fu._transition && template.length &&
-            template[0].offsetWidth;
-          template.addClass('in');
-          $('#loading').remove();
-        });
-
-    });
-</script>
-
-    <%= semantic_form_for [:admin, @auction] do |f| %>
+<%= semantic_form_for [:admin, @auction] do |f| %>
 	<%= f.inputs :name %>
+  <fieldset class="inputs">
+    <ol>
+      <li class="string input optional stringish" id="auction_category_input">
+        <label class="" for="auction_category">
+          Category
+        </label>
+        <select id="auction_category" data-placeholder="Choose some categories..." style="width: 79%;" multiple class="chzn-select">
+          <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
+        </select>
+      </li>
+      <li class="string input optional stringish">
+        <label>Add Categories</label>
+        <input type="text" />
+      </li>
+    </ol>
+  </fieldset>
 	<%= f.inputs :description %>
 	<%= f.inputs :terms %>
 	<%= f.buttons :commit %>
 <% end %>
+
+<%= javascript_include_tag "chosen.jquery.min.js", "admin_auctions_form" %>
+<%= javascript_include_tag 'jquery.iframe-transport.js', 'jquery.iframe-transport.js', 'jquery.fileupload.js', 'jquery.fileupload-ui.js', 'tmpl.min.js', 'locale.js', 'main.js' %>
