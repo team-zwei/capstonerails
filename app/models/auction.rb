@@ -19,12 +19,13 @@
 #
 
 class Auction < ActiveRecord::Base
-  serialize :image_urls, Hash
+  serialize :image_urls, Hash #TODO remove this and use images model instead.
   serialize :data, Hash
 
   has_many :bids
   has_many :users, through: :bids, as: :bidders
   has_and_belongs_to_many :categories
+  has_many :images
 
   has_one :payment
 
@@ -82,6 +83,24 @@ class Auction < ActiveRecord::Base
     end      
     new_price = self.get_current_price + new_bid
     Bid.find_by_id(self.current_bid_id).update_attribute(:amount, new_price)   
+  end
+
+  def get_min_new_price
+    if self.current_bid_id
+      amount = Bid.find_by_id(self.current_bid_id).amount 
+    else
+      amount = self.starting_bid_price
+    end
+    min_new_price = self.minimum_bid_increment + amount
+    ("%.2f" % min_new_price).gsub(/(\d)(?=(\d{3})+(.\d{2})$)/, '\1,')
+  end
+
+  def get_lastbid_username
+    if self.current_bid_id
+      return Bid.find_by_id(self.current_bid_id).get_username
+    else
+      return "No Bids Have Been Recieved"
+    end
   end
   
 end

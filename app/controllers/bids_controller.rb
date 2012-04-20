@@ -11,7 +11,7 @@ class BidsController < ApplicationController
   def create
   	if current_user
       # TODO: min bid met?
-  		bid = Bid.new amount: Float(params[:bid_amount][/\d+(.\d{2})?/])
+  		bid = Bid.new amount: Float(params[:bid_amount].gsub(",","")[/\d+(.\d{2})?/])
       bid.user_id = current_user.id
       bid.auction_id = params[:id] || params[:auction_id]
       bid.auction.end_time += 600 # ten minutes #TODO add time to end_time appropriately
