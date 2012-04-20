@@ -6,6 +6,8 @@ gem 'private_pub', '1.0.1'
 gem 'pg', '0.12.2'
 #gem 'activerecord-postgres-hstore', '0.3.0'
 gem 'stripe', '1.6.2'
+gem 'carrierwave', '0.6.1'
+gem 'mini_magick'
 
 # Gem for pagination
 gem 'kaminari', '0.13.0'
@@ -24,7 +26,6 @@ gem 'capistrano', '2.11.2'
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'foreman'
-  gem 'therubyracer'  
 end
 
 # Gems used only for assets and not required
