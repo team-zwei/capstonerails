@@ -124,7 +124,7 @@
         <label class="" for="auction_category">
           Category
         </label>
-        <select id="auction_category" data-placeholder="Choose some categories..." style="width: 79%;" multiple class="chzn-select">
+        <select id="auction_category" data-placeholder="Choose some categories..."  multiple class="chzn-select">
           <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
         </select>
       </li>
