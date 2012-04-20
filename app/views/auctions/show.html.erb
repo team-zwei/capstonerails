@@ -34,23 +34,32 @@
 			<br>
 		</div>
 		<dl class="dl-horizontal">
-			<dt><strong>Time Remaining</strong></dt> 
-			<dd><%= @auction.get_time_string %></dd>
-			<dt><strong>Current Bid</strong></dt> 
-			<dd>$<%= @auction.get_current_price %>
-				<% if @current_bidder %>
-					by <%= link_to @current_bidder.username, user_path(@current_bidder.id) %>
-				<% else %>
-					- No bids have been placed yet.
-				<% end %>
-			</dd>
-			<dt></dt>
-			<dd>
-				<%= form_tag auction_bids_path(@auction), remote: true, id: "bid_modal_form", class: "form-inline" do %>
-			    <%= text_field_tag :bid_amount, @auction.get_min_new_price %>
-					<%= submit_tag "Place Bid", class: "btn btn-large btn-success" %>
-		    <% end %>
-			</dd>
+			<div class="alert alert-success time-price-container">
+				<dt><strong>Time Remaining</strong></dt> 
+				<dd class="more_info_time" data-time-remaining="<%= @auction.get_remaining_time %>">
+					<%= @auction.get_time_string %>
+				</dd>
+				<dt><strong>Current Bid</strong></dt> 
+				<dd class="more_info_price" data-current-price="<%= @auction.get_current_price %>" data-min-bid-increment="<%= @auction.minimum_bid_increment %>">
+					$<%= @auction.get_current_price %>
+					<% if @current_bidder %>
+						by <%= link_to @current_bidder.username, user_path(@current_bidder.id) %>
+					<% else %>
+						- No bids have been placed yet.
+					<% end %>
+				</dd>
+				<dt></dt>
+				<dd>
+					<%= form_tag auction_bids_path(@auction), remote: true, id: "bid_show_form", class: "form-inline" do %>
+					<%= label_tag :bid_amount, "Bid Amount", class: "more-amount-label" %>
+					<div class="price-input">
+			            <%= label_tag :bid_amount, "$", class: "add-on", style: "margin: 0px -5px 0px 0px" %>
+			            <%= text_field_tag :bid_amount, @auction.get_min_new_price, class: "more-amount input-medium" %>
+		          	</div>
+						<%= submit_tag "Place Bid", class: "btn btn-large btn-success show-submit" %>
+			    <% end %>
+				</dd>
+			</div>
 		<div id="description1">
 			<h3>Description</h3>
 			<hr />
