@@ -5,7 +5,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.new(params[:image])
+    @image = Image.new params[:image]
     if @image.save
       respond_to do |format|
         format.html {  
