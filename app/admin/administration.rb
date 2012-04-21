@@ -3,7 +3,6 @@ ActiveAdmin.register Bid do
 end
 
 ActiveAdmin.register Auction do
-  form :partial => "form"
   menu :parent => "Advanced"
 
   controller do
@@ -17,10 +16,9 @@ ActiveAdmin.register Auction do
       @auction = params[:auction]
       render 'admin/auctions/image_form'
     end
-
-
-
+    
   end
+
 end
 
 ActiveAdmin.register User do
