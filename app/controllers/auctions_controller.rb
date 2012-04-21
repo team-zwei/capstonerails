@@ -32,4 +32,17 @@ class AuctionsController < ApplicationController
 			@current_bidder = Bid.find_by_id(@auction.current_bid_id).user if @auction.current_bid_id
 		end
 	end
+
+	def new
+		redirect_to 'root' unless current_user.admin?
+		@auction = Auction.new
+	end
+
+	def create
+		
+	end
+
+	def image_upload
+
+	end
 end

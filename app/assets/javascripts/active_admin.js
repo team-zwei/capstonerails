@@ -3,5 +3,5 @@
 
 $(document).ready(function(){
     $('.label').removeClass('label');
-    $('#dashboard').after('<li><a href="/admin/auctions/new">Add Auction</a></li>');
+    $('#dashboard').after('<li><a href="/auctions/new">Add Auction</a></li>');
 });
