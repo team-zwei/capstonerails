@@ -3,8 +3,8 @@ ActiveAdmin.register Bid do
 end
 
 ActiveAdmin.register Auction do
-  form :partial => "form"
   menu :parent => "Advanced"
+  form :partial => "form"
 end
 
 ActiveAdmin.register User do
