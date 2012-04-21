@@ -4,21 +4,6 @@ end
 
 ActiveAdmin.register Auction do
   menu :parent => "Advanced"
-
-  controller do
-    layout 'active_admin'
-    def new
-      @page_title = "New Auction: Step 1 of 3"
-      @auction = Auction.new
-    end
-
-    def create
-      @auction = params[:auction]
-      render 'admin/auctions/image_form'
-    end
-    
-  end
-
 end
 
 ActiveAdmin.register User do
