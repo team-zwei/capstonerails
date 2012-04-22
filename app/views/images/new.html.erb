@@ -72,6 +72,7 @@
     </tr>
 {% } %}
 </script>
+
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -102,7 +103,4 @@
 {% } %}
 </script>
 
-<!-- The Templates and Load Image plugins are included for the FileUpload user interface -->
-<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-
-<%= javascript_include_tag "admin_auctions_form", 'tmpl.min.js', 'jquery.iframe-transport.js', 'jquery.iframe-transport.js', 'jquery.fileupload.js', 'jquery.fileupload-ui.js', 'locale.js', 'main.js' %>
+<%= javascript_include_tag 'admin_auctions_form', 'load-image.min', 'tmpl.min.js', 'jquery.iframe-transport.js', 'jquery.iframe-transport.js', 'jquery.fileupload.js', 'jquery.fileupload-ui.js', 'locale.js', 'main.js' %>
