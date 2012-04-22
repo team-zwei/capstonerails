@@ -13,6 +13,8 @@ class Image < ActiveRecord::Base
 	include Rails.application.routes.url_helpers
   mount_uploader :auction_image, AuctionImageUploader
 
+  attr_accessible :auction_image
+
   belongs_to :user
   belongs_to :auction
 

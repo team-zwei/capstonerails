@@ -2,7 +2,6 @@ class CreateAuctions < ActiveRecord::Migration
   def change
     create_table :auctions do |t|
       t.string    :name
-      t.string    :category
       t.string    :description
       t.text      :terms
       t.datetime  :start_time
@@ -12,7 +11,6 @@ class CreateAuctions < ActiveRecord::Migration
       t.integer   :current_bid_id
       t.integer   :winner_id
       t.text      :data
-      t.text      :image_urls
 
       t.timestamps
     end

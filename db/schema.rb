@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name"
-    t.string   "category"
     t.string   "description"
     t.text     "terms"
     t.datetime "start_time"
@@ -58,7 +57,6 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
     t.integer  "current_bid_id"
     t.integer  "winner_id"
     t.text     "data"
-    t.text     "image_urls"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "status"

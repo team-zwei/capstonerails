@@ -1,2 +1,1 @@
-
 $("#auction_category").chosen();

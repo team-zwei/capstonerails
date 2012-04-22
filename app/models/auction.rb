@@ -4,7 +4,6 @@
 #
 #  id                    :integer         not null, primary key
 #  name                  :string(255)
-#  category              :string(255)
 #  description           :string(255)
 #  terms                 :text
 #  start_time            :datetime
@@ -14,22 +13,21 @@
 #  current_bid_id        :integer
 #  winner_id             :integer
 #  data                  :text
-#  image_urls            :text
 #  created_at            :datetime        not null
 #  updated_at            :datetime        not null
 #  status                :string(255)
 #
 
 class Auction < ActiveRecord::Base
-  serialize :image_urls, Hash #TODO remove this and use images model instead.
   serialize :data, Hash
 
   has_many :bids
   has_many :users, through: :bids, as: :bidders
   has_and_belongs_to_many :categories
   has_many :images
-
   has_one :payment
+
+  attr_accessible :name, :description, :terms, :starting_bid_price, :minimum_bid_increment, :data, :end_time, :start_time
 
   define_index do
     indexes :name, sortable: true

@@ -1,10 +1,10 @@
 class AuctionsController < ApplicationController
 	skip_before_filter :require_admin, only: [:index, :show]
-	skip_before_filter :require_login
+	skip_before_filter :require_login, only: [:index, :show]
 
 	def index
 		if (params[:search].blank?)
-			@auctions = Auction.order("end_time desc").page(params[:page]).per(params[:num_per_page])
+			@auctions = Auction.where("start_time <= now()").order("end_time desc").page(params[:page]).per(params[:num_per_page])
 		else
 			@auctions = Auction.search(params[:search], order: :end_time, sort_mode: :desc).page(params[:page]).per(params[:num_per_page])
 		end
@@ -45,5 +45,17 @@ class AuctionsController < ApplicationController
 		else
 			redirect_to action: :new, error: "Error creating auction!  Please try again.  If this persists, contact customer support."
 		end
+	end
+
+	def edit
+		@auction = Auction.find_by_id params[:id]
+	end
+
+	def update
+		@auction = Auction.find_by_id params[:id]
+	end
+
+	def destroy
+
 	end
 end
