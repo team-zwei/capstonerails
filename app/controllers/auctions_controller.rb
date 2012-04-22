@@ -39,10 +39,15 @@ class AuctionsController < ApplicationController
 	end
 
 	def create
-		
+		@auction = Auction.new params[:auction]
+		if @auction.save
+			render "image_upload", notice: "Successfully created an auction!  Now add your images."
+		else
+			redirect_to action: :new, error: "Error creating auction!  Please try again.  If this persists, contact customer support."
+		end
 	end
 
 	def image_upload
-
+		@auction
 	end
 end
