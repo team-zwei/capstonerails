@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_admin_user
   helper_method :logged_in?
 
-  before_filter :require_login
+  before_filter :require_login, :require_admin
 
   # Override build_footer method in ActiveAdmin::Views::Pages
   require 'active_admin_views_pages_base.rb'
@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
     render "sessions/new", layout: "application"
   end 
 
-  def current_admin_user 
-    return nil unless @current_user && current_user.admin?
+  def current_admin_user
+    return nil unless current_user && current_user.admin?
     @current_user
   end
 
@@ -42,6 +42,12 @@ class ApplicationController < ActionController::Base
       session[:return_to] = request.fullpath
       render "sessions/new", layout: "application"
     end
+  end
+
+  def require_admin
+    #TODO Error flash isn't showing
+    redirect_to root_url, error: "Insufficient Privileges" unless current_admin_user
+    @current_user
   end
  
   def logged_in?

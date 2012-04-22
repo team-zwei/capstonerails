@@ -4,7 +4,9 @@
 #
 #  id                    :integer         not null, primary key
 #  name                  :string(255)
+#  category              :string(255)
 #  description           :string(255)
+#  terms                 :text
 #  start_time            :datetime
 #  end_time              :datetime
 #  starting_bid_price    :decimal(15, 2)

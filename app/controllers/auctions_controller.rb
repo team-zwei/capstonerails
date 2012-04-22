@@ -1,4 +1,5 @@
 class AuctionsController < ApplicationController
+	skip_before_filter :require_admin, only: [:index, :show]
 	skip_before_filter :require_login
 
 	def index
@@ -34,20 +35,15 @@ class AuctionsController < ApplicationController
 	end
 
 	def new
-		redirect_to 'root' unless current_user.admin?
 		@auction = Auction.new
 	end
 
 	def create
 		@auction = Auction.new params[:auction]
 		if @auction.save
-			render "image_upload", notice: "Successfully created an auction!  Now add your images."
+			redirect_to new_auction_image_path @auction
 		else
 			redirect_to action: :new, error: "Error creating auction!  Please try again.  If this persists, contact customer support."
 		end
-	end
-
-	def image_upload
-		@auction
 	end
 end

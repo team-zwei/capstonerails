@@ -21,6 +21,7 @@ Capstone::Application.routes.draw do
   end
   resources :auctions do
     resources :bids
+    resources :images
     resource :payment
   end
 

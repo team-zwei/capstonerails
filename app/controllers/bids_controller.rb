@@ -1,4 +1,5 @@
 class BidsController < ApplicationController
+  skip_before_filter :require_admin
   skip_before_filter :require_login, only: [:create]
 	respond_to :json, :html
 

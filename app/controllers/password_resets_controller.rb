@@ -1,5 +1,6 @@
 class PasswordResetsController < ApplicationController
 	skip_before_filter :require_login
+	skip_before_filter :require_admin
 	def new
 	end
 

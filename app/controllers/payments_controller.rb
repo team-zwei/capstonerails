@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  skip_before_filter :require_admin
   def new
   	#  TODO: Filter if a payment has already been submitted
   	@payment = Payment.new

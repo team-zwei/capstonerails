@@ -4,8 +4,13 @@ class ImagesController < ApplicationController
     render :json => @images.collect { |p| p.to_jq_upload }.to_json
   end
 
+  def new
+    @image = Image.new
+  end
+
   def create
     @image = Image.new params[:image]
+    @image.auction_id = Auction.find_by_id params[:auction_id]
     if @image.save
       respond_to do |format|
         format.html {  
