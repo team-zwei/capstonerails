@@ -4,11 +4,11 @@
 		<div id="myCarousel" class="carousel slide" style="width: 400px;">
 			<div class="carousel-inner">
 
-				<% @auction.image_urls.each  do |key, value| %>
-					<div class="item<%= " active" if value.has_key?(:main) || key === @auction.image_urls.first[0] %>">
-					  <%= image_tag value[:url] %>
+				<% @auction.images.each  do |image| %>
+					<div class="item<%= " active" if image === @auction.images.first %>">
+					  <%= image_tag image.auction_image.url %>
 					  <div class="carousel-caption">
-					    <h4><%= value[:title] %></h4>
+					    <h4><%= image.title %></h4>
 					  </div>
 					</div>
 				<% end %>
@@ -18,10 +18,10 @@
 		</div>
 
 		<ul class="thumbnails">	
-			<% @auction.image_urls.each_with_index  do |image_url, index| %>
+			<% @auction.images.each  do |image| %>
 				<li class="span1">
 				  <a href="#" class="thumbnail" data-image-number="<%= index + 1 %>">
-				  	<%= image_tag image_url[1][:thumbnail] || image_url[1][:url] %>
+				  	<%= image_tag image.auction_image.thumb.url %>
 				  </a>
 				</li>
 			<% end %>

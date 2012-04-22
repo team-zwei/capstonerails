@@ -94,13 +94,5 @@ class Auction < ActiveRecord::Base
     min_new_price = self.minimum_bid_increment + amount
     ("%.2f" % min_new_price).gsub(/(\d)(?=(\d{3})+(.\d{2})$)/, '\1,')
   end
-
-  def get_lastbid_username
-    if self.current_bid_id
-      return Bid.find_by_id(self.current_bid_id).get_username
-    else
-      return "No Bids Have Been Recieved"
-    end
-  end
   
 end
