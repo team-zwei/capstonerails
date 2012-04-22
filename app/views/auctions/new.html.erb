@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "chosen", :media => "all" %>
-<%= semantic_form_for @auction do |f| %>
-	<%= f.inputs :name %>
+<%= form_for @auction do |f| %>
+	<%= f.text_field :name %>
   <fieldset class="inputs">
     <ol>
       <li class="string input optional stringish" id="auction_category_input">
@@ -17,9 +17,10 @@
       </li>
     </ol>
   </fieldset>
-	<%= f.inputs :description %>
-	<%= f.inputs :terms %>
-	<%= f.buttons :commit %>
+	<%= f.text_field :description %>
+  <%= f.range_field :minimum_bid_increment %>
+	<%= f.text_area :terms %>
+	<%= f.submit "To Step 2", class: "btn btn-large btn-success" %>
 <% end %>
 
 <%= javascript_include_tag "chosen.jquery.min.js", "admin_auctions_form" %>

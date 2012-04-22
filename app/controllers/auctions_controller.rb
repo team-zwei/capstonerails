@@ -40,6 +40,8 @@ class AuctionsController < ApplicationController
 
 	def create
 		@auction = Auction.new params[:auction]
+		@auction.end_time = Time.now() + 600
+		@auction.start_time = Time.now()
 		if @auction.save
 			redirect_to new_auction_image_path @auction
 		else
