@@ -26,8 +26,4 @@ class Bid < ActiveRecord::Base
   def validate_end_time
     self.auction.end_time > Time.now()
   end
-
-  def get_username
-    User.find_by_id(self.user_id).username
-  end
 end
