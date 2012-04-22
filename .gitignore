@@ -16,6 +16,8 @@
 /config/database.yml
 *.sqlite3
 
+# Ignore public uploads
+/public/uploads/*
 
 # Ignore the Sphinx config file for local dev
 /config/development.sphinx.conf
