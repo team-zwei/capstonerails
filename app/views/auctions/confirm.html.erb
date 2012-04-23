@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag "chosen", :media => "all" %>
+<%= form_for @auction, url: "/auctions/#{@auction.id}/publish" do |f| %>
+
+  <h2>Review and Confirm</h2>
+  <table class="table table-condensed">
+    <tbody>
+      <tr>
+        <td><%= f.label :name %></td>
+        <td><%= f.text_field :name, { value: @auction.name } %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :description %></td>
+        <td><%= f.text_field :description, { value: @auction.description } %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :minimum_bid_increment %></td>
+        <td><%= f.text_field :minimum_bid_increment, { value: @auction.minimum_bid_increment } %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :starting_bid_price, "Starting Bid Amount" %></td>
+        <td><%= f.text_field :starting_bid_price, { value: @auction.starting_bid_price } %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= f.label :start, "Start Time" %>
+  <%= select_month Date.today, {}, name: "start[month]", class: "span2" %>
+  <%= select_day Date.today, {}, name: "start[day]", class: "span1" %>
+  <%= select_year Date.today, {}, name: "start[year]", class: "span1" %>
+  <%= select_hour Time.now, {}, name: "start[hour]", class: "span1" %>
+  <%= select_minute Time.now, {}, name: "start[minute]", class: "span1" %>
+  <br>
+
+  <%= f.label :end, "End Time" %>
+  <%= select_month Date.today, {}, name: "end[month]", class: "span2" %>
+  <%= select_day Date.today+1, {}, name: "end[day]", class: "span1" %>
+  <%= select_year Date.today, {}, name: "end[year]", class: "span1" %>
+  <%= select_hour Time.now, {}, name: "end[hour]", class: "span1" %>
+  <%= select_minute Time.now, {}, name: "end[minute]", class: "span1" %>
+  <br>
+
+  <%= f.submit "Submit", class: "btn btn-success btn-large span4" %><br><br>
+<% end %>
+<%= button_to "Cancel", { action: "delete", id: @auction.id }, confirm: "Are you sure?", method: :delete, class: "btn btn-danger btn-large span4" %>
+
+<%= javascript_include_tag "chosen.jquery.min.js", "admin_auctions_form" %>

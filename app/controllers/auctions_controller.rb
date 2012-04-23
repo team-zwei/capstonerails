@@ -58,6 +58,35 @@ class AuctionsController < ApplicationController
 	end
 
 	def destroy
+		redirect_to root_url, notice: "Auction creation cancelled"
+	end
 
+	def confirm
+		@auction = Auction.find_by_id params[:id]
+		@images = @auction.images
+	end
+
+	def publish
+		@auction = Auction.find_by_id params[:id]
+
+		@auction.start_time = Time.new(params[:start][:year],
+													params[:start][:month],
+													params[:start][:day],
+													params[:start][:hour],
+													params[:start][:minute])
+
+		@auction.end_time = Time.new(params[:end][:year],
+													params[:end][:month],
+													params[:end][:day],
+													params[:end][:hour],
+													params[:end][:minute])
+
+		@auction.name = params[:name]
+		@auction.description = params[:description]
+		@auction.minimum_bid_increment = params[:minimum_bid_increment]
+		@auction.starting_bid_price = params[:starting_bid_price]
+
+		# TODO: Get UI to allow setting a main and displaying images
+		# Image.find_by_id(params[:main_image_id]).update_attribute("main", true)
 	end
 end

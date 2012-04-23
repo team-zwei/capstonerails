@@ -103,4 +103,6 @@
 {% } %}
 </script>
 
+<%= link_to "Review and Confirm", "/auctions/#{@auction.id}/confirm", class: "btn btn-success btn-large", style: "float: right;" %>
+
 <%= javascript_include_tag 'load-image.min', 'tmpl.min.js', 'jquery.iframe-transport.js', 'jquery.iframe-transport.js', 'jquery.fileupload.js', 'jquery.fileupload-ui.js', 'locale.js', 'main.js' %>
