@@ -37,17 +37,16 @@ class Auction < ActiveRecord::Base
   end
 
   def add_to_end_time!(seconds)
-  	# Adds seconds to the end time
-  	self.end_time = self.end_time + seconds
+  	end_time += seconds # Adds seconds to the end time
   end
 
   def time_left
-  	time = self.end_time - Time.now()
-    time > 0 ? time :  # Returns seconds
+  	time = end_time - Time.now()
+    time > 0 ? time : 0 # Returns seconds
   end
 
   def time_remaining
-    time = ("%02d" % (time_left / 3600).to_i)           #hours
+    time = "%02d" % (time_left / 3600).to_i             #hours
     time += ":" + ("%02d" % (time_left / 60 % 60).to_i) #minutes
     time += ":" + ("%02d" % (time_left % 60).to_i)      #seconds
   end
