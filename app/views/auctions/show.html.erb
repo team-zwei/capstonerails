@@ -18,7 +18,7 @@
 		</div>
 
 		<ul class="thumbnails">	
-			<% @auction.images.each  do |image| %>
+			<% @auction.images.each_with_index do |image, index| %>
 				<li class="span1">
 				  <a href="#" class="thumbnail" data-image-number="<%= index + 1 %>">
 				  	<%= image_tag image.auction_image.thumb.url %>
