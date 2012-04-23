@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
     @user = user
 
     mail = Mail.new do 
-	from: from@example.com
+	from: "from@example.com"
 	to: user.email
 	subject: "Password Reset"
 	body: "Your new password is here"
