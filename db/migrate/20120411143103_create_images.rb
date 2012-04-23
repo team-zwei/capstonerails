@@ -4,6 +4,7 @@ class CreateImages < ActiveRecord::Migration
     	t.string :auction_image
       t.string :title
       t.integer :auction_id
+      t.boolean :main
       t.timestamps
     end
   end
