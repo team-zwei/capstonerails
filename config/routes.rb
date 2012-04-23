@@ -29,5 +29,5 @@ Capstone::Application.routes.draw do
   resources :sessions
   resources :password_resets
 
-  resources :images, :only => [:index, :create, :destroy]
+  resources :images, only: :destroy
 end

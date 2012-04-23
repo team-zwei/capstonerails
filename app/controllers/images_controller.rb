@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def index
-    @images = Image.all
+    @images = Auction.find_by_id(params[:auction_id]).images
     render :json => @images.collect { |p| p.to_jq_upload }.to_json
   end
 
