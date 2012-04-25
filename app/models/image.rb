@@ -6,7 +6,7 @@
 #  auction_image :string(255)
 #  title         :string(255)
 #  auction_id    :integer
-#  main          :boolean
+#  main          :boolean         default(FALSE)
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #
