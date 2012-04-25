@@ -11,6 +11,7 @@ class CreateAuctions < ActiveRecord::Migration
       t.integer   :current_bid_id
       t.integer   :winner_id
       t.text      :data
+      t.integer   :time_increment
 
       t.timestamps
     end

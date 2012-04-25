@@ -7,17 +7,25 @@ $(document).ready(function(){
   });
 </script>
 <div class="grey_box">
-  <input name="property_type" checked="checked" type="radio">Personal Property&nbsp;&nbsp;&nbsp;
-  <input name="property_type" type="radio">Real Estate<br /><br />
+  <input name="property_type" type="radio">Real Estate<br />
+  <input name="property_type" checked="checked" type="radio">Personal Property
   <%= form_for @auction, class: "form-vertical" do |f| %>
-  	<%= f.label :name %><%= f.text_field :name %>
+  	<%= f.text_field :name %>
     <fieldset class="inputs">
-      <label class="" for="auction_category">
-        Category
-      </label>
-      <select id="auction_category" data-placeholder="Choose some categories..."  multiple class="chzn-select">
-        <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
-      </select>
+      <ol>
+        <li class="string input optional stringish" id="auction_category_input">
+          <label class="" for="auction_category">
+            Category
+          </label>
+          <select id="auction_category" data-placeholder="Choose some categories..."  multiple class="chzn-select">
+            <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
+          </select>
+        </li>
+        <li class="string input optional stringish">
+          <label>Add Categories</label>
+          <input type="text" />
+        </li>
+      </ol>
     </fieldset>
     <div id="personal_property">
       <%= f.label :description %><%= f.text_field :description %>
