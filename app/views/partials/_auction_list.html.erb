@@ -20,7 +20,7 @@
                 <h3 class="auction_thumbnail_price" data-current-price="<%= auction.current_price %>" data-min-bid-increment="<%= auction.minimum_bid_increment %>">
                   $<%= auction.current_price %>
                 </h3>
-                <h3 class="auction_thumbnail_time" data-time-remaining="<%= auction.time_remaining %>">
+                <h3 class="auction_thumbnail_time" data-time-remaining="<%= auction.time_left %>">
                   <%= auction.time_remaining %>
                 </h3>
               <% if @current_user.blank? or auction.winner_id != @current_user.id %>
