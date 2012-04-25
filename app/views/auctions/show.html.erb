@@ -36,12 +36,12 @@
 		<dl class="dl-horizontal">
 			<div class="alert alert-success time-price-container">
 				<dt><strong>Time Remaining</strong></dt> 
-				<dd class="more_info_time" data-time-remaining="<%= @auction.get_remaining_time %>">
-					<%= @auction.get_time_string %>
+				<dd class="more_info_time" data-time-remaining="<%= @auction.time_remaining %>">
+					<%= @auction.time_remaining %>
 				</dd>
 				<dt><strong>Current Bid</strong></dt> 
-				<dd class="more_info_price" data-current-price="<%= @auction.get_current_price %>" data-min-bid-increment="<%= @auction.minimum_bid_increment %>">
-					$<%= @auction.get_current_price %>
+				<dd class="more_info_price" data-current-price="<%= @auction.current_price %>" data-min-bid-increment="<%= @auction.minimum_bid_increment %>">
+					$<%= @auction.current_price %>
 					<% if @current_bidder %>
 						by <%= @current_bidder.username %>
 					<% else %>
@@ -56,7 +56,7 @@
 				        <div class="controls">
 				          	<div class="input-prepend">
 					            <%= label_tag :bid_amount, "$", class: "add-on", style: "margin: 0px -5px 0px 0px" %>
-					            <%= text_field_tag :bid_amount, @auction.get_min_new_price, class: "more-amount input-medium" %>
+					            <%= text_field_tag :bid_amount, @auction.new_minimum_bid, class: "more-amount input-medium" %>
 				          	</div>
 			          	</div>
 		          	</div>
