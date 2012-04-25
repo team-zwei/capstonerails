@@ -46,7 +46,7 @@
             <%= text_field_tag :auction_image_title, nil, name: "auction_image_title_#{image.id}" %>
           </td>
           <td>
-            <%= check_box_tag :auction_image_main, "0", name: "auction_image_main_#{image.id}" %>
+            <%= radio_button_tag :auction_image_main, name: "auction_image_main_#{image.id}" %>
           </td>
         </tr>
       <% end %>
@@ -71,6 +71,6 @@
 
   <%= f.submit "Submit", class: "btn btn-success btn-large span4" %><br><br>
 <% end %>
-<%= button_to "Cancel", { action: "delete", id: @auction.id }, confirm: "Are you sure?", method: :delete, class: "btn btn-danger btn-large span4" %>
+<%= button_to "Cancel", { action: "cancel", id: @auction.id }, confirm: "Are you sure?", method: :delete, class: "btn btn-danger btn-large span4" %>
 
 <%= javascript_include_tag "chosen.jquery.min.js", "admin_auctions_form" %>

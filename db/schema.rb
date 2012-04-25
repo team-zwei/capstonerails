@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
     t.integer  "current_bid_id"
     t.integer  "winner_id"
     t.text     "data"
+    t.string   "token"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "status"

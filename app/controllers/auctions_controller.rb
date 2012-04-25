@@ -1,6 +1,7 @@
 class AuctionsController < ApplicationController
 	skip_before_filter :require_admin, only: [:index, :show]
 	skip_before_filter :require_login, only: [:index, :show]
+	before_filter :require_auction_token, only: [:update, :confirm, :publish, :cancel]
 
 	def index
 		if (params[:search].blank?)
@@ -35,17 +36,18 @@ class AuctionsController < ApplicationController
 	end
 
 	def new
-		@auction = Auction.new
+		@auction = Auction.new 
 	end
 
 	def create
 		@auction = Auction.new params[:auction]
 		@auction.end_time = Time.now() + 600
 		@auction.start_time = Time.now()
+		@auction.token = session[:auction_token] = SecureRandom.urlsafe_base64
 		if @auction.save
 			redirect_to new_auction_image_path @auction
 		else
-			redirect_to action: :new, error: "Error creating auction!  Please try again.  If this persists, contact customer support."
+			redirect_to action: :new, alert: "Error creating auction! Please try again. If this persists, contact customer support."
 		end
 	end
 
@@ -58,6 +60,11 @@ class AuctionsController < ApplicationController
 	end
 
 	def destroy
+		redirect_to root_url, notice: "Auction destroyed"
+	end
+
+	def cancel
+		Auction.find_by_id(params[:id]).destroy
 		redirect_to root_url, notice: "Auction creation cancelled"
 	end
 
@@ -71,6 +78,7 @@ class AuctionsController < ApplicationController
 	end
 
 	def publish
+
 		@auction = Auction.find_by_id params[:id]
 
 		@auction.start_time = Time.new(params[:start][:year],
@@ -89,6 +97,10 @@ class AuctionsController < ApplicationController
 		@auction.description = params[:description]
 		@auction.minimum_bid_increment = params[:minimum_bid_increment]
 		@auction.starting_bid_price = params[:starting_bid_price]
+
+		@auction.save!
+
+		@auction.update_attribute(:token, nil)
 
 		# TODO: Get UI to allow setting a main and displaying images
 		# Image.find_by_id(params[:main_image_id]).update_attribute("main", true)
