@@ -27,7 +27,7 @@ class Auction < ActiveRecord::Base
   has_many :images, dependent: :destroy
   has_one :payment
 
-  attr_accessible :name, :description, :terms, :starting_bid_price, :minimum_bid_increment, :data, :end_time, :start_time
+  attr_accessible :name, :description, :terms, :starting_bid_price, :minimum_bid_increment, :data, :end_time, :start_time, :time_increment
 
   define_index do
     indexes :name, sortable: true

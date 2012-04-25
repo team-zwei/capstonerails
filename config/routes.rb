@@ -6,6 +6,7 @@ Capstone::Application.routes.draw do
 
   get "auctions/:id/confirm" => "auctions#confirm"
   put "auctions/:id/publish" => "auctions#publish"
+  delete "auctions/:id/cancel" => "auctions#cancel"
 
   get "admin/logout" => "sessions#destroy", as: "admin/logout"
   devise_for :admin_users, ActiveAdmin::Devise.config

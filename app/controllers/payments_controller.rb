@@ -40,17 +40,17 @@ class PaymentsController < ApplicationController
         else
           # render error page
           # TODO: Redirect to a "confirmation page" and display any relevant info
-          redirect_to root_url, error: "UNSUCCESSFUL CHARGE"
+          redirect_to root_url, alert: "UNSUCCESSFUL CHARGE"
         end
         
 			rescue Stripe::InvalidRequestError => e
 			  Rails.logger.error "Stripe error while creating charge: #{e.message}"
 			  # TODO: Redirect to a "confirmation page" and display any relevant info
-			  redirect_to root_url, error: "UNSUCCESSFUL CHARGE"
+			  redirect_to root_url, alert: "UNSUCCESSFUL CHARGE"
 			end
 		else # a payment for this auction already exists
 			# TODO: display error for already paid, really, this shouldn't happen
-			redirect_to root_url, error: "ALREADY PAID FOR THIS AUCTION"
+			redirect_to root_url, alert: "ALREADY PAID FOR THIS AUCTION"
 		end
   end
 

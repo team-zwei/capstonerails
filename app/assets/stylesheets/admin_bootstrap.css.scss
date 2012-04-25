@@ -1,0 +1,24 @@
+@import "bootstrap";
+
+#header #site_title {
+  line-height: normal;
+  padding-top: 0px;
+}
+
+.label, .label:hover{
+  text-shadow: white 0 1px 0;
+  line-height: normal;
+  background-color: transparent;
+  width: 100px;
+  margin-right: 25px;
+  color: #606060;
+}
+
+.breadcrumb {
+  font-size: 100%;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  color: #8A949E;
+  border: 0;
+}

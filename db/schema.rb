@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
     t.integer  "current_bid_id"
     t.integer  "winner_id"
     t.text     "data"
+    t.string   "token"
+    t.integer  "time_increment"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "status"
@@ -87,8 +89,8 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
     t.string   "title"
     t.integer  "auction_id"
     t.boolean  "main",          :default => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "payment_methods", :force => true do |t|

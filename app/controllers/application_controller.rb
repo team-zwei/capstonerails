@@ -38,20 +38,25 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless logged_in?
-      flash[:error] = "You must be logged in to access this section"
-      session[:return_to] = request.fullpath
-      render "sessions/new", layout: "application"
+      #session[:return_to] = request.fullpath
+      render "sessions/new", alert: "You must be logged in to access this section"
     end
   end
 
   def require_admin
     #TODO Error flash isn't showing
-    redirect_to root_url, error: "Insufficient Privileges" unless current_admin_user
+    redirect_to root_url, alert: "Insufficient Privileges" unless current_admin_user
     @current_user
   end
  
   def logged_in?
     !!current_user
+  end
+
+  def require_auction_token
+    unless (auction = Auction.find_by_id(params[:id])) && auction.token == session[:auction_token]
+      redirect_to new_auction_path, alert: "Error creating auction! Please try again. If this persists, contact customer support."
+    end
   end
 
 end

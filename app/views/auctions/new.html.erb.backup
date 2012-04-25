@@ -1,0 +1,61 @@
+<%= stylesheet_link_tag "chosen", :media => "all" %>
+<script>
+$(document).ready(function(){
+    $("input[name=property_type]").change(function() { 
+      $("#real_property").toggle();
+    } );
+  });
+</script>
+<div class="grey_box">
+  <input name="property_type" type="radio">Real Estate<br />
+  <input name="property_type" checked="checked" type="radio">Personal Property
+  <%= form_for @auction, class: "form-vertical" do |f| %>
+  	<%= f.text_field :name %>
+    <fieldset class="inputs">
+      <ol>
+        <li class="string input optional stringish" id="auction_category_input">
+          <label class="" for="auction_category">
+            Category
+          </label>
+          <select id="auction_category" data-placeholder="Choose some categories..."  multiple class="chzn-select">
+            <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
+          </select>
+        </li>
+        <li class="string input optional stringish">
+          <label>Add Categories</label>
+          <input type="text" />
+        </li>
+      </ol>
+    </fieldset>
+    <div id="personal_property">
+      <%= f.label :description %><%= f.text_field :description %>
+      <%= f.label :starting_bid_price %><%= f.number_field :starting_bid_price %>
+      <%= f.label :minimum_bid_increment %><%= f.number_field :minimum_bid_increment %>
+      <%= f.label :time_increment %><%= f.number_field :time_increment %>
+      <%= f.label :terms %><%= f.text_area :terms %>
+    </div>
+    <div id="real_property" style="display:none;">
+      <%= f.label :property_type %><%= text_field_tag "data[property_type]" %>
+      <%= f.label :area %><%= text_field_tag "data[area]" %>
+      <%= f.label :street_num %><%= number_field_tag "data[street_num]" %>
+      <%= f.label :street_name %><%= text_field_tag "data[street_name]" %>
+      <%= f.label :city %><%= text_field_tag "data[city]" %>
+      <%= f.label :county %><%= text_field_tag "data[county]" %>
+      <%= f.label :legal_description %><%= text_area_tag "data[legal_description]" %>
+      <%= f.label :lot_size %><%= number_field_tag "data[lot_size]" %>
+      <%= f.label :year_built %><%= number_field_tag "data[year_built]" %>
+      <%= f.label :elementary_school %><%= text_field_tag "data[elementary_school]" %>
+      <%= f.label :middle_school %><%= text_field_tag "data[middle_school]" %>
+      <%= f.label :high_school %><%= text_field_tag "data[high_school]" %>
+      <%= f.label :square_feet %><%= number_field_tag "data[square_feet]" %>
+      <%= f.label :beds %><%= number_field_tag "data[beds]" %>
+      <%= f.label :baths %><%= number_field_tag "data[baths]" %>
+      <%= f.label :half_baths %><%= number_field_tag "data[half_baths]" %>
+      <%= f.label :fireplaces %><%= number_field_tag "data[fireplaces]" %>
+      <%= f.label :num_rooms %><%= number_field_tag "data[num_rooms]" %>
+    </div>
+    <%= f.submit "To Step 2", class: "btn btn-large btn-success" %>
+  <% end %>
+
+  <%= javascript_include_tag "chosen.jquery.min.js", "admin_auctions_form" %>
+</div>

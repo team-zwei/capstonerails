@@ -18,8 +18,8 @@ class SessionsController < ApplicationController
       current_user
       redirect_to destination, notice: "Welcome, " + user.username || user.email + "!"
     else
-      flash.now.alert = "Invalid email or password"
-      render :new
+      
+      render :new, alert = "Invalid email or password"
     end
   end
 

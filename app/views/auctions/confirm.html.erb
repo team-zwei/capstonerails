@@ -1,76 +1,100 @@
 <%= stylesheet_link_tag "chosen", :media => "all" %>
 <%= form_for @auction, url: "/auctions/#{@auction.id}/publish" do |f| %>
-
-  <h2>Review and Confirm</h2>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :name, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="auction_category">Category</label>
+      <div class="controls">
+        <select id="auction_category" data-placeholder="Choose some categories..."  multiple class="chzn-select">
+          <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :description, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :description %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :starting_bid_price, class: "control-label" %>
+      <div class="controls">
+        <%= f.number_field :starting_bid_price %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :minimum_bid_increment, class: "control-label" %>
+      <div class="controls">
+        <%= f.number_field :minimum_bid_increment %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :time_increment, class: "control-label" %>
+      <div class="controls">
+        <%= f.number_field :time_increment %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :start_time, class: "control-label" %>
+      <div class="controls">
+        <%= select_month Date.today, {}, name: "start[month]", class: "span2" %>
+        <%= select_day Date.today, {}, name: "start[day]", class: "span1" %>
+        <%= select_year Date.today, {}, name: "start[year]", class: "span1" %>
+        <%= select_hour Time.now, {}, name: "start[hour]", class: "span1" %>
+        <%= select_minute Time.now, {}, name: "start[minute]", class: "span1" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :end_time, class: "control-label" %>
+      <div class="controls">
+        <%= select_month Date.today, {}, name: "end[month]", class: "span2" %>
+        <%= select_day Date.today+1, {}, name: "end[day]", class: "span1" %>
+        <%= select_year Date.today, {}, name: "end[year]", class: "span1" %>
+        <%= select_hour Time.now, {}, name: "end[hour]", class: "span1" %>
+        <%= select_minute Time.now, {}, name: "end[minute]", class: "span1" %>
+      </div>
+    </div>
+  </fieldset>
   <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Preview</th><th>Filename</th><th>Title</th><th>Main</th>
+      </tr>
+    </thead>
     <tbody>
-      <tr>
-        <td><%= f.label :name %></td>
-        <td colspan="2"><%= f.text_field :name, { value: @auction.name } %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :description %></td>
-        <td colspan="2"><%= f.text_field :description, { value: @auction.description } %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :minimum_bid_increment %></td>
-        <td colspan="2"><%= f.text_field :minimum_bid_increment, { value: @auction.minimum_bid_increment } %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :starting_bid_price, "Starting Bid Amount" %></td>
-        <td colspan="2"><%= f.text_field :starting_bid_price, { value: @auction.starting_bid_price } %></td>
-      </tr>
-      <tr>
-        <th>
-          Preview
-        </th>
-        <th>
-          Filename
-        </th>
-        <th>
-          Title
-        </th>
-        <th>
-          Main
-        </th>
-      </tr>
       <% @auction.images.each do |image|%>
         <tr>
-          <td>
-            <%= image_tag image.auction_image, size: "64x64" %>
-          </td>
-          <td>
-            <%= image.auction_image.to_s.split('/').last %>
-          </td>
-          <td>
-            <%= text_field_tag :auction_image_title, nil, name: "auction_image_title_#{image.id}" %>
-          </td>
-          <td>
-            <%= check_box_tag :auction_image_main, "0", name: "auction_image_main_#{image.id}" %>
-          </td>
+          <td><%= image_tag image.auction_image, size: "64x64" %></td>
+          <td><%= image.auction_image.to_s.split('/').last %></td>
+          <td><%= text_field_tag :auction_image_title, nil, name: "auction_image_title_#{image.id}" %></td>
+          <td><%= radio_button_tag :auction_image_main, name: "auction_image_main_#{image.id}" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <%= f.label :start, "Start Time" %>
-  <%= select_month Date.today, {}, name: "start[month]", class: "span2" %>
-  <%= select_day Date.today, {}, name: "start[day]", class: "span1" %>
-  <%= select_year Date.today, {}, name: "start[year]", class: "span1" %>
-  <%= select_hour Time.now, {}, name: "start[hour]", class: "span1" %>
-  <%= select_minute Time.now, {}, name: "start[minute]", class: "span1" %>
-  <br>
-
-  <%= f.label :end, "End Time" %>
-  <%= select_month Date.today, {}, name: "end[month]", class: "span2" %>
-  <%= select_day Date.today+1, {}, name: "end[day]", class: "span1" %>
-  <%= select_year Date.today, {}, name: "end[year]", class: "span1" %>
-  <%= select_hour Time.now, {}, name: "end[hour]", class: "span1" %>
-  <%= select_minute Time.now, {}, name: "end[minute]", class: "span1" %>
-  <br>
-
-  <%= f.submit "Submit", class: "btn btn-success btn-large span4" %><br><br>
+  <div class="form-actions">
+    <%= f.submit "Submit", class: "btn btn-success btn-large" %>
+    <button id="puppet_cancel_btn" class="btn btn-danger btn-large">Cancel</button>
+  </div>
 <% end %>
-<%= button_to "Cancel", { action: "delete", id: @auction.id }, confirm: "Are you sure?", method: :delete, class: "btn btn-danger btn-large span4" %>
+
+<div>
+  <%= form_tag "/auctions/#{@auction.id}/cancel", method: :delete, id: "cancel_form" do%>
+  <% end %>
+</div>
 
 <%= javascript_include_tag "chosen.jquery.min.js", "admin_auctions_form" %>
+
+<script type="text/javascript">
+  $(function(){
+    $('#puppet_cancel_btn').click(function(){
+      $('#cancel_form').submit();
+      return false;
+    });
+  })
+</script>

@@ -1,26 +1,223 @@
 <%= stylesheet_link_tag "chosen", :media => "all" %>
-<%= form_for @auction do |f| %>
-	<%= f.text_field :name %>
-  <fieldset class="inputs">
-    <ol>
-      <li class="string input optional stringish" id="auction_category_input">
-        <label class="" for="auction_category">
-          Category
-        </label>
-        <select id="auction_category" data-placeholder="Choose some categories..."  multiple class="chzn-select">
-          <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
-        </select>
-      </li>
-      <li class="string input optional stringish">
-        <label>Add Categories</label>
-        <input type="text" />
-      </li>
-    </ol>
-  </fieldset>
-	<%= f.text_field :description %>
-  <%= f.range_field :minimum_bid_increment %>
-	<%= f.text_area :terms %>
-	<%= f.submit "To Step 2", class: "btn btn-large btn-success" %>
-<% end %>
+<script>
+$(document).ready(function(){
+    $('#personal_property_btn').click(function(){
+      if ($(this).attr('data-active') != "true") {
+        $(this).attr('data-active', 'true');
+        $('#real_estate_btn').attr('data-active', 'false');
+        toggleProperties();
+      }
+    });
+    $('#real_estate_btn').click(function(){
+      if ($(this).attr('data-active') != "true") {
+        $(this).attr('data-active', 'true');
+        $('#personal_property_btn').attr('data-active', 'false');
+        toggleProperties();
+      }
+    });
 
-<%= javascript_include_tag "chosen.jquery.min.js", "admin_auctions_form" %>
+    function toggleProperties(){
+      $('#personal_property_btn').toggleClass("btn-primary");
+      $('#real_estate_btn').toggleClass("btn-primary");
+      $('#real_property').toggle();
+      $('#auction_terms').attr('rows') == "20" ? $('#auction_terms').attr('rows', '60') : $('#auction_terms').attr('rows', '20')
+    }
+  });
+</script>
+<div class="row">
+  <div class="span12">
+
+    <div class="row">
+      <div class="span3">
+        <div class="btn-group">
+          <button id="personal_property_btn" class="btn btn-primary property_type" data-active="true">Personal Property</button>
+          <button id="real_estate_btn" class="btn property_type">Real Estate</button>
+        </div>
+      </div>
+      <div class="span9">
+        <h2 id="new_auction_header">Create a New Auction</h2>
+      </div>
+    </div>
+
+    <hr/>
+
+    <%= form_for @auction, html: {class: "form-horizontal"} do |f| %>
+      <div class="row">
+        <div class="span5">
+          <fieldset>
+            <div class="control-group">
+              <%= f.label :name, class: "control-label" %>
+              <div class="controls">
+                <%= f.text_field :name %>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="auction_category">Category</label>
+              <div class="controls">
+                <select id="auction_category" data-placeholder="Choose some categories..."  multiple class="chzn-select">
+                  <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
+                </select>
+              </div>
+            </div>
+            <div id="personal_property">
+              <div class="control-group">
+                <%= f.label :description, class: "control-label" %>
+                <div class="controls">
+                  <%= f.text_field :description %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :starting_bid_price, class: "control-label" %>
+                <div class="controls">
+                  <%= f.number_field :starting_bid_price %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :minimum_bid_increment, class: "control-label" %>
+                <div class="controls">
+                  <%= f.number_field :minimum_bid_increment %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :time_increment, class: "control-label" %>
+                <div class="controls">
+                  <%= f.number_field :time_increment %>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+            <div id="real_property" style="display:none;">
+              <div class="control-group">
+                <%= f.label :property_type, class: "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag "data[property_type]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :area, class: "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag "data[area]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :street_num, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[street_num]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :street_name, class: "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag "data[street_name]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :city, class: "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag "data[city]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :county, class: "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag "data[county]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :legal_description, class: "control-label" %>
+                <div class="controls">
+                  <%= text_area_tag "data[legal_description]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :lot_size, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[lot_size]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :year_built, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[year_built]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :elementary_school, class: "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag "data[elementary_school]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :middle_school, class: "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag "data[middle_school]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :high_school, class: "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag "data[high_school]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :square_feet, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[square_feet]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :beds, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[beds]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :baths, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[baths]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :half_baths, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[half_baths]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :fireplaces, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[fireplaces]" %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.label :num_rooms, class: "control-label" %>
+                <div class="controls">
+                  <%= number_field_tag "data[num_rooms]" %>
+                </div>
+              </div>
+            </div>
+            </fieldset>
+          </div>
+          <div class="span7">
+            <div class="row">
+              <div class="span7">
+              <fieldset>
+                <div class="control-group">
+                  <%= f.label :terms, class: "control-label", id: "terms_label" %>
+                  <div class="controls" id="terms_text_area_div">
+                    <%= f.text_area :terms, class: "span6" %>
+                  </div>
+                </div>
+              </div>
+              </fieldset>
+            </div>
+            <div class="span2 offset5">
+              <%= f.submit "To Step 2", class: "btn btn-large btn-success" %>
+            </div>
+            </div>
+          </div>
+      <% end %>
+      <%= javascript_include_tag "chosen.jquery.min.js", "admin_auctions_form" %>
+    </div>
+  </div>
+</div>
