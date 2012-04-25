@@ -43,7 +43,7 @@ class AuctionsController < ApplicationController
 		@auction = Auction.new params[:auction]
 		params[:categories].each do |category_id|
 			@auction.categories << Category.find_by_id(category_id)
-		end
+		end if params[:categories]
 		@auction.end_time = Time.now() + 600
 		@auction.start_time = Time.now()
 		@auction.token = session[:auction_token] = SecureRandom.urlsafe_base64
