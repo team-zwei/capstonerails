@@ -4,7 +4,6 @@
 #
 #  id                    :integer         not null, primary key
 #  name                  :string(255)
-#  category              :string(255)
 #  description           :string(255)
 #  terms                 :text
 #  start_time            :datetime
@@ -14,7 +13,6 @@
 #  current_bid_id        :integer
 #  winner_id             :integer
 #  data                  :text
-#  image_urls            :text
 #  created_at            :datetime        not null
 #  updated_at            :datetime        not null
 #  status                :string(255)

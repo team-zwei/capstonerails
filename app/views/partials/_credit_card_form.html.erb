@@ -1,47 +1,91 @@
 <%= javascript_include_tag "https://js.stripe.com/v1/", "credit_card_form" %>
 <%= stylesheet_link_tag "credit_card_form", :media => "all" %>
-<%= form_tag auction_payment_path(@auction), id: "new_payment", class: "form-horizontal" %>
-  <fieldset>
-    <legend>
-      Credit/Debit Card
-    </legend>
-    <br>
-    <div id="stripe_error" class="alert alert-error">
-  		<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-  	</div>
-    
-    <%= hidden_field_tag :stripe_card_token %>
-    <%= hidden_field_tag :stripe_card_last4 %>
-    <%= hidden_field_tag :stripe_card_type %>
-    <%= hidden_field_tag :auction_id, @auction.id %>
 
-    <div class="control-group">
-        <%= label_tag :card_number, "Credit Card Number", class: "control-label" %>
-        <div class="controls">
-          <%= text_field_tag :card_number, nil, name: nil, placeholder: "ex: 0000000000000000" %>
-        </div>
-    </div>
-    <div class="control-group">
-        <%= label_tag :card_code, "Security Code on Card (CVV)", class: "control-label" %>
-        <div class="controls">
-          <%= text_field_tag :card_code, nil, name: nil, class: "span1", placeholder: "ex: 000" %>
-        </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :card_month, "Card Expiration", class: "control-label" %>
-      <div class="controls">
-        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: "span2"}%>
-        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "span1"}%>
+<%= form_tag auction_payment_path(@auction.id), id: "saved_payment" %>
+  <%= hidden_field_tag :auction_id, @auction.id %>
+  <div id="saved_payments">
+    <legend>
+      Saved Cards
+    </legend>
+    <table class="table table-condensed">
+      <tbody>
+        <% if @saved_cards %>
+          <% @saved_cards.each do |card| %>
+            <tr>
+              <td>
+                <%= card.card_type %>
+              </td>
+              <td>
+                <%= card.last4 %>
+              </td>
+              <td>
+                <%= Date.parse(card.expiration.to_s).strftime('%m/%y') %>
+              </td>
+              <td>
+                <%= radio_button_tag :use_saved_card, card.last4, false, class: "saved_card" %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="3">
+              <h4>No saved cards</h4>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="new_card" style="display: none;">
+    <button id="" class="btn btn-success" type="submit">Submit</button>
+    &nbsp;or&nbsp;
+    <button id="new_card_button" class="btn btn-primary">Enter New Card</button>
+  </div>
+</form>
+<%= form_tag auction_payment_path(@auction.id), id: "new_payment", class: "form-horizontal" %>
+  <div id="stripe_payment">
+    <fieldset>
+      <legend>
+        Credit/Debit Card
+      </legend>
+      <br>
+      <div id="stripe_error" class="alert alert-error">
+    		<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+    	</div>
+      
+      <%= hidden_field_tag :stripe_card_token %>
+      <%= hidden_field_tag :stripe_card_last4 %>
+      <%= hidden_field_tag :stripe_card_type %>
+      <%= hidden_field_tag :auction_id, @auction.id %>
+
+      <div class="control-group">
+          <%= label_tag :card_number, "Credit Card Number", class: "control-label" %>
+          <div class="controls">
+            <%= text_field_tag :card_number, nil, name: nil, placeholder: "ex: 0000123400001234" %>
+          </div>
       </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :save_card, "Save this card?", class: "control-label" %>
-      <div class="controls">
-        <%= check_box_tag :save_card, "save_card" %>
+      <div class="control-group">
+          <%= label_tag :card_code, "Security Code on Card (CVV)", class: "control-label" %>
+          <div class="controls">
+            <%= text_field_tag :card_code, nil, name: nil, class: "span1", placeholder: "ex: 000" %>
+          </div>
       </div>
-    </div>
-    <div class="form-actions">
-      <%= submit_tag "Submit Payment", class: "btn btn-success btn-large" %>
-    </div>
-  </fieldset>
+      <div class="control-group">
+        <%= label_tag :card_month, "Card Expiration", class: "control-label" %>
+        <div class="controls">
+          <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: "span2"}%>
+          <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: "span1"}%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :save_card, "Save this card?", class: "control-label" %>
+        <div class="controls">
+          <%= check_box_tag :save_card, "save_card" %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= submit_tag "Submit Payment", class: "btn btn-success btn-large" %>
+      </div>
+    </fieldset>
+  </div>
 </form>

@@ -2,6 +2,23 @@ jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   payment.setupForm()
   $('input[type=submit]').button()
+  $('input[type=radio].saved_card').click toggle_cc_form
+  $('#new_card_button').click toggle_cc_form
+
+toggle_cc_form = ->
+  stripe_payment = $('#stripe_payment')
+  new_card = $('#new_card')
+
+  if stripe_payment.is(":visible")
+    stripe_payment.hide()
+    new_card.show()
+  else if new_card.not(":visible")
+    new_card.hide()
+    stripe_payment.show()
+  
+  if this.id == "new_card_button"
+    $('input[type=radio].saved_card').prop("checked", false)
+    false
 
 payment =
   setupForm: ->

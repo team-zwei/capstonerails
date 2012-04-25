@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
     t.string   "password_digest"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "stripe_customer_token"
     t.string   "auth_token"
     t.boolean  "admin"
     t.datetime "created_at",             :null => false

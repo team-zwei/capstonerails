@@ -5,6 +5,10 @@ class PaymentsController < ApplicationController
   	@payment = Payment.new
   	@auction = Auction.find_by_id(params[:auction_id])
   	@price = Bid.find_by_id(@auction.current_bid_id).amount
+
+    if current_user.stripe_customer_token
+      @saved_cards = current_user.payment_methods.where("stripe_customer_token = ?", current_user.stripe_customer_token)
+    end
   end
 
   def create
@@ -18,11 +22,17 @@ class PaymentsController < ApplicationController
           currency:     "usd",
           description:  "RWSAuctions: " + auction.name # TODO: Add site info
         }
-        if !params[:save_card].blank?
-          charge_params[:customer] = current_user.add_payment_method(params[:stripe_card_token], params[:stripe_card_last4].to_i, params[:stripe_card_type])
-        else
-          charge_params[:card] = params[:stripe_card_token]
+
+        if params[:use_saved_card] # Submit charge using active card
+          charge_params[:customer] = current_user.stripe_customer_token
+        else # Submit charge without using saved payment
+          if !params[:save_card].blank?
+            charge_params[:customer] = current_user.add_payment_method(params[:stripe_card_token], params[:stripe_card_last4].to_i, params[:stripe_card_type])
+          else
+            charge_params[:card] = params[:stripe_card_token]
+          end
         end
+        
         charge = Stripe::Charge.create(charge_params)
 
         if (auction.payment = Payment.create user_id: current_user, amount: amount, charge_id: charge.id)
@@ -32,6 +42,7 @@ class PaymentsController < ApplicationController
           # TODO: Redirect to a "confirmation page" and display any relevant info
           redirect_to root_url, error: "UNSUCCESSFUL CHARGE"
         end
+        
 			rescue Stripe::InvalidRequestError => e
 			  Rails.logger.error "Stripe error while creating charge: #{e.message}"
 			  # TODO: Redirect to a "confirmation page" and display any relevant info
