@@ -63,6 +63,10 @@ class AuctionsController < ApplicationController
 
 	def confirm
 		@auction = Auction.find_by_id params[:id]
+		if @auction.blank?
+			redirect_to auctions_url
+		end
+		
 		@images = @auction.images
 	end
 

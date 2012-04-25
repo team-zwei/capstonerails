@@ -6,20 +6,50 @@
     <tbody>
       <tr>
         <td><%= f.label :name %></td>
-        <td><%= f.text_field :name, { value: @auction.name } %></td>
+        <td colspan="2"><%= f.text_field :name, { value: @auction.name } %></td>
       </tr>
       <tr>
         <td><%= f.label :description %></td>
-        <td><%= f.text_field :description, { value: @auction.description } %></td>
+        <td colspan="2"><%= f.text_field :description, { value: @auction.description } %></td>
       </tr>
       <tr>
         <td><%= f.label :minimum_bid_increment %></td>
-        <td><%= f.text_field :minimum_bid_increment, { value: @auction.minimum_bid_increment } %></td>
+        <td colspan="2"><%= f.text_field :minimum_bid_increment, { value: @auction.minimum_bid_increment } %></td>
       </tr>
       <tr>
         <td><%= f.label :starting_bid_price, "Starting Bid Amount" %></td>
-        <td><%= f.text_field :starting_bid_price, { value: @auction.starting_bid_price } %></td>
+        <td colspan="2"><%= f.text_field :starting_bid_price, { value: @auction.starting_bid_price } %></td>
       </tr>
+      <tr>
+        <th>
+          Preview
+        </th>
+        <th>
+          Filename
+        </th>
+        <th>
+          Title
+        </th>
+        <th>
+          Main
+        </th>
+      </tr>
+      <% @auction.images.each do |image|%>
+        <tr>
+          <td>
+            <%= image_tag image.auction_image, size: "64x64" %>
+          </td>
+          <td>
+            <%= image.auction_image.to_s.split('/').last %>
+          </td>
+          <td>
+            <%= text_field_tag :auction_image_title, nil, name: "auction_image_title_#{image.id}" %>
+          </td>
+          <td>
+            <%= check_box_tag :auction_image_main, "0", name: "auction_image_main_#{image.id}" %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 
