@@ -41,6 +41,9 @@ class AuctionsController < ApplicationController
 
 	def create
 		@auction = Auction.new params[:auction]
+		params[:categories].each do |category_id|
+			@auction.categories << Category.find_by_id(category_id)
+		end
 		@auction.end_time = Time.now() + 600
 		@auction.start_time = Time.now()
 		@auction.token = session[:auction_token] = SecureRandom.urlsafe_base64
@@ -94,10 +97,10 @@ class AuctionsController < ApplicationController
 													params[:end][:hour],
 													params[:end][:minute])
 
-		@auction.name = params[:name]
-		@auction.description = params[:description]
-		@auction.minimum_bid_increment = params[:minimum_bid_increment]
-		@auction.starting_bid_price = params[:starting_bid_price]
+		@auction.name = params[:auction][:name]
+		@auction.description = params[:auction][:description]
+		@auction.minimum_bid_increment = params[:auction][:minimum_bid_increment]
+		@auction.starting_bid_price = params[:auction][:starting_bid_price]
 
 		@auction.save!
 

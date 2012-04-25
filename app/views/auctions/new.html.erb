@@ -54,7 +54,7 @@ $(document).ready(function(){
             <div class="control-group">
               <label class="control-label" for="auction_category">Category</label>
               <div class="controls">
-                <select id="auction_category" data-placeholder="Choose some categories..."  multiple class="chzn-select">
+                <select id="auction_category" name="categories[]" data-placeholder="Choose some categories..."  multiple class="chzn-select">
                   <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
                 </select>
               </div>
