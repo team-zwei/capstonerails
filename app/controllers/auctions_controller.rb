@@ -65,6 +65,7 @@ class AuctionsController < ApplicationController
 
 	def cancel
 		Auction.find_by_id(params[:id]).destroy
+		session[:auction_token] = nil
 		redirect_to root_url, notice: "Auction creation cancelled"
 	end
 
@@ -101,6 +102,9 @@ class AuctionsController < ApplicationController
 		@auction.save!
 
 		@auction.update_attribute(:token, nil)
+		session[:auction_token] = nil
+
+		render :show, notice: "Auction successfully created!"
 
 		# TODO: Get UI to allow setting a main and displaying images
 		# Image.find_by_id(params[:main_image_id]).update_attribute("main", true)

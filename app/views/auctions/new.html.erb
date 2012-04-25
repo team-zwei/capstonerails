@@ -1,22 +1,42 @@
 <%= stylesheet_link_tag "chosen", :media => "all" %>
 <script>
 $(document).ready(function(){
-    $('#personal_property_btn').click(function(){toggleProperties();});
-    $('#real_estate_btn').click(function(){toggleProperties();});
+    $('#personal_property_btn').click(function(){
+      if ($(this).attr('data-active') != "true") {
+        $(this).attr('data-active', 'true');
+        $('#real_estate_btn').attr('data-active', 'false');
+        toggleProperties();
+      }
+    });
+    $('#real_estate_btn').click(function(){
+      if ($(this).attr('data-active') != "true") {
+        $(this).attr('data-active', 'true');
+        $('#personal_property_btn').attr('data-active', 'false');
+        toggleProperties();
+      }
+    });
 
     function toggleProperties(){
       $('#personal_property_btn').toggleClass("btn-primary");
       $('#real_estate_btn').toggleClass("btn-primary");
       $('#real_property').toggle();
+      $('#auction_terms').attr('rows') == "20" ? $('#auction_terms').attr('rows', '60') : $('#auction_terms').attr('rows', '20')
     }
   });
 </script>
 <div class="row">
   <div class="span12">
 
-    <div class="btn-group">
-      <button id="personal_property_btn" class="btn btn-primary property_type">Personal Property</button>
-      <button id="real_estate_btn" class="btn property_type">Real Estate</button>
+    <div class="row">
+      <div class="span3">
+        <div class="btn-group">
+          <button id="personal_property_btn" class="btn btn-primary property_type" data-active="true">Personal Property</button>
+          <button id="real_estate_btn" class="btn property_type">Real Estate</button>
+        </div>
+      </div>
+      <div class="span9">
+        <h2 id="new_auction_header">Create a New Auction</h2>
+      </div>
     </div>
 
     <hr/>

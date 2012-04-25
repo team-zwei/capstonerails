@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_auction_token
-    unless Auction.find_by_id(params[:id]).token == session[:auction_token]
+    unless (auction = Auction.find_by_id(params[:id])) && auction.token == session[:auction_token]
       redirect_to new_auction_path, alert: "Error creating auction! Please try again. If this persists, contact customer support."
     end
   end
