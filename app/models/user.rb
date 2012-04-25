@@ -10,6 +10,7 @@
 #  password_digest        :string(255)
 #  password_reset_token   :string(255)
 #  password_reset_sent_at :datetime
+#  stripe_customer_token  :string(255)
 #  auth_token             :string(255)
 #  admin                  :boolean
 #  created_at             :datetime        not null
@@ -26,11 +27,11 @@ class User < ActiveRecord::Base
   has_many :auctions, through: :bids, uniq: true
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email,    presence: true, uniqueness: { case_sensitive: false }, format: { with: valid_email_regex }
-  validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates :password, presence: true
+  validates :email,     presence: true, uniqueness: { case_sensitive: false }, format: { with: valid_email_regex }
+  validates :username,  presence: true, uniqueness: { case_sensitive: false }
+  validates :password,  presence: true
   validates :firstname, presence: true
-  validates :lastname, presence: true
+  validates :lastname,  presence: true
   
   before_create { generate_token(:auth_token) }
 
@@ -53,11 +54,21 @@ class User < ActiveRecord::Base
 
   # returns new stripe customer id
   def add_payment_method(token, last4, type)
-    customer =  Stripe::Customer.create( description: self.username, email: self.email, card: token)
+    # TODO: This currently replaces the 'active' card with a new card
+    if self.stripe_customer_token
+      customer = Stripe::Customer.retrieve(self.stripe_customer_token)
+      customer.card = token
+      customer.save
+    else
+      customer =  Stripe::Customer.create( description: self.username, email: self.email, card: token)
+      self.update_attribute(:stripe_customer_token, customer.id)
+    end
+
     payment_method = PaymentMethod.new(stripe_customer_token: customer.id, last4: last4, user_id: self)
     payment_method.expiration = Time.new(customer.active_card.exp_year,customer.active_card.exp_month) 
     payment_method.card_type = type
     payment_method.save!
+
     customer.id
   end
 end

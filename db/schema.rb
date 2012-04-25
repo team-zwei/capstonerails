@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
     t.string   "auction_image"
     t.string   "title"
     t.integer  "auction_id"
-    t.boolean  "main"
+    t.boolean  "main",          :default => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
     t.string   "password_digest"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "stripe_customer_token"
     t.string   "auth_token"
     t.boolean  "admin"
     t.datetime "created_at",             :null => false

@@ -31,7 +31,7 @@ auction = Auction.create( name: "iPod Touch 32GB",
                 start_time: Time.now
               )
 
-Auction.create( name: "4br 4bath House",
+auction2 = Auction.create( name: "4br 4bath House",
                 description: "A charming 4 bedroom, 4 bath house that will be demolished next week.",
                 starting_bid_price: 120000.00,
                 minimum_bid_increment: 1000.00,
@@ -112,6 +112,7 @@ Auction.create( name: "Something Entirely Different",
                 }
               )
 
+# Admin wins auction 1
 bid = Bid.new(amount: 105.00)
 bid.user_id = 1
 bid.auction_id = 1
@@ -122,6 +123,18 @@ auction.end_time = Time.now - 1
 auction.winner_id = 1
 auction.save!
 
+# Admin wins auction 2
+bid = Bid.new(amount: 121000.00)
+bid.user_id = 1
+bid.auction_id = 2
+bid.save!
+
+auction2.current_bid_id = bid.id
+auction2.end_time = Time.now - 1
+auction2.winner_id = 1
+auction2.save!
+
+# Test bids on auction "Nothing"
 bid = Bid.new(amount: 1.00)
 bid.user_id = User.find_by_username("test").id
 bid.auction_id = Auction.find_by_name("Nothing").id
