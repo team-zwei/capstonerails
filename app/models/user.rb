@@ -54,16 +54,8 @@ class User < ActiveRecord::Base
 
   # returns new stripe customer id
   def add_payment_method(token, last4, type)
-    # TODO: This currently replaces the 'active' card with a new card
-    if self.stripe_customer_token
-      customer = Stripe::Customer.retrieve(self.stripe_customer_token)
-      customer.card = token
-      customer.save
-    else
-      customer =  Stripe::Customer.create( description: self.username, email: self.email, card: token)
-      self.update_attribute(:stripe_customer_token, customer.id)
-    end
-
+    customer =  Stripe::Customer.create( description: self.username, email: self.email, card: token)
+    
     payment_method = PaymentMethod.new(stripe_customer_token: customer.id, last4: last4, user_id: self)
     payment_method.expiration = Time.new(customer.active_card.exp_year,customer.active_card.exp_month) 
     payment_method.card_type = type

@@ -5,17 +5,24 @@ jQuery ->
   $('input[type=radio].saved_card').click toggle_cc_form
   $('#new_card_button').click toggle_cc_form
 
+  $('.payment_method').click ->
+    elem = $(this.children).children('input')[0]
+    elem.checked = true
+    toggle_cc_form()
+
 toggle_cc_form = ->
   stripe_payment = $('#stripe_payment')
   new_card = $('#new_card')
 
-  if stripe_payment.is(":visible")
-    stripe_payment.hide()
-    new_card.show()
-  else if new_card.not(":visible")
-    new_card.hide()
+  if ((this.class = "payment_method" || this.class = "saved_card") && !$(stripe_payment).is(":hidden"))
+    return
+  else if $(stripe_payment).is(":hidden")
     stripe_payment.show()
-  
+    new_card.hide()
+  else if $(new_card).is(":hidden")
+    new_card.show()
+    stripe_payment.hide()
+
   if this.id == "new_card_button"
     $('input[type=radio].saved_card').prop("checked", false)
     false
@@ -36,8 +43,6 @@ payment =
     return false
   
   handleStripeResponse: (status, response) ->
-    # $('input[type=submit]').button('reset')
-
     if status == 200
       console.log response
       $('#stripe_error').hide()

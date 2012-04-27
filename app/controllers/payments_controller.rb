@@ -6,8 +6,8 @@ class PaymentsController < ApplicationController
   	@auction = Auction.find_by_id(params[:auction_id])
   	@price = Bid.find_by_id(@auction.current_bid_id).amount
 
-    if current_user.stripe_customer_token
-      @saved_cards = current_user.payment_methods.where("stripe_customer_token = ?", current_user.stripe_customer_token)
+    if current_user.payment_methods
+      @saved_cards = current_user.payment_methods
     end
   end
 
@@ -24,7 +24,8 @@ class PaymentsController < ApplicationController
         }
 
         if params[:use_saved_card] # Submit charge using active card
-          charge_params[:customer] = current_user.stripe_customer_token
+          card_info = params[:use_saved_card].split('_')
+          charge_params[:customer] = current_user.payment_methods.where("card_type = ? and last4 = ?", card_info[0], card_info[1]).stripe_customer_token
         else # Submit charge without using saved payment
           if !params[:save_card].blank?
             charge_params[:customer] = current_user.add_payment_method(params[:stripe_card_token], params[:stripe_card_last4].to_i, params[:stripe_card_type])

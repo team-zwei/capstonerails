@@ -11,7 +11,7 @@
       <tbody>
         <% if @saved_cards %>
           <% @saved_cards.each do |card| %>
-            <tr>
+            <tr class="payment_method">
               <td>
                 <%= card.card_type %>
               </td>
@@ -21,8 +21,8 @@
               <td>
                 <%= Date.parse(card.expiration.to_s).strftime('%m/%y') %>
               </td>
-              <td>
-                <%= radio_button_tag :use_saved_card, card.last4, false, class: "saved_card" %>
+              <td class="payment_method_select_cell">
+                <%= radio_button_tag :use_saved_card, card.card_type+'_'+card.last4.to_s, false, class: "saved_card" %>
               </td>
             </tr>
           <% end %>

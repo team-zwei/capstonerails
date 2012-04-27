@@ -44,7 +44,7 @@ auction2 = Auction.create( name: "4br 4bath House",
                 }
               )
 
-Auction.create( name: "John Deere Tractor",
+auction3 = Auction.create( name: "John Deere Tractor",
                 description: "It's been said that some women find this tractor sexy. That said, the point is still up for debate.",
                 starting_bid_price: 45000.00,
                 minimum_bid_increment: 500.00,
@@ -133,6 +133,17 @@ auction2.current_bid_id = bid.id
 auction2.end_time = Time.now - 1
 auction2.winner_id = 1
 auction2.save!
+
+# Admin wins auction 3
+bid = Bid.new(amount: 45500.00)
+bid.user_id = 1
+bid.auction_id = 3
+bid.save!
+
+auction3.current_bid_id = bid.id
+auction3.end_time = Time.now - 1
+auction3.winner_id = 1
+auction3.save!
 
 # Test bids on auction "Nothing"
 bid = Bid.new(amount: 1.00)
