@@ -24,6 +24,9 @@
               <td class="payment_method_select_cell">
                 <%= radio_button_tag :use_saved_card, card.card_type+'_'+card.last4.to_s, false, class: "saved_card" %>
               </td>
+              <td class="delete_cell">
+                <button class="btn btn-inverse btn-mini" data-card-id="<%= card.card_type+'_'+card.last4.to_s %>)"><i class="icon-trash icon-white delete_saved_card"></i>&nbsp;Delete</button>
+              </td>
             </tr>
           <% end %>
         <% else %>
