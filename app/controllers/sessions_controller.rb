@@ -10,11 +10,14 @@ class SessionsController < ApplicationController
     user = User.find_by_username params[:username]
     user = User.find_by_email params[:username] unless user
     if user && user.authenticate(params[:password])
+      Rails.logger.info(user.auth_token)
+      user.update_auth_token
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
       else
         cookies[:auth_token] = user.auth_token
       end
+      Rails.logger.info(user.auth_token)
       current_user
       redirect_to destination, notice: "Welcome, " + user.username || user.email + "!"
     else

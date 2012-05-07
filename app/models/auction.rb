@@ -64,6 +64,6 @@ class Auction < ActiveRecord::Base
   end
 
   def format_price(amount)
-    ("%.2f" % amount).gsub(/(\d)(?=(\d{3})+(.\d{2})$)/, '\1,')
+    ("%.2f" % amount).gsub(/(\d)(?=(\d{3})+(\.(\d+)?)?$)/, '\1,')
   end
 end

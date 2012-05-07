@@ -42,7 +42,11 @@ class User < ActiveRecord::Base
   end
 
   def make_admin
-    self.update_attribute(:admin, true)
+    update_attribute(:admin, true)
+  end
+
+  def update_auth_token
+    update_attribute(:auth_token, SecureRandom.urlsafe_base64)
   end
 
   def send_password_reset

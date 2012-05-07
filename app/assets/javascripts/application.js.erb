@@ -17,6 +17,21 @@
 //= require bootstrap
 //= require countdown
 
+
+// Adds commas and trims to two digits after the decimal.
+//
+// string = String object consisting of some number of digit characters
+//          followed by an optional decimal and some number of digit
+//          characters.
+//
+// Returns a string with commas separating digits as common in the U.S.
+// *NOTE* This does not round
+function global_format_price(string) {
+  var result = string.split(".");
+  var mantissa = result[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+  return mantissa + "." + ((result.length > 1) ? result[1].substring(0,2) : "00");
+}
+
 $(function(){
-  $('.dropdown-toggle').dropdown()
+  $('.dropdown-toggle').dropdown();
 });

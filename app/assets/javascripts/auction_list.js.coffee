@@ -13,6 +13,7 @@ $(".auction_thumbnail").each ->
 stock_modal = undefined
 $(document).ready ->
   stock_modal = $("#bid_modal").clone().html()
+
   $(".auction_thumbnail_bid_now").click ->
     $("#bid_modal").html stock_modal
     $("#bid_modal").modal
@@ -32,9 +33,13 @@ $(document).ready ->
 
     price_elem = $("#" + auction_id + " .auction_thumbnail_price")
     $("#bid_modal .modal-amount").val(
-      (parseFloat(price_elem.attr('data-current-price').replace(/\,/g, ''))+
-      parseFloat(price_elem.attr('data-min-bid-increment'))).toFixed(2))
+      global_format_price((parseFloat(price_elem.attr('data-current-price').replace(/\,/g, ''))+
+      parseFloat(price_elem.attr('data-min-bid-increment'))).toFixed(2)))
     $("#bid_modal .bid-amount-label").text("Bid Amount (Enter $" + $("#bid_modal .modal-amount").val() + " or more):")
+
+    $('#bid_amount').blur ->
+      $('#bid_amount').val(global_format_price($('#bid_amount').val()))
+
     false
 
   PrivatePub.subscribe "/bids/new", (data, channel) ->
@@ -43,7 +48,7 @@ $(document).ready ->
     
     new_price = parseFloat(data.message.amount).toFixed(2);
     price_elem = $("#auction_"+data.message.auction_id+" h3.auction_thumbnail_price")
-    price_elem.text "$" + new_price
+    price_elem.text "$" + global_format_price(new_price)
     price_elem.attr 'data-current-price', new_price
 
     $("#auction_"+data.message.auction_id+" .auction_thumbnail_price_time_container").effect("highlight", { color: "#FF9999" }, 1500);
