@@ -42,7 +42,7 @@
     <div class="control-group">
       <%= f.label :start_time, class: "control-label" %>
       <div class="controls">
-        <%= select_month Date.today, {}, name: "start[month]", class: "span2" %>
+        <%= select_month Date.today, {use_month_numbers: true}, name: "start[month]", class: "span1" %>
         <%= select_day Date.today, {}, name: "start[day]", class: "span1" %>
         <%= select_year Date.today, {}, name: "start[year]", class: "span1" %>
         <%= select_hour Time.now, {}, name: "start[hour]", class: "span1" %>

@@ -32,8 +32,7 @@ class ApplicationController < ActionController::Base
   end 
 
   def current_admin_user
-    return nil unless current_user && current_user.admin?
-    @current_user
+    current_user && @current_user.admin? ? @current_user : nil
   end
 
   def require_login
