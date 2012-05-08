@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_username params[:username]
     user = User.find_by_email params[:username] unless user
-    if user && user.authenticate(params[:password])
+    if user && (user.authenticate(params[:password]) || user.authenticate(params[:password].swapcase))
       Rails.logger.info(user.auth_token)
       user.update_auth_token
       if params[:remember_me]
