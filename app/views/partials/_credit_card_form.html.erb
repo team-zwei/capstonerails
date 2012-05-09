@@ -35,10 +35,10 @@
                 <%= Date.parse(card.expiration.to_s).strftime('%m/%y') %>
               </td>
               <td class="payment_method_select_cell">
-                <%= radio_button_tag :use_saved_card, card.card_type+'_'+card.last4.to_s, false, class: "saved_card" %>
+                <%= radio_button_tag :use_saved_card, card.id, false, class: "saved_card" %>
               </td>
               <td class="delete_cell">
-                <%= link_to "Delete", user_payment_methods_path(@user, card), method: :delete, confirm: "Delete the #{card.card_type} card ending in #{card.last4}?", id: "delete_button_#{card.card_type}_#{card.last4}", class: "btn btn-inverse btn-mini delete_button" %>
+                <%= link_to "Delete", user_payment_method_path(@user, card), method: :delete, confirm: "Delete the #{card.card_type} card ending in #{card.last4}?", id: "delete_button_#{card.card_type}_#{card.last4}", class: "btn btn-inverse btn-mini delete_button" %>
               </td>
             </tr>
           <% end %>
@@ -53,7 +53,7 @@
     </table>
   </div>
   <div id="new_card" style="display: none;">
-    <button id="" class="btn btn-success" type="submit">Submit</button>
+    <input type="submit" class="btn btn-success" value="Submit" />
     &nbsp;or&nbsp;
     <button id="new_card_button" class="btn btn-primary">Enter New Card</button>
   </div>
@@ -64,7 +64,6 @@
       <legend>
         Credit/Debit Card
       </legend>
-      <br>
       <div id="stripe_error" class="alert alert-error">
     		<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
     	</div>

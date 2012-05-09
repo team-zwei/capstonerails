@@ -31,8 +31,7 @@ class PaymentsController < ApplicationController
         }
 
         if params[:use_saved_card] # Submit charge using active card
-          card_info = params[:use_saved_card].split('_')
-          charge_params[:customer] = current_user.payment_methods.where("card_type = ? and last4 = ?", card_info[0], card_info[1]).stripe_customer_token
+          charge_params[:customer] = current_user.payment_methods.find_by_id(params[:use_saved_card]).stripe_customer_token
         else # Submit charge without using saved payment
           if !params[:save_card].blank?
             charge_params[:customer] = current_user.add_payment_method(params[:stripe_card_token], params[:stripe_card_last4].to_i, params[:stripe_card_type])
@@ -62,9 +61,8 @@ class PaymentsController < ApplicationController
   end
 
   def show
-    redirect_to root_url, alert: 'Insufficient priviledges' unless current_user.id == auction.winner_id
-
-  	@auction = Auction.find_by_id(params[:auction_id])
+    @auction = Auction.find_by_id(params[:auction_id])
+    redirect_to root_url, alert: 'Insufficient priviledges' unless current_user.id == @auction.winner_id
   	@payment = @auction.payment
   end
 end
