@@ -19,21 +19,24 @@ jQuery ->
         toggle_saved_card_form(true)
         false
 
+  $('.delete_button').click ->
+    # TODO: Write ajax call to send DELETE request
+
 toggle_cc_form = (show) ->
   stripe_payment = $('#stripe_payment')
   
   if show
-    stripe_payment.show()
+    stripe_payment.slideDown(300)
   else
-    stripe_payment.hide()
+    stripe_payment.slideUp(300)
 
 toggle_saved_card_form = (show) ->
   new_card = $('#new_card')
 
   if show
-    new_card.show()
+    new_card.slideDown(300)
   else
-    new_card.hide()
+    new_card.slideUp(300)
 
 payment =
   setupForm: ->

@@ -15,4 +15,10 @@
 class PaymentMethod < ActiveRecord::Base
 	has_many :payments
 	has_one  :user
+
+	before_destroy :delete_stripe_customer
+
+	def delete_stripe_customer
+		Stripe::Customer.retrieve(stripe_customer_token).delete
+	end
 end

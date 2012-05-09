@@ -1,5 +1,6 @@
 class PaymentMethodsController < ApplicationController
 	skip_before_filter :require_admin
+	
   def index
   end
 
@@ -10,5 +11,9 @@ class PaymentMethodsController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+  	
   end
 end

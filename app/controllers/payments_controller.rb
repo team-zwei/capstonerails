@@ -1,10 +1,14 @@
 class PaymentsController < ApplicationController
   skip_before_filter :require_admin
   def new
+    @auction = Auction.find_by_id(params[:auction_id])
+
+    redirect_to root_url, alert: 'Insufficient priviledges' unless current_user.id == @auction.winner_id
+
   	#  TODO: Filter if a payment has already been submitted
-  	@payment = Payment.new
-  	@auction = Auction.find_by_id(params[:auction_id])
+  	@payment = Payment.new	
   	@price = Bid.find_by_id(@auction.current_bid_id).amount
+    @user = current_user
 
     if current_user.payment_methods
       @saved_cards = current_user.payment_methods
@@ -13,6 +17,9 @@ class PaymentsController < ApplicationController
 
   def create
   	auction = Auction.find_by_id(params[:auction_id])
+
+    redirect_to root_url, alert: 'Insufficient priviledges' unless current_user.id == auction.winner_id
+
     amount = Bid.find_by_id(auction.current_bid_id).amount
 
     if auction.payment.blank? # if no payment for this auction exists
@@ -39,7 +46,6 @@ class PaymentsController < ApplicationController
         if (auction.payment = Payment.create user_id: current_user, amount: amount, charge_id: charge.id)
           redirect_to auction_payment_path(auction), notice: "Successful Charge"
         else
-          # render error page
           # TODO: Redirect to a "confirmation page" and display any relevant info
           redirect_to root_url, alert: "UNSUCCESSFUL CHARGE"
         end
@@ -52,10 +58,12 @@ class PaymentsController < ApplicationController
 		else # a payment for this auction already exists
 			# TODO: display error for already paid, really, this shouldn't happen
 			redirect_to root_url, alert: "ALREADY PAID FOR THIS AUCTION"
-		end
+    end
   end
 
   def show
+    redirect_to root_url, alert: 'Insufficient priviledges' unless current_user.id == auction.winner_id
+
   	@auction = Auction.find_by_id(params[:auction_id])
   	@payment = @auction.payment
   end

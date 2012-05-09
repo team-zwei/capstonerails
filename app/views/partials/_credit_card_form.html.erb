@@ -8,6 +8,19 @@
       Saved Cards
     </legend>
     <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>
+            Type
+          </th>
+          <th>
+            Last 4
+          </th>
+          <th>
+            Exp
+          </th>
+        </tr>
+      </thead>
       <tbody>
         <% if @saved_cards %>
           <% @saved_cards.each do |card| %>
@@ -25,7 +38,7 @@
                 <%= radio_button_tag :use_saved_card, card.card_type+'_'+card.last4.to_s, false, class: "saved_card" %>
               </td>
               <td class="delete_cell">
-                <button class="btn btn-inverse btn-mini" data-card-id="<%= card.card_type+'_'+card.last4.to_s %>)"><i class="icon-trash icon-white delete_saved_card"></i>&nbsp;Delete</button>
+                <%= link_to "Delete", user_payment_methods_path(@user, card), method: :delete, confirm: "Delete the #{card.card_type} card ending in #{card.last4}?", id: "delete_button_#{card.card_type}_#{card.last4}", class: "btn btn-inverse btn-mini delete_button" %>
               </td>
             </tr>
           <% end %>
