@@ -13,6 +13,8 @@
 #  current_bid_id        :integer
 #  winner_id             :integer
 #  data                  :text
+#  token                 :string(255)
+#  time_increment        :integer
 #  created_at            :datetime        not null
 #  updated_at            :datetime        not null
 #  status                :string(255)

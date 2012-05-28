@@ -64,6 +64,7 @@
 			    <% end %>
 				</dd>
 			</div>
+		</dl>
 		<div id="description1">
 			<h3>Description</h3>
 			<hr />
@@ -75,6 +76,12 @@
 				<% end if @auction.data %>
 			</dl>
 		</div>
+		<% if @auction.data %>
+			<div id="details">
+				<h3>Data</h3>
+				<%= @auction.data.inspect %>
+			</div>
+		<% end %>
 		<div id="Terms">
 			<h3>Terms</h3>
 			<br>
