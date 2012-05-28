@@ -1,0 +1,12 @@
+#header-container.container
+  .row
+    .span12
+      %header
+        - if notice
+          .alert.alert-info
+            %a.close(data-dismiss="alert") ×
+            = notice
+        - if alert
+          .alert.alert-danger
+            %a.close(data-dismiss="alert") ×
+            = alert

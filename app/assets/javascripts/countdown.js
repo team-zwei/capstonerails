@@ -42,9 +42,17 @@ var countdownTimer = function(secondsRemaining, callback) {
     return result;
   }
 
+  function pushCallback(callback) {
+    cb.push(callback);
+  }
+
   return {
     updateSecondsRemaining: function(newSecondsRemaining) {
       updateTime(newSecondsRemaining);
+    },
+
+    addCallback: function(callback) {
+      pushCallback(callback);
     }
   };
 
