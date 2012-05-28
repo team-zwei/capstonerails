@@ -2,13 +2,21 @@ var countdownTimer = function(secondsRemaining, callback) {
   var timeLeft = secondsRemaining;
   var timer;
 
-  var cb = callback;
+  var cb = [];
+
+  if (Array.isArray(callback)) {
+    cb.concat(callback);
+  }
+  else {
+    cb.push(callback);
+  }
 
   tick();
   timer = setInterval(tick, 1000); // 1000 ms to tick every second.
 
   function tick() {
     timeLeft -= 1;
+
     cb(renderTimeString());
   }
 
