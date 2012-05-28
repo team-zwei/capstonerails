@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  #All actions require admin authentication, thus no skipping the before filter.
+  
   def index
     @images = Auction.find_by_id(params[:auction_id]).images
     render :json => @images.collect { |p| p.to_jq_upload }.to_json
