@@ -51,9 +51,9 @@ class User < ActiveRecord::Base
 
   def send_password_reset
     generate_token :password_reset_token
-    self.password_reset_sent_at = Time.zone.now
+    password_reset_sent_at = Time.now
     save!
-    UserMailer.password_reset(self).deliver
+    UserMailer.delay.password_reset(self)
   end
 
   # returns new stripe customer id
