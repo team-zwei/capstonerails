@@ -16,8 +16,9 @@ var countdownTimer = function(secondsRemaining, callback) {
 
   function tick() {
     timeLeft -= 1;
-
-    cb(renderTimeString());
+    cb.forEach(function() {
+      this(renderTimeString());
+    });
   }
 
   function updateTime(seconds) {
