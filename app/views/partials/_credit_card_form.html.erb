@@ -7,50 +7,52 @@
     <legend>
       Saved Cards
     </legend>
+    
     <table class="table table-condensed">
-      <thead>
-        <tr>
-          <th>
-            Type
-          </th>
-          <th>
-            Last 4
-          </th>
-          <th>
-            Exp
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if @saved_cards %>
-          <% @saved_cards.each do |card| %>
-            <tr class="payment_method">
-              <td>
-                <%= card.card_type %>
-              </td>
-              <td>
-                <%= card.last4 %>
-              </td>
-              <td>
-                <%= Date.parse(card.expiration.to_s).strftime('%m/%y') %>
-              </td>
-              <td class="payment_method_select_cell">
-                <%= radio_button_tag :use_saved_card, card.id, false, class: "saved_card" %>
-              </td>
-              <td class="delete_cell">
-                <%= link_to "Delete", user_payment_method_path(@user, card), method: :delete, confirm: "Delete the #{card.card_type} card ending in #{card.last4}?", id: "delete_button_#{card.card_type}_#{card.last4}", class: "btn btn-inverse btn-mini delete_button" %>
+      
+        <thead>
+          <tr>
+            <th>
+              Type
+            </th>
+            <th>
+              Last 4
+            </th>
+            <th>
+              Exp
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @saved_cards %>
+            <% @saved_cards.each do |card| %>
+              <tr class="payment_method">
+                <td>
+                  <%= card.card_type %>
+                </td>
+                <td>
+                  <%= card.last4 %>
+                </td>
+                <td>
+                  <%= Date.parse(card.expiration.to_s).strftime('%m/%y') %>
+                </td>
+                <td class="payment_method_select_cell">
+                  <%= radio_button_tag :use_saved_card, card.id, false, class: "saved_card" %>
+                </td>
+                <td class="delete_cell">
+                  <%= link_to "Delete", user_payment_method_path(@user, card), method: :delete, confirm: "Delete the #{card.card_type} card ending in #{card.last4}?", id: "delete_button_#{card.card_type}_#{card.last4}", class: "btn btn-inverse btn-mini delete_button" %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="3">
+                <h4>No saved cards</h4>
               </td>
             </tr>
           <% end %>
-        <% else %>
-          <tr>
-            <td colspan="3">
-              <h4>No saved cards</h4>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>s
   </div>
   <div id="new_card" style="display: none;">
     <input type="submit" class="btn btn-success" value="Submit" />
