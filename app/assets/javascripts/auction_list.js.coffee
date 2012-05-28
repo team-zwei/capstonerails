@@ -40,6 +40,9 @@ $(document).ready ->
     $('#bid_amount').blur ->
       $('#bid_amount').val(global_format_price($('#bid_amount').val()))
 
+    timers[id + "_timer"].addCallback (result) ->
+      $('#bid_modal .modal-time').text result
+
     false
 
   PrivatePub.subscribe "/bids/new", (data, channel) ->

@@ -66,3 +66,8 @@ var countdownTimer = function(secondsRemaining, callback) {
   };
 
 };
+
+
+timer['auction1'].addCallback(function(result){
+  //do something with result
+})
