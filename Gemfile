@@ -34,6 +34,5 @@ group :assets do
   gem 'sass-rails', '~> 3.1'
   gem 'bootstrap-sass', '~> 2.0.2'
   gem 'coffee-rails', '3.2.2'
-  gem 'compass-rails'
   gem 'uglifier', '1.2.2'
 end

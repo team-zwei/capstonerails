@@ -16,8 +16,8 @@ var countdownTimer = function(secondsRemaining, callback) {
 
   function tick() {
     timeLeft -= 1;
-    cb.forEach(function() {
-      this(renderTimeString());
+    cb.forEach(function(val, index, arr) {
+      val(renderTimeString());
     });
   }
 
@@ -66,8 +66,3 @@ var countdownTimer = function(secondsRemaining, callback) {
   };
 
 };
-
-
-timer['auction1'].addCallback(function(result){
-  //do something with result
-})
