@@ -7,6 +7,7 @@ gem 'pg', '0.12.2'
 gem 'stripe', '1.6.2'
 gem 'carrierwave', '0.6.1'
 gem 'mini_magick'
+gem 'haml'
 
 # Gem for pagination
 gem 'kaminari', '0.13.0'
@@ -33,5 +34,6 @@ group :assets do
   gem 'sass-rails', '~> 3.1'
   gem 'bootstrap-sass', '~> 2.0.2'
   gem 'coffee-rails', '3.2.2'
+  gem 'compass-rails'
   gem 'uglifier', '1.2.2'
 end

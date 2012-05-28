@@ -21,11 +21,13 @@
 class Auction < ActiveRecord::Base
   serialize :data, Hash
 
+  has_one :payment
   has_many :bids
   has_many :users, through: :bids, as: :bidders
-  has_and_belongs_to_many :categories
   has_many :images, dependent: :destroy
-  has_one :payment
+  has_and_belongs_to_many :categories  
+
+  accepts_nested_attributes_for :images
 
   attr_accessible :name, :description, :terms, :starting_bid_price, :minimum_bid_increment, :data, :end_time, :start_time, :time_increment
 
