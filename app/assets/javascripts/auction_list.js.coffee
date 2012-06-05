@@ -41,7 +41,8 @@ $(document).ready ->
     $('#bid_amount').blur ->
       $('#bid_amount').val(global_format_price($('#bid_amount').val()))
 
-    timer.addCallback((result) ->
+    $('#bid_modal .modal-time').text $('#auction_' + id + ' .auction_thumbnail_time').attr('data-time-remaining')
+    timers["auction_" + id + "_timer"].addCallback((result) ->
       $('#bid_modal .modal-time').text result
     )
     false
