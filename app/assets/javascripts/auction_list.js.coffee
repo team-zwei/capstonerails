@@ -22,6 +22,7 @@ $(document).ready ->
 
     id = $(this).attr("id").split("_")[3]
     auction_id = "auction_" + id
+    timer = timers[auction_id + "_timer"]
 
     $("#bid_modal").attr('data-auction-id', id)
 
@@ -41,10 +42,8 @@ $(document).ready ->
       $('#bid_amount').val(global_format_price($('#bid_amount').val()))
 
     $('#bid_modal .modal-time').text $('#auction_' + id + ' .auction_thumbnail_time').attr('data-time-remaining')
-
     timers["auction_" + id + "_timer"].addCallback((result) ->
       $('#bid_modal .modal-time').text result
-      false
     )
     false
 
@@ -52,9 +51,19 @@ $(document).ready ->
     console.log "amount: " + data.message.amount + "\nauction_id: " + data.message.auction_id + "\ntime: " + data.message.time
     timers["auction_"+data.message.auction_id+"_timer"].updateSecondsRemaining data.message.time
     
-    new_price = parseFloat(data.message.amount).toFixed(2);
+    amount = parseFloat(data.message.amount)
+
+    new_price = amount.toFixed(2);
     price_elem = $("#auction_"+data.message.auction_id+" h3.auction_thumbnail_price")
     price_elem.text "$" + global_format_price(new_price)
     price_elem.attr 'data-current-price', new_price
 
     $("#auction_"+data.message.auction_id+" .auction_thumbnail_price_time_container").effect("highlight", { color: "#FF9999" }, 1500);
+
+    # if String(data.message.auction_id) == $("#bid_modal").attr('data-auction-id')
+    #   minimumBid = parseFloat($("#auction_" + data.message.auction_id + " .auction_thumbnail_price").attr('data-min-bid-increment'))
+    #   price = global_format_price((amount + minimumBid).toFixed(2))
+    #   $("#bid_modal .bid-amount-label").text("Bid Amount (Enter $" + price + " or more):")
+    #   $("#bid_modal .modal-amount").val(price)
+
+    # Handle updated bid prices appropriately
