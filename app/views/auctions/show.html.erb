@@ -1,32 +1,33 @@
 <%= javascript_include_tag "auctions_show" %>
 <div class="row">
 	<div class="span6">
-		<div id="myCarousel" class="carousel slide" style="width: 400px;">
-			<div class="carousel-inner">
+		<% if @auction.images.length > 0 %>
+			<div id="myCarousel" class="carousel slide" style="width: 400px;">
+				<div class="carousel-inner">
 
-				<% @auction.images.each  do |image| %>
-					<div class="item<%= " active" if image === @auction.images.first %>">
-					  <%= image_tag image.auction_image.url %>
-					  <div class="carousel-caption">
-					    <h4><%= image.title %></h4>
-					  </div>
-					</div>
-				<% end %>
+					<% @auction.images.each  do |image| %>
+						<div class="item<%= " active" if image === @auction.images.first %>">
+						  <%= image_tag image.auction_image.url %>
+						  <div class="carousel-caption">
+						    <h4><%= image.title %></h4>
+						  </div>
+						</div>
+					<% end %>
+				</div>
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+				<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
 			</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-		</div>
 
-		<ul class="thumbnails">	
-			<% @auction.images.each_with_index do |image, index| %>
-				<li class="span1">
-				  <a href="#" class="thumbnail" data-image-number="<%= index + 1 %>">
-				  	<%= image_tag image.auction_image.thumb.url %>
-				  </a>
-				</li>
-			<% end %>
-		</ul>
-		
+			<ul class="thumbnails">	
+				<% @auction.images.each_with_index do |image, index| %>
+					<li class="span1">
+					  <a href="#" class="thumbnail" data-image-number="<%= index + 1 %>">
+					  	<%= image_tag image.auction_image.thumb.url %>
+					  </a>
+					</li>
+				<% end %>
+			</ul>
+		<% end %>
 	</div>
 	<div class="span6" id="Details">
 		<div class="Title">
@@ -76,12 +77,6 @@
 				<% end if @auction.data %>
 			</dl>
 		</div>
-		<% if @auction.data %>
-			<div id="details">
-				<h3>Data</h3>
-				<%= @auction.data.inspect %>
-			</div>
-		<% end %>
 		<div id="Terms">
 			<h3>Terms</h3>
 			<br>

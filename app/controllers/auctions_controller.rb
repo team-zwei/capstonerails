@@ -45,10 +45,11 @@ class AuctionsController < ApplicationController
 			@auction.categories << Category.find_by_id(category_id)
 		end if params[:categories]
 
-		@auction.end_time = Time.now() + 600
-		@auction.start_time = Time.now()
-		@auction.token = session[:auction_token] = SecureRandom.urlsafe_base64
-		@auction.data  = params[:data]
+		# @auction.end_time      = params[:] || (Time.now() + 600)
+		@auction.start_time    = Time.now()
+		@auction.token         = session[:auction_token] = SecureRandom.urlsafe_base64
+		@auction.data          = params[:data]
+		@auction.main_image_id = params[:auction_image_main]
 
 		if @auction.save
 			redirect_to new_auction_image_path @auction

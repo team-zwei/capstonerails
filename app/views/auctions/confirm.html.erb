@@ -42,28 +42,23 @@
     <div class="control-group">
       <%= f.label :start_time, class: "control-label" %>
       <div class="controls">
-        <%= select_month Date.today, {use_month_numbers: true}, name: "start[month]", class: "span1" %>
-        <%= select_day Date.today, {}, name: "start[day]", class: "span1" %>
-        <%= select_year Date.today, {}, name: "start[year]", class: "span1" %>
-        <%= select_hour Time.now, {}, name: "start[hour]", class: "span1" %>
-        <%= select_minute Time.now, {}, name: "start[minute]", class: "span1" %>
+        <%= select_datetime Time.now, { prefix: :start, ampm: true }, { class: "span2" } %>
       </div>
     </div>
     <div class="control-group">
       <%= f.label :end_time, class: "control-label" %>
       <div class="controls">
-        <%= select_month Date.today, {}, name: "end[month]", class: "span2" %>
-        <%= select_day Date.today+1, {}, name: "end[day]", class: "span1" %>
-        <%= select_year Date.today, {}, name: "end[year]", class: "span1" %>
-        <%= select_hour Time.now, {}, name: "end[hour]", class: "span1" %>
-        <%= select_minute Time.now, {}, name: "end[minute]", class: "span1" %>
+        <%= select_datetime Time.now+60*60*24, { prefix: :end, ampm: true }, { class: "span2" } %>
       </div>
     </div>
   </fieldset>
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th>Preview</th><th>Filename</th><th>Title</th><th>Main</th>
+        <th>Preview</th>
+        <th>Filename</th>
+        <th>Title</th>
+        <th>Main</th>
       </tr>
     </thead>
     <tbody>
@@ -71,8 +66,8 @@
         <tr>
           <td><%= image_tag image.auction_image, size: "64x64" %></td>
           <td><%= image.auction_image.to_s.split('/').last %></td>
-          <td><%= text_field_tag :auction_image_title, nil, name: "auction_image_title_#{image.id}" %></td>
-          <td><%= radio_button_tag :auction_image_main, name: "auction_image_main_#{image.id}" %></td>
+          <td><%= text_field_tag "auction_image_title_#{image.id}" %></td>
+          <td><%= radio_button_tag :auction_image_main, image.id %></td>
         </tr>
       <% end %>
     </tbody>
