@@ -14,18 +14,16 @@ class BidsController < ApplicationController
       # TODO: min bid met?
   		bid = Bid.new amount: Float(params[:bid_amount].gsub(",","")[/\d+(.\d{2})?/])
       bid.user_id = current_user.id
-      bid.auction_id = params[:id] || params[:auction_id]
+      bid.auction = Auction.find(params[:id] || params[:auction_id])
       bid.auction.end_time += 600 # ten minutes #TODO add time to end_time appropriately
 
       # get current bid to verify amount
-      current_bid_id = bid.auction.current_bid_id
-      current_amount = (current_bid_id) ? Bid.find_by_id(current_bid_id).amount : bid.auction.starting_bid_price
-      increment_amount = bid.auction.minimum_bid_increment
+      current_amount = (bid.auction.current_bid) ? bid.auction.current_bid.amount : bid.auction.starting_bid_price
 
       if bid.auction.end_time < Time.now()
         response = 'auction already ended'
         status_code = 410
-      elsif bid.amount < current_amount + increment_amount
+      elsif bid.amount < current_amount + bid.auction.minimum_bid_increment
         response = 'minimum bid not met'
         status_code = 412 # precondition failed HTTP response
       elsif bid.save! && bid.auction.save! && bid.auction.update_attribute(:current_bid_id, bid.id)
@@ -38,7 +36,7 @@ class BidsController < ApplicationController
       end
       
       respond_with do |format|
-        format.html {redirect_to root_url, status: status_code, notice: response}
+        format.html {redirect_to :back, status: status_code, notice: response}
         format.json {render json: {message: response}, status: status_code}
       end
   	else
