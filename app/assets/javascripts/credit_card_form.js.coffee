@@ -20,7 +20,28 @@ jQuery ->
         false
 
   $('.delete_button').click ->
-    # TODO: Write ajax call to send DELETE request
+    that = this
+    $.getJson '/payment_methods/' + $("#use_saved_card").val(), 
+    null, 
+    (data, textStatus, jqXHR) -> 
+      if $.parseJSON(data) == true
+    
+        $(that.parentNode.parentNode).remove()
+        alert = "<div class='alert alert-info>
+                  <a data-dismiss='alert'>×</a>
+                  Successfully removed a saved payment method.
+                </div>"
+        $("#header-container header").append(alert)
+      else
+    
+        alert = "<div class='alert alert-danger>
+                  <a data-dismiss='alert'>×</a>
+                  Unauthorized to remove that payment method.
+                </div>"
+        $("#header-container header").append(alert)
+
+    false
+
 
 toggle_cc_form = (show) ->
   stripe_payment = $('#stripe_payment')
@@ -41,7 +62,7 @@ toggle_saved_card_form = (show) ->
 payment =
   setupForm: ->
     $('#new_payment').submit ->
-      $('input[type=submit]').button('loading')
+      $('input[type=submit]').button('processing...')
       payment.processCard()
   
   processCard: ->

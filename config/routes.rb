@@ -32,6 +32,7 @@ Capstone::Application.routes.draw do
   resources :bids
   resources :sessions
   resources :password_resets
+  resources :payment_methods
 
   resources :images, only: :destroy
 end
