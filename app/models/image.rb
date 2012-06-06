@@ -6,7 +6,6 @@
 #  auction_image :string(255)
 #  title         :string(255)
 #  auction_id    :integer
-#  main          :boolean         default(FALSE)
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #
@@ -16,7 +15,6 @@ class Image < ActiveRecord::Base
   mount_uploader :auction_image, AuctionImageUploader
 
   attr_accessible :auction_image
-
   belongs_to :user
   belongs_to :auction
 

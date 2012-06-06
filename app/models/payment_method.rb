@@ -14,7 +14,7 @@
 
 class PaymentMethod < ActiveRecord::Base
 	has_many :payments
-	has_one  :user
+	belongs_to  :user
 
 	before_destroy :delete_stripe_customer
 

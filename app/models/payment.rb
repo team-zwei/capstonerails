@@ -13,8 +13,7 @@
 #
 
 class Payment < ActiveRecord::Base
-	belongs_to :auction
+	belongs_to :auction, inverse_of: :payments
 	belongs_to :user
 	has_one    :payment_method
-
 end
