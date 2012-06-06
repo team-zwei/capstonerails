@@ -4,25 +4,24 @@ class AuctionsController < ApplicationController
 	before_filter :require_auction_token, only: [:update, :confirm, :publish, :cancel]
 
 	def index
-		if (params[:search].blank?)
-			@auctions = Auction.where("start_time <= now()").order("end_time desc").page(params[:page]).per(params[:num_per_page])
-		else
-			@auctions = Auction.search(params[:search], order: :end_time, sort_mode: :desc).page(params[:page]).per(params[:num_per_page])
-		end
+		
+		@auctions = if (params[:search].blank?)
+									Auction.where("start_time <= now()").order("end_time desc")
+								else
+									Auction.search(params[:search], order: :end_time, sort_mode: :desc)
+								end
+
+		@auctions.page(params[:page]).per(params[:num_per_page])
 
 		@auctions.delete_if do |auction|
-			params[:price_min].to_f > (!auction.current_bid_id.nil? ? Bid.find_by_id(auction.current_bid_id).amount : auction.starting_bid_price)
+			params[:price_min].to_f > (auction.current_bid ? auction.current_bid.amount : auction.starting_bid_price)
 		end unless params[:price_min].blank? or @auctions.empty?
 
 		@auctions.delete_if do |auction|
-			params[:price_max].to_f < (!auction.current_bid_id.nil? ? Bid.find_by_id(auction.current_bid_id).amount : auction.starting_bid_price)
+			params[:price_max].to_f < (auction.current_bid ? auction.current_bid.amount : auction.starting_bid_price)
 		end unless params[:price_max].blank? or @auctions.empty?
 
-		@auctions.delete_if do |auction|
-			auction.end_time < Time.now()
-		end unless !params[:show_ended].blank? or @auctions.empty?
-
-		@current_user = current_user
+		@auctions.delete_if { |auction| auction.end_time < Time.now() } unless !params[:show_ended].blank? or @auctions.empty?
 	end
 
 	def show
@@ -31,7 +30,7 @@ class AuctionsController < ApplicationController
 		elsif !(@auction = Auction.find_by_id params[:id])
 			redirect_to "/404.html"
 		else
-			@current_bidder = Bid.find_by_id(@auction.current_bid_id).user if @auction.current_bid_id
+			@current_bidder = @auction.current_bid.user if @auction.current_bid
 		end
 	end
 

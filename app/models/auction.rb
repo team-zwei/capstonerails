@@ -24,6 +24,8 @@ class Auction < ActiveRecord::Base
   serialize :data, Hash
 
   has_one :payment
+  belongs_to :main_image, class_name: "Image"
+  belongs_to :current_bid, class_name: "Bid"
   has_many :bids
   has_many :users, through: :bids, as: :bidders
   has_many :images, dependent: :destroy
@@ -31,12 +33,11 @@ class Auction < ActiveRecord::Base
 
   accepts_nested_attributes_for :images
 
-  attr_accessible :name, :description, :terms, :starting_bid_price, :minimum_bid_increment, :data, :end_time, :start_time, :time_increment
+  attr_accessible :name, :description, :terms, :starting_bid_price, :minimum_bid_increment, :data, :end_time, :start_time, :time_increment, :main_image
 
   define_index do
     indexes :name, sortable: true
     indexes :description    
-
     has created_at, updated_at, start_time, end_time
   end
 

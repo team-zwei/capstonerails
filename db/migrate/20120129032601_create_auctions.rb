@@ -13,6 +13,7 @@ class CreateAuctions < ActiveRecord::Migration
       t.text      :data
       t.string    :token
       t.integer   :time_increment
+      t.integer   :main_image_id
 
       t.timestamps
     end
