@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <% if @saved_cards %>
+          <% if @saved_cards.length > 0 %>
             <% @saved_cards.each do |card| %>
               <tr class="payment_method">
                 <td>
@@ -40,19 +40,19 @@
                   <%= radio_button_tag :use_saved_card, card.id, false, class: "saved_card" %>
                 </td>
                 <td class="delete_cell">
-                  <%= link_to "Delete", user_payment_method_path(@user, card), method: :delete, confirm: "Delete the #{card.card_type} card ending in #{card.last4}?", id: "delete_button_#{card.card_type}_#{card.last4}", class: "btn btn-inverse btn-mini delete_button" %>
+                  <%= link_to "Delete", payment_method_path(card), method: :delete, confirm: "Delete the #{card.card_type} card ending in #{card.last4}?", id: "delete_button_#{card.card_type}_#{card.last4}", class: "btn btn-inverse btn-mini delete_button" %>
                 </td>
               </tr>
             <% end %>
           <% else %>
             <tr>
-              <td colspan="3">
+              <td colspan="5" style="text-align: center;">
                 <h4>No saved cards</h4>
               </td>
             </tr>
           <% end %>
         </tbody>
-      </table>s
+      </table>
   </div>
   <div id="new_card" style="display: none;">
     <input type="submit" class="btn btn-success" value="Submit" />
