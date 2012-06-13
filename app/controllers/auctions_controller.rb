@@ -6,12 +6,10 @@ class AuctionsController < ApplicationController
 	def index
 		
 		@auctions = if (params[:search].blank?)
-									Auction.where("start_time <= now()").order("end_time desc")
+									Auction.where("start_time <= now()").order("end_time desc").page(params[:page]).per(params[:num_per_page])
 								else
-									Auction.search(params[:search], order: :end_time, sort_mode: :desc)
+									Auction.search(params[:search], order: :end_time, sort_mode: :desc).page(params[:page]).per(params[:num_per_page])
 								end
-
-		@auctions.page(params[:page]).per(params[:num_per_page])
 
 		@auctions.delete_if do |auction|
 			params[:price_min].to_f > (auction.current_bid ? auction.current_bid.amount : auction.starting_bid_price)
@@ -105,8 +103,13 @@ class AuctionsController < ApplicationController
 		@auction.description = params[:auction][:description]
 		@auction.minimum_bid_increment = params[:auction][:minimum_bid_increment]
 		@auction.starting_bid_price = params[:auction][:starting_bid_price]
+		@auction.main_image = Image.find params[:auction_image_main]
 
 		@auction.save!
+
+		params[:auction_image_title].each do |id, title|
+			Image.find_by_id(id).update_attribute :title, title
+		end if params[:auction_image_title]
 
 		@auction.update_attribute(:token, nil)
 		session[:auction_token] = nil

@@ -62,12 +62,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @auction.images.each do |image|%>
+      <% @auction.images.each_with_index do |image, index|%>
         <tr>
           <td><%= image_tag image.auction_image, size: "64x64" %></td>
           <td><%= image.auction_image.to_s.split('/').last %></td>
-          <td><%= text_field_tag "auction_image_title_#{image.id}" %></td>
-          <td><%= radio_button_tag :auction_image_main, image.id %></td>
+          <td><%= text_field_tag "auction_image_title[#{image.id}]" %></td>
+          <td><%= radio_button_tag :auction_image_main, image.id, (true if index == 0) %></td>
         </tr>
       <% end %>
     </tbody>
