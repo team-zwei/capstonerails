@@ -10,4 +10,4 @@ $("#upload_form").validate({
   messages: {
     'submission[movie]': "Please choose a .avi, .mov, .mp4, .m4v, or .mpg file."
   }
-})
+});
