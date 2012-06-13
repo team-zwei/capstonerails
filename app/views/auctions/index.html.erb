@@ -1,6 +1,6 @@
+<%= stylesheet_link_tag "chosen", :media => "all" %>
 <div id="auction_index_search_row" class="row">
 	<%= form_tag auctions_path, { method: :get, class: "form-inline" } do %>
-		<!-- <form class="form-inline" method="get" action="<%= auctions_path %>"> -->
 		<fieldset>
 			<legend>Filter Auctions</legend>
 			<div class="auction_index_search_form_padding">
@@ -57,6 +57,11 @@
 					</div>
 				</div>
 			</div>
+			<div class="span9">
+				<select id="auction_category" name="categories[]" data-placeholder="Choose some categories..."  multiple class="chzn-select" style="width: 100%;">
+		          <%= options_from_collection_for_select(Category.all, 'id', 'name', nil) %>
+		        </select>
+			</div>
 		</fieldset>
 	<% end %>
 </div><!-- /row -->
@@ -65,3 +70,5 @@
 		<%= render "/partials/auction_list", locals: @auctions %>
 	</div>
 </div>
+
+<%= javascript_include_tag "chosen.jquery.min.js", "auction_index" %>

@@ -6,12 +6,10 @@ class AuctionsController < ApplicationController
 	def index
 		
 		@auctions = if (params[:search].blank?)
-									Auction.where("start_time <= now()").order("end_time desc")
-								else
-									Auction.search(params[:search], order: :end_time, sort_mode: :desc)
-								end
-
-		@auctions.page(params[:page]).per(params[:num_per_page])
+						Auction.where("start_time <= now()").order("end_time desc").page(params[:page]).per(params[:num_per_page])
+					else
+						Auction.search(params[:search], order: :end_time, sort_mode: :desc).page(params[:page]).per(params[:num_per_page])
+					end
 
 		@auctions.delete_if do |auction|
 			params[:price_min].to_f > (auction.current_bid ? auction.current_bid.amount : auction.starting_bid_price)
@@ -20,6 +18,17 @@ class AuctionsController < ApplicationController
 		@auctions.delete_if do |auction|
 			params[:price_max].to_f < (auction.current_bid ? auction.current_bid.amount : auction.starting_bid_price)
 		end unless params[:price_max].blank? or @auctions.empty?
+
+		@auctions.delete_if do |auction|
+			# auction.categories.each do |cat|
+			# 	if ((params[:categories]).length > 0)
+			# 		true
+			# 	else 
+			# 		false
+			# 	end
+
+			(auction.categories.map{|cat| cat.id} & params[:categories]).empty?
+		end unless params[:categories].blank? or @auctions.empty?
 
 		@auctions.delete_if { |auction| auction.end_time < Time.now() } unless !params[:show_ended].blank? or @auctions.empty?
 	end

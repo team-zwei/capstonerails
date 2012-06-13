@@ -62,7 +62,7 @@ toggle_saved_card_form = (show) ->
 payment =
   setupForm: ->
     $('#new_payment').submit ->
-      $('input[type=submit]').button('processing...')
+      $('input[type=submit]').button('Loading')
       payment.processCard()
   
   processCard: ->
