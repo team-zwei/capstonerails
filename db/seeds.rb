@@ -20,6 +20,8 @@ User.create(email: "test@test.com",
 Category.create(name: "Land", real_estate: true)
 Category.create(name: "House", real_estate: true)
 Category.create(name: "Equipment", real_estate: false)
+Category.create(name: "Electronics", real_estate: false)
+Category.create(name: "Automotive", real_estate: false)
 
 time = Time.now + 86400 # setting to one day from current time at seeding.
 
@@ -111,6 +113,15 @@ Auction.create( name: "Something Entirely Different",
                     "different thing" => "different value"
                 }
               )
+
+
+# Give the auctions some categories
+Auction.all.each do |auction|
+    Category.all.sample(Random.rand(3) + 1).each do |category| 
+        auction.categories << category
+    end
+    auction.save!
+end
 
 # Admin wins auction 1
 bid = Bid.new(amount: 105.00)
