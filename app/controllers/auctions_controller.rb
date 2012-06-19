@@ -114,8 +114,13 @@ class AuctionsController < ApplicationController
 		@auction.description = params[:auction][:description]
 		@auction.minimum_bid_increment = params[:auction][:minimum_bid_increment]
 		@auction.starting_bid_price = params[:auction][:starting_bid_price]
+		@auction.main_image = Image.find params[:auction_image_main]
 
 		@auction.save!
+
+		params[:auction_image_title].each do |id, title|
+			Image.find_by_id(id).update_attribute :title, title
+		end if params[:auction_image_title]
 
 		@auction.update_attribute(:token, nil)
 		session[:auction_token] = nil
