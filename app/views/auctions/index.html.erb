@@ -42,6 +42,12 @@
 						</label>
 					</div>
 					<div>
+						<label for="show_real_estate_only" class="checkbox">
+							<input type="checkbox" id="show_real_estate_only" name="show_real_estate_only"<%= " checked" unless params[:show_real_estate_only].blank? %> >
+							&nbsp;Show Real Estate Only
+						</label>
+					</div>
+					<div>
 						<label for="num_per_page" class="control-label">
 							<%= select_tag(:num_per_page, options_for_select([[4,4], [8,8], [12,12], [16,16], [20,20]], params[:num_per_page] || 12), class: "span1") %>
 							&nbsp;per page

@@ -23,18 +23,14 @@ class AuctionsController < ApplicationController
 
 		# Filter by categories
 		@auctions.delete_if do |auction|
-			# auction.categories.each do |cat|
-			# 	if ((params[:categories]).length > 0)
-			# 		true
-			# 	else 
-			# 		false
-			# 	end
-
 			(auction.categories.map{|cat| cat.id.to_s} & params[:categories]).empty?
 		end unless params[:categories].blank? or @auctions.empty?
 
 		# Filter by ended
-		@auctions.delete_if { |auction| auction.end_time < Time.now() } unless !params[:show_ended].blank? or @auctions.empty?
+		@auctions.delete_if { |auction| auction.end_time < Time.now() } unless params[:show_ended] or @auctions.empty?
+
+		# Filter by real estate
+		@auctions.delete_if { |auction| !auction.real_estate } unless params[:show_real_estate_only].blank? or @auctions.empty?
 
 		# Display chosen categories
 		@category_ids = params[:categories] if params[:categories]
