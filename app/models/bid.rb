@@ -16,6 +16,7 @@ class Bid < ActiveRecord::Base
   belongs_to :user
 
   before_save :validate_bid_amount, :validate_end_time
+  after_save :increment_auction_time
 
   def validate_bid_amount
     if auction.current_bid_id
@@ -27,5 +28,9 @@ class Bid < ActiveRecord::Base
 
   def validate_end_time
     auction.end_time > Time.now()
+  end
+
+  def increment_auction_time
+    auction.increment_time
   end
 end

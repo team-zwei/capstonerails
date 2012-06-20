@@ -30,7 +30,7 @@ class Auction < ActiveRecord::Base
   has_many :bids
   has_many :users, through: :bids, as: :bidders
   has_many :images, dependent: :destroy
-  has_and_belongs_to_many :categories  
+  has_and_belongs_to_many :categories
 
   accepts_nested_attributes_for :images
 
@@ -71,5 +71,9 @@ class Auction < ActiveRecord::Base
 
   def format_price(amount)
     ("%.2f" % amount).gsub(/(\d)(?=(\d{3})+(\.(\d+)?)?$)/, '\1,')
+  end
+
+  def increment_time
+    update_attribute(:end_time, (end_time + time_increment)) if end_time - (Time.now + time_increment)
   end
 end
