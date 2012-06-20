@@ -25,5 +25,20 @@ $(document).ready ->
     price_elem = $("dd.more_info_price")
     price_elem.text "$" + new_price
     price_elem.attr 'data-current-price', new_price
-
+    $('#bid_amount').val(getPrice())
+    bid_amount_control_div = $('#bid_amount').parent().parent()
+    $('#new_bid_help_block').show()
+    $('#bid_amount_control_group').addClass('error')
+    console.log bid_amount_control_div.parent()
+    setTimeout ( ()->
+      $('#bid_amount_control_group').removeClass('error')
+      $('#new_bid_help_block').hide('slow')
+    ), 2000
     $("div.time-price-container").effect("highlight", { color: "#FF9999" }, 1500);
+
+
+  getPrice = ->
+    current_bid = parseFloat($("dd.more_info_price").attr('data-current-price').replace(/\,/g, ''))
+    minimum_price = parseFloat($("dd.more_info_price").attr('data-min-bid-increment'))
+    return (current_bid + minimum_price).toFixed(2)
+

@@ -4,7 +4,6 @@
 		<% if @auction.images.length > 0 %>
 			<div id="myCarousel" class="carousel slide" style="width: 400px;">
 				<div class="carousel-inner">
-
 					<% @auction.images.each  do |image| %>
 						<div class="item<%= " active" if image === @auction.images.first %>">
 						  <%= image_tag image.auction_image.url %>
@@ -53,12 +52,13 @@
 				<dd>
 					<%= form_tag auction_bids_path(@auction), remote: true, id: "bid_show_form", class: "form-inline" do %>
 					<%= label_tag :bid_amount, "Bid Amount", class: "more-amount-label" %>
-					<div class="control-group">
+					<div id='bid_amount_control_group' class="control-group">
 				        <div class="controls">
 				          	<div class="input-prepend">
 					            <%= label_tag :bid_amount, "$", class: "add-on", style: "margin: 0px -5px 0px 0px" %>
 					            <%= text_field_tag :bid_amount, @auction.new_minimum_bid, class: "more-amount input-medium" %>
 				          	</div>
+				          	<p id="new_bid_help_block" class="help-block">Someone else just bid!</p>
 			          	</div>
 		          	</div>
 						<%= submit_tag "Place Bid", class: "btn btn-large btn-success show-submit" %>
