@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
     t.string   "token"
     t.integer  "time_increment"
     t.integer  "main_image_id"
+    t.boolean  "real_estate"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "status"
@@ -80,9 +81,8 @@ ActiveRecord::Schema.define(:version => 20120411143103) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.boolean  "real_estate"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "images", :force => true do |t|

@@ -30,7 +30,7 @@ class AuctionsController < ApplicationController
 			# 		false
 			# 	end
 
-			(auction.categories.map{|cat| cat.id} & params[:categories]).empty?
+			(auction.categories.map{|cat| cat.id.to_s} & params[:categories]).empty?
 		end unless params[:categories].blank? or @auctions.empty?
 
 		# Filter by ended

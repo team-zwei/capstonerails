@@ -6,6 +6,7 @@ $(document).ready(function(){
         $(this).attr('data-active', 'true');
         $('#real_estate_btn').attr('data-active', 'false');
         toggleProperties();
+        $('#auction_real_estate').val('false');
       }
     });
     $('#real_estate_btn').click(function(){
@@ -13,6 +14,7 @@ $(document).ready(function(){
         $(this).attr('data-active', 'true');
         $('#personal_property_btn').attr('data-active', 'false');
         toggleProperties();
+        $('#auction_real_estate').val('true');
       }
     });
 
@@ -42,6 +44,7 @@ $(document).ready(function(){
     <hr/>
 
     <%= form_for @auction, html: {class: "form-horizontal"} do |f| %>
+      <%= f.hidden_field :real_estate, value: false %>
       <div class="row">
         <div class="span5">
           <fieldset>

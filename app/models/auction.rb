@@ -18,6 +18,7 @@
 #  created_at            :datetime        not null
 #  updated_at            :datetime        not null
 #  status                :string(255)
+#  real_estate           :boolean
 #
 
 class Auction < ActiveRecord::Base
@@ -33,7 +34,7 @@ class Auction < ActiveRecord::Base
 
   accepts_nested_attributes_for :images
 
-  attr_accessible :name, :description, :terms, :starting_bid_price, :minimum_bid_increment, :data, :end_time, :start_time, :time_increment, :main_image
+  attr_accessible :name, :description, :terms, :starting_bid_price, :minimum_bid_increment, :data, :end_time, :start_time, :time_increment, :main_image, :real_estate
 
   define_index do
     indexes :name, sortable: true

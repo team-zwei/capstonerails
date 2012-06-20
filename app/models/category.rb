@@ -4,7 +4,6 @@
 #
 #  id          :integer         not null, primary key
 #  name        :string(255)
-#  real_estate :boolean
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
 #

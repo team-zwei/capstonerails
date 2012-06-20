@@ -14,6 +14,7 @@ class CreateAuctions < ActiveRecord::Migration
       t.string    :token
       t.integer   :time_increment
       t.integer   :main_image_id
+      t.boolean   :real_estate
 
       t.timestamps
     end
