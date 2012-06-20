@@ -17,11 +17,11 @@ User.create(email: "test@test.com",
             lastname: "McTestit"
             )
 
-Category.create(name: "Land", real_estate: true)
-Category.create(name: "House", real_estate: true)
-Category.create(name: "Equipment", real_estate: false)
-Category.create(name: "Electronics", real_estate: false)
-Category.create(name: "Automotive", real_estate: false)
+Category.create(name: "Land")
+Category.create(name: "House")
+Category.create(name: "Equipment")
+Category.create(name: "Electronics")
+Category.create(name: "Automotive")
 
 time = Time.now + 86400 # setting to one day from current time at seeding.
 
@@ -29,6 +29,7 @@ auction = Auction.create( name: "iPod Touch 32GB",
                 description: "A 32GB iPod Touch featuring the latest in Apple iPod Technology.",
                 starting_bid_price: 100.00,
                 minimum_bid_increment: 5.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now
               )
@@ -37,6 +38,7 @@ auction2 = Auction.create( name: "4br 4bath House",
                 description: "A charming 4 bedroom, 4 bath house that will be demolished next week.",
                 starting_bid_price: 120000.00,
                 minimum_bid_increment: 1000.00,
+                real_estate: true,
                 end_time: time,
                 start_time: Time.now,
                 data: {
@@ -50,6 +52,7 @@ auction3 = Auction.create( name: "John Deere Tractor",
                 description: "It's been said that some women find this tractor sexy. That said, the point is still up for debate.",
                 starting_bid_price: 45000.00,
                 minimum_bid_increment: 500.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now
               )
@@ -58,6 +61,7 @@ Auction.create( name: "Pile of sticks",
                 description: "Brand new pile of sticks. No rotting pieces of wood in here.",
                 starting_bid_price: 20.00,
                 minimum_bid_increment: 5.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now
               )
@@ -66,6 +70,7 @@ Auction.create( name: "Nothing",
                 description: "The winner of this auction will get absolutely nothing.",
                 starting_bid_price: 1.00,
                 minimum_bid_increment: 1.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now
               )
@@ -74,6 +79,7 @@ Auction.create( name: "Cheesy Poofs",
                 description: "Cheetos has nothing on these.",
                 starting_bid_price: 2.00,
                 minimum_bid_increment: 1.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now
               )
@@ -82,6 +88,7 @@ Auction.create( name: "Grandma's lace doilies",
                 description: "Great for placing other antiques on top of!",
                 starting_bid_price: 238.00,
                 minimum_bid_increment: 2.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now
               )
@@ -90,6 +97,7 @@ Auction.create( name: "Something",
                 description: "The winner of this auction will absolutely get something.",
                 starting_bid_price: 3.00,
                 minimum_bid_increment: 1.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now
               )
@@ -98,6 +106,7 @@ Auction.create( name: "Something Else",
                 description: "The winner of this auction will absolutely get something else.",
                 starting_bid_price: 1235.00,
                 minimum_bid_increment: 15.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now
               )
@@ -106,6 +115,7 @@ Auction.create( name: "Something Entirely Different",
                 description: "The winner of this auction will absolutely get something entirely different.",
                 starting_bid_price: 99.00,
                 minimum_bid_increment: 1.00,
+                real_estate: false,
                 end_time: time,
                 start_time: Time.now,
                 data: {
