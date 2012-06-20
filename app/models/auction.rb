@@ -27,6 +27,7 @@ class Auction < ActiveRecord::Base
   has_one :payment
   belongs_to :main_image, class_name: "Image"
   belongs_to :current_bid, class_name: "Bid"
+  belongs_to :winner, class_name: "User"
   has_many :bids
   has_many :users, through: :bids, as: :bidders
   has_many :images, dependent: :destroy
@@ -74,6 +75,6 @@ class Auction < ActiveRecord::Base
   end
 
   def increment_time
-    update_attribute(:end_time, (end_time + time_increment)) if end_time - (Time.now + time_increment)
+    update_attribute(:end_time, (end_time + time_increment)) if (end_time - (Time.now + time_increment)) < 0
   end
 end

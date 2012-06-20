@@ -25,12 +25,15 @@ Category.create(name: "Automotive")
 
 time = Time.now + 86400 # setting to one day from current time at seeding.
 
+time2 = Time.now + 10000
+
 auction = Auction.create( name: "iPod Touch 32GB",
                 description: "A 32GB iPod Touch featuring the latest in Apple iPod Technology.",
                 starting_bid_price: 100.00,
                 minimum_bid_increment: 5.00,
                 real_estate: false,
-                end_time: time,
+                time_increment: 10000,
+                end_time: time2,
                 start_time: Time.now
               )
 
@@ -39,6 +42,7 @@ auction2 = Auction.create( name: "4br 4bath House",
                 starting_bid_price: 120000.00,
                 minimum_bid_increment: 1000.00,
                 real_estate: true,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now,
                 data: {
@@ -53,6 +57,7 @@ auction3 = Auction.create( name: "John Deere Tractor",
                 starting_bid_price: 45000.00,
                 minimum_bid_increment: 500.00,
                 real_estate: false,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now
               )
@@ -62,6 +67,7 @@ Auction.create( name: "Pile of sticks",
                 starting_bid_price: 20.00,
                 minimum_bid_increment: 5.00,
                 real_estate: false,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now
               )
@@ -71,6 +77,7 @@ Auction.create( name: "Nothing",
                 starting_bid_price: 1.00,
                 minimum_bid_increment: 1.00,
                 real_estate: false,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now
               )
@@ -80,6 +87,7 @@ Auction.create( name: "Cheesy Poofs",
                 starting_bid_price: 2.00,
                 minimum_bid_increment: 1.00,
                 real_estate: false,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now
               )
@@ -89,6 +97,7 @@ Auction.create( name: "Grandma's lace doilies",
                 starting_bid_price: 238.00,
                 minimum_bid_increment: 2.00,
                 real_estate: false,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now
               )
@@ -98,6 +107,7 @@ Auction.create( name: "Something",
                 starting_bid_price: 3.00,
                 minimum_bid_increment: 1.00,
                 real_estate: false,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now
               )
@@ -107,6 +117,7 @@ Auction.create( name: "Something Else",
                 starting_bid_price: 1235.00,
                 minimum_bid_increment: 15.00,
                 real_estate: false,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now
               )
@@ -116,6 +127,7 @@ Auction.create( name: "Something Entirely Different",
                 starting_bid_price: 99.00,
                 minimum_bid_increment: 1.00,
                 real_estate: false,
+                time_increment: 10000,
                 end_time: time,
                 start_time: Time.now,
                 data: {
@@ -135,41 +147,41 @@ end
 
 # Admin wins auction 1
 bid = Bid.new(amount: 105.00)
-bid.user_id = 1
-bid.auction_id = 1
+bid.user = User.find_by_username("admin")
+bid.auction = auction
 bid.save!
 
 auction.current_bid_id = bid.id
 auction.end_time = Time.now - 1
-auction.winner_id = 1
+auction.winner = User.find_by_username("admin")
 auction.save!
 
 # Admin wins auction 2
 bid = Bid.new(amount: 121000.00)
-bid.user_id = 1
-bid.auction_id = 2
+bid.user = User.find_by_username("admin")
+bid.auction = auction2
 bid.save!
 
 auction2.current_bid_id = bid.id
 auction2.end_time = Time.now - 1
-auction2.winner_id = 1
+auction2.winner = User.find_by_username("admin")
 auction2.save!
 
 # Admin wins auction 3
 bid = Bid.new(amount: 45500.00)
-bid.user_id = 1
-bid.auction_id = 3
+bid.user = User.find_by_username("admin")
+bid.auction = auction3
 bid.save!
 
 auction3.current_bid_id = bid.id
 auction3.end_time = Time.now - 1
-auction3.winner_id = 1
+auction3.winner = User.find_by_username("admin")
 auction3.save!
 
 # Test bids on auction "Nothing"
 bid = Bid.new(amount: 1.00)
-bid.user_id = User.find_by_username("test").id
-bid.auction_id = Auction.find_by_name("Nothing").id
+bid.user = User.find_by_username("test")
+bid.auction = Auction.find_by_name("Nothing")
 bid.save!
 
 auction = Auction.find_by_name("Nothing")
