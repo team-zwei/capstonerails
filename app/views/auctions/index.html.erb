@@ -59,8 +59,8 @@
 			</div>
 			<div class="span9">
 				<select id="auction_category" name="categories[]" data-placeholder="Choose some categories..."  multiple class="chzn-select" style="width: 100%;">
-		          <%= options_from_collection_for_select(Category.all, 'id', 'name') %>
-		        </select>
+		      <%= options_from_collection_for_select(Category.all, 'id', 'name', @category_ids) %>
+		    </select>
 			</div>
 		</fieldset>
 	<% end %>
