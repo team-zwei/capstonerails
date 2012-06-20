@@ -4,21 +4,24 @@ class AuctionsController < ApplicationController
 	before_filter :require_auction_token, only: [:update, :confirm, :publish, :cancel]
 
 	def index
-		
+		# Filter by text search
 		@auctions = if (params[:search].blank?)
 						Auction.where("start_time <= now()").order("end_time desc").page(params[:page]).per(params[:num_per_page])
 					else
 						Auction.search(params[:search], order: :end_time, sort_mode: :desc).page(params[:page]).per(params[:num_per_page])
 					end
 
+		# Filter by minimum price
 		@auctions.delete_if do |auction|
 			params[:price_min].to_f > (auction.current_bid ? auction.current_bid.amount : auction.starting_bid_price)
 		end unless params[:price_min].blank? or @auctions.empty?
 
+		# Filter by maximum price
 		@auctions.delete_if do |auction|
 			params[:price_max].to_f < (auction.current_bid ? auction.current_bid.amount : auction.starting_bid_price)
 		end unless params[:price_max].blank? or @auctions.empty?
 
+		# Filter by categories
 		@auctions.delete_if do |auction|
 			# auction.categories.each do |cat|
 			# 	if ((params[:categories]).length > 0)
@@ -30,7 +33,11 @@ class AuctionsController < ApplicationController
 			(auction.categories.map{|cat| cat.id} & params[:categories]).empty?
 		end unless params[:categories].blank? or @auctions.empty?
 
+		# Filter by ended
 		@auctions.delete_if { |auction| auction.end_time < Time.now() } unless !params[:show_ended].blank? or @auctions.empty?
+
+		# Display chosen categories
+		@category_ids = params[:categories] if params[:categories]
 	end
 
 	def show
